@@ -1,0 +1,96 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  var pageMetafieldParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'fields_raven',
+    key: `key ${Date.now()}`,
+    value: `value ${Date.now()}`,
+    value_type: 'single_line_text_field'
+  }
+
+  var pageTitleParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'global',
+    key: `title_tag`,
+    value: `jQuery example (${Date.now()})`,
+    value_type: 'single_line_text_field'
+  }
+
+
+  {% liquid
+    assign seo_hidden_value = page.metafields.seo.hidden.value
+    case seo_hidden_value
+      when 0
+        assign hide_show_value = 1
+        assign hide_show_text = 'Hide'
+      when 1
+        assign hide_show_value = 0
+        assign hide_show_text = 'Show'
+      else
+        assign hide_show_value = 1
+        assign hide_show_text = 'Hide'
+      endcase
+  %}
+
+  var pageSEOHideParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'seo',
+    key: 'hidden',
+    value: {{ hide_show_value }},
+    value_type: 'number_integer'
+  }
+</script>
+
+<section x-data="{
+  dataSubmit(params) {
+    $.ajax({
+      type: 'PUT',
+      url: '/apps/raven/create_update_metafield',
+      contentType: 'application/json',
+      data: JSON.stringify(params)
+    }).done(function () {
+      console.log('SUCCESS');
+      setTimeout(() => (location.reload()), 3000)
+    }).fail(function (msg) {
+      console.log('FAIL');
+    }).always(function (msg) {
+      console.log('ALWAYS');
+    });
+  }
+}"
+  x-init="console.log('FieldaRaven jQuery example')"
+>
+  <h3>Add text metafield to the page</h3>
+  <fieldset>
+    <legend>Page random metafields</legend>
+    <code>
+      {{ page.metafields.fields_raven }}
+    </code><br>
+  </fieldset>
+  <button @click="dataSubmit(pageMetafieldParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Chanage page title (by adding a time stamp at the end of the title)</h3>
+  <fieldset>
+    <legend>Page title</legend>
+    <code>{{ page_title }}</code><br>
+  </fieldset>
+  <button @click="dataSubmit(pageTitleParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Hide page from search engines and sitemap</h3>
+  <fieldset>
+    <legend>Page SEO hidden value</legend>
+    <code>
+      {% if page.metafields.seo.hidden.value %}
+        {{ seo_hidden_value }}
+      {% else %}
+        No value found.
+      {% endif %}
+    </code><br>
+  </fieldset>
+  <button @click="dataSubmit(pageSEOHideParams)">
+    {{ hide_show_text }} page on sitemap!
+  </button>
+</div>

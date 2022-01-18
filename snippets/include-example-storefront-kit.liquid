@@ -1,0 +1,91 @@
+<script type="text/javascript">
+  var pageMetafieldParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'fields_raven',
+    key: `key ${Date.now()}`,
+    value: `value ${Date.now()}`,
+    value_type: 'single_line_text_field'
+  }
+
+  var pageTitleParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'global',
+    key: `title_tag`,
+    value: `Storefront Kit Example (${Date.now()})`,
+    value_type: 'single_line_text_field'
+  }
+
+
+  {% liquid
+    assign seo_hidden_value = page.metafields.seo.hidden.value
+    case seo_hidden_value
+      when 0
+        assign hide_show_value = 1
+        assign hide_show_text = 'Hide'
+      when 1
+        assign hide_show_value = 0
+        assign hide_show_text = 'Show'
+      else
+        assign hide_show_value = 1
+        assign hide_show_text = 'Hide'
+      endcase
+  %}
+
+  var pageSEOHideParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'seo',
+    key: 'hidden',
+    value: {{ hide_show_value }},
+    value_type: 'number_integer'
+  }
+</script>
+
+<section x-data="{
+  fieldsRavenDataSubmit(params){
+    FieldsRaven.metafieldCreateUpdate(params)
+    .then(res => {
+      console.log('storefront res:', res.status);
+      console.log('storefront res:', res);
+      setTimeout(() => (location.reload()), 3000);
+    })
+    .catch(error => {
+      console.error('There was an error!', error);
+    });
+  }
+}"
+  x-init="console.log('FieldaRaven Fetch example')"
+>
+  <h3>Add text metafield to the page</h3>
+  <fieldset>
+    <legend>Page random metafields</legend>
+    <code>
+      {{ page.metafields.fields_raven }}
+    </code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(pageMetafieldParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Chanage page title (by adding a time stamp at the end of the title)</h3>
+  <fieldset>
+    <legend>Page title</legend>
+    <code>{{ page_title }}</code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(pageTitleParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Hide page from search engines and sitemap</h3>
+  <fieldset>
+    <legend>Page SEO hidden value</legend>
+    <code>
+      {% if page.metafields.seo.hidden.value %}
+        {{ seo_hidden_value }}
+      {% else %}
+        No value found.
+      {% endif %}
+    </code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(pageSEOHideParams)">
+    {{ hide_show_text }} page on sitemap!
+  </button>
+</section>
