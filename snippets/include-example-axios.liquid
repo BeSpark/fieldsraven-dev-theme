@@ -9,6 +9,15 @@
     value_type: 'single_line_text_field'
   }
 
+  var pageJSONMetafieldParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'fields_raven',
+    key: 'json_example',
+    value: JSON.stringify({"color": "blue","size": "large","updated_at": Date.now()}),
+    value_type: 'json'
+  }
+
   var pageTitleParams = {
     object_type: 'page',
     object_id: {{ page.id }},
@@ -91,6 +100,15 @@
     </code><br>
   </fieldset>
   <button @click="dataSubmit(pageMetafieldParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Add JSON metafield to the page</h3>
+  <fieldset>
+    <legend>Page JSON metafield example</legend>
+    <code>
+      {{ page.metafields.fields_raven.json_example.value }}
+    </code><br>
+  </fieldset>
+  <button @click="dataSubmit(pageJSONMetafieldParams)">Create/update page JSON metafield!</button>
   <hr>
   <h3>Chanage page title (by adding a time stamp at the end of the title)</h3>
   <fieldset>

@@ -8,6 +8,24 @@
     value_type: 'single_line_text_field'
   }
 
+  var pageJSONMetafieldParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'fields_raven',
+    key: 'json_example',
+    value: JSON.stringify({"color": "blue","size": "large","updated_at": Date.now()}),
+    value_type: 'json'
+  }
+
+  var pageNumberDecimalMetafieldParams = {
+    object_type: 'page',
+    object_id: {{ page.id }},
+    namespace: 'fields_raven',
+    key: 'number_decimal_example',
+    value: 9.75,
+    value_type: 'number_decimal'
+  }
+
   var pageTitleParams = {
     object_type: 'page',
     object_id: {{ page.id }},
@@ -44,11 +62,15 @@
 </script>
 
 <section x-data="{
-  fieldsRavenDataSubmit(params){
+  fieldsRavenDataSubmit(params) {
     FieldsRaven.metafieldCreateUpdate(params)
     .then(res => {
-      console.log('storefront res:', res.status);
       console.log('storefront res:', res);
+      console.log('storefront res status:', res.status);
+      return res.json()
+    })
+    .then(res_json => {
+      console.log('🚨🚨⚠️ res_json:', res_json)
       setTimeout(() => (location.reload()), 3000);
     })
     .catch(error => {
@@ -66,6 +88,24 @@
     </code><br>
   </fieldset>
   <button @click="fieldsRavenDataSubmit(pageMetafieldParams)">Create/update page metafield!</button>
+  <hr>
+  <h3>Add JSON metafield to the page</h3>
+  <fieldset>
+    <legend>Page JSON metafield example</legend>
+    <code>
+      {{ page.metafields.fields_raven.json_example.value }}
+    </code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(pageJSONMetafieldParams)">Create/update page JSON metafield!</button>
+  <hr>
+  <h3>Add number_decimal metafield to the page</h3>
+  <fieldset>
+    <legend>Page number_decimal metafield example</legend>
+    <code>
+      {{ page.metafields.fields_raven.number_decimal_example.value }}
+    </code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(pageNumberDecimalMetafieldParams)">Create/update page JSON metafield!</button>
   <hr>
   <h3>Chanage page title (by adding a time stamp at the end of the title)</h3>
   <fieldset>
