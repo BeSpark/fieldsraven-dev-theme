@@ -1,0 +1,57 @@
+<script type="text/javascript">
+  metafieldObj = function(key, value) {
+    return {
+      object_type: 'page',
+      object_id: {{ page.id }},
+      namespace: 'fields_raven_st_18',
+      key: key,
+      value: value,
+      value_type: 'number_integer'
+    }
+  }
+
+  window.StressTest = function() {
+    return {
+      fieldsRavenDataSubmit(params) {
+        const response = FieldsRaven.metafieldCreateUpdate(params);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🛑 res.status: ', res.status)
+            console.log('🛑 res.json: ', res.json)
+          } else {
+            console.error('🛑 res.json: ', res.json)
+          }
+        })
+        .catch(e => console.error(e));
+      },
+      stress() {
+        for (let step = 1; step < 31; step++) {
+          console.log(`🚧🚧🚧 ${step} 🚧🚧🚧`)
+          let mf = metafieldObj(`stress_test_key ${step}`, step)
+          this.fieldsRavenDataSubmit(mf)
+          // setTimeout(() => (this.fieldsRavenDataSubmit(mf)), 550)
+        }
+        // setTimeout(() => (location.reload()), 10000)
+      }
+    }
+  }
+</script>
+
+<section x-data="window.StressTest()"
+  x-init="console.log('FieldaRaven Storefront stress test')"
+>
+  <h3>Shop metafields</h3>
+  <fieldset>
+    <legend>Shop metafields values</legend>
+    <code>
+      {% if page.metafields.fields_raven_st_18 != blank %}
+        {% for metafield in page.metafields.fields_raven_st_18 %}
+          [{{ forloop.index }}] {{ metafield | first }}: {{ metafield | last }}<br>
+        {% endfor %}
+      {% else %}
+        No value found.
+      {% endif %}
+    </code><br>
+  </fieldset>
+  <button @click="stress()">Don't stress!</button>
+</section>

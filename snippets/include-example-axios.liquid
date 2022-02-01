@@ -90,7 +90,7 @@
     })
   }
 }"
-  x-init="console.log('FieldaRaven Fetch example')"
+  x-init="console.log('FieldaRaven Axios example')"
 >
   <h3>Add text metafield to the page</h3>
   <fieldset>
@@ -131,4 +131,33 @@
   <button @click="dataSubmit(pageSEOHideParams)">
     {{ hide_show_text }} page on sitemap!
   </button>
+  <hr>
+  <script type="text/javascript">
+    var pageMetafieldParams = {
+      object_type: 'pagex',
+      object_id: {{ page.id }},
+      namespace: 'fields_raven',
+      key: `key ${Date.now()}`,
+      value: `value ${Date.now()}`,
+      value_type: 'single_line_text_field'
+    }
+
+    fieldsRavenDataSubmit = (params) => {
+      axios.put('/apps/raven/create_update_metafield', params )
+      .then(res => console.log('🎉'))
+      .catch(error => {
+        if (error.response) {
+          // Request made and server responded
+          console.log('😞 error.response', error.response.status, error.response.data);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log('😞 error.request: ', error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('😞 Error', error.message);
+        }
+      })
+    }
+  </script>
+  <div id="fieldsraven-demo" onclick="fieldsRavenDataSubmit(pageMetafieldParams)">Create metafield!</div>
 </section>

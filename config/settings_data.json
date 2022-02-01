@@ -76,12 +76,6 @@
 
     ],
     "blocks": {
-      "13034278938480389366": {
-        "type": "shopify:\/\/apps\/fieldsraven-dev\/blocks\/app-embed\/85b20da3-13b0-4913-bd3d-c284255cddf9",
-        "disabled": false,
-        "settings": {
-        }
-      },
       "6525065150774688679": {
         "type": "shopify:\/\/apps\/fieldsraven-dev\/blocks\/birthday-app-embed\/85b20da3-13b0-4913-bd3d-c284255cddf9",
         "disabled": false,
@@ -101,6 +95,14 @@
         "disabled": false,
         "settings": {
           "admin_email": "karim@bespark.ca"
+        }
+      },
+      "13485763659823208815": {
+        "type": "shopify:\/\/apps\/fieldsraven-dev\/blocks\/storefront-kit-app-embed\/85b20da3-13b0-4913-bd3d-c284255cddf9",
+        "disabled": false,
+        "settings": {
+          "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
+          "include_alpine_js": true
         }
       }
     }

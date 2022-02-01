@@ -112,4 +112,33 @@
   <button @click="dataSubmit(pageSEOHideParams)">
     {{ hide_show_text }} page on sitemap!
   </button>
+  <hr>
+  <script type="text/javascript">
+    var pageMetafieldParams = {
+      object_type: 'page',
+      object_id: {{ page.id }},
+      namespace: 'fields_raven',
+      key: `key ${Date.now()}`,
+      value: `value ${Date.now()}`,
+      value_type: 'single_line_text_field'
+    }
+
+    fieldsRavenDataSubmit = (params) => {
+      fetch('/apps/raven/create_update_metafield', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params)
+      })
+      .then(res => { return {status: res.status, json: res.json()} })
+      .then(resObj => {
+        if (resObj.status === 200) {
+          console.log('🎉')
+        } else {
+          console.log('😞', resObj.json)
+        }
+      })
+      .catch(e => console.error(e));
+    }
+  </script>
+  <div id="fieldsraven-demo" onclick="fieldsRavenDataSubmit(pageMetafieldParams)">Create metafield!</div>
 </section>

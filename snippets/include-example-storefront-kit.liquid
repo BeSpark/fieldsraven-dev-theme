@@ -8,6 +8,15 @@
     value_type: 'single_line_text_field'
   }
 
+  var shopMetafieldParams = {
+    object_type: 'shop',
+    {% comment %}object_id: {{ page.id }},{% endcomment %}
+    namespace: 'fields_raven',
+    key: `key ${Date.now()}`,
+    value: `value ${Date.now()}`,
+    value_type: 'single_line_text_field'
+  }
+
   var pageJSONMetafieldParams = {
     object_type: 'page',
     object_id: {{ page.id }},
@@ -63,22 +72,55 @@
 
 <section x-data="{
   fieldsRavenDataSubmit(params) {
-    FieldsRaven.metafieldCreateUpdate(params)
-    .then(res => {
-      console.log('storefront res:', res);
-      console.log('storefront res status:', res.status);
-      return res.json()
+    const response = FieldsRaven.metafieldCreateUpdate(params);
+    response.then(res => {
+      console.log('🛑 res: ', res)
+      console.log('🛑 typeof res: ', typeof res)
+      console.log('🛑 res.status: ', res.status)
+      console.log('🛑 res.status === 200 ', res.status === 200)
+      console.log('🛑 res.json: ', res.json)
+      if (res.status === 200) {
+        setTimeout(() => (location.reload()), 3000)
+      } else {
+        console.error('🛑 res.json: ', res.json)
+      }
     })
-    .then(res_json => {
-      console.log('🚨🚨⚠️ res_json:', res_json)
-      setTimeout(() => (location.reload()), 3000);
+    .catch(e => console.error(e));
+  },
+  FieldsRavenSeoTitle(object_type, object_id, new_title) {
+    const response = FieldsRaven.seoTitle(object_type, object_id, new_title);
+    response.then(res => {
+      console.log('🛑 res: ', res)
+      console.log('🛑 typeof res: ', typeof res)
+      console.log('🛑 res.status: ', res.status)
+      console.log('🛑 res.status === 200 ', res.status === 200)
+      console.log('🛑 res.json: ', res.json)
+      if (res.status === 200) {
+        setTimeout(() => (location.reload()), 3000)
+      } else {
+        console.error('🛑 res.json: ', res.json)
+      }
     })
-    .catch(error => {
-      console.error('There was an error!', error);
-    });
+    .catch(e => console.error(e));
+  },
+  FieldsRavenSitemapHideShow(object_type, object_id, value) {
+    const response = FieldsRaven.sitemapHideShow(object_type, object_id, value);
+    response.then(res => {
+      console.log('🛑 res: ', res)
+      console.log('🛑 typeof res: ', typeof res)
+      console.log('🛑 res.status: ', res.status)
+      console.log('🛑 res.status === 200 ', res.status === 200)
+      console.log('🛑 res.json: ', res.json)
+      if (res.status === 200) {
+        setTimeout(() => (location.reload()), 3000)
+      } else {
+        console.error('🛑 res.json: ', res.json)
+      }
+    })
+    .catch(e => console.error(e));
   }
 }"
-  x-init="console.log('FieldaRaven Fetch example')"
+  x-init="console.log('FieldaRaven Storefront Kit example')"
 >
   <h3>Add text metafield to the page</h3>
   <fieldset>
@@ -112,7 +154,7 @@
     <legend>Page title</legend>
     <code>{{ page_title }}</code><br>
   </fieldset>
-  <button @click="fieldsRavenDataSubmit(pageTitleParams)">Create/update page metafield!</button>
+  <button @click="FieldsRavenSeoTitle('page', {{page.id}}, pageTitleParams.value)">Create/update page metafield!</button>
   <hr>
   <h3>Hide page from search engines and sitemap</h3>
   <fieldset>
@@ -125,7 +167,43 @@
       {% endif %}
     </code><br>
   </fieldset>
-  <button @click="fieldsRavenDataSubmit(pageSEOHideParams)">
+  <button @click="FieldsRavenSitemapHideShow('page', {{page.id}}, {{ hide_show_value }})">
     {{ hide_show_text }} page on sitemap!
   </button>
+  <hr>
+  <h3>Shop metafields</h3>
+  <fieldset>
+    <legend>Shop metafields values</legend>
+    <code>
+      {% if shop.metafields.fields_raven != blank %}
+        {% for metafield in shop.metafields.fields_raven %}
+          {{ metafield | first }}: {{ metafield | last }}<br>
+        {% endfor %}
+      {% else %}
+        No value found.
+      {% endif %}
+    </code><br>
+  </fieldset>
+  <button @click="fieldsRavenDataSubmit(shopMetafieldParams)">
+    Create/update shop metafield!
+  </button>
+  <hr>
+  <script type="text/javascript">
+    window.addEventListener('FieldsRaven:ready', (event) => {
+      fieldsRavenDataSubmit = (params) => {
+        const response = FieldsRaven.metafieldCreateUpdate(params);
+        response.then(res => {
+          if (res.status === 200) {
+            alert(`🎉 res.json`)
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res.json)
+          }
+        })
+        .catch(e => console.error(e));
+      }
+    });
+  </script>
+
+  <div id="fieldsraven-demo" onclick="fieldsRavenDataSubmit(pageMetafieldParams)">Create metafield!</div>
 </section>
