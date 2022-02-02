@@ -3,7 +3,7 @@
     return {
       object_type: 'page',
       object_id: {{ page.id }},
-      namespace: 'fields_raven_st_18',
+      namespace: 'fields_raven_st_29',
       key: key,
       value: value,
       value_type: 'number_integer'
@@ -16,20 +16,19 @@
         const response = FieldsRaven.metafieldCreateUpdate(params);
         response.then(res => {
           if (res.status === 200) {
-            console.log('🛑 res.status: ', res.status)
-            console.log('🛑 res.json: ', res.json)
+            console.log('✅ res.status: ', res.status)
+            console.log('✅ res.json: ', res.json)
           } else {
             console.error('🛑 res.json: ', res.json)
           }
         })
-        .catch(e => console.error(e));
       },
       stress() {
-        for (let step = 1; step < 31; step++) {
+        for (let step = 1; step < 1001; step++) {
           console.log(`🚧🚧🚧 ${step} 🚧🚧🚧`)
           let mf = metafieldObj(`stress_test_key ${step}`, step)
           this.fieldsRavenDataSubmit(mf)
-          // setTimeout(() => (this.fieldsRavenDataSubmit(mf)), 550)
+          //setTimeout(() => (this.fieldsRavenDataSubmit(mf)), 550)
         }
         // setTimeout(() => (location.reload()), 10000)
       }
@@ -44,8 +43,8 @@
   <fieldset>
     <legend>Shop metafields values</legend>
     <code>
-      {% if page.metafields.fields_raven_st_18 != blank %}
-        {% for metafield in page.metafields.fields_raven_st_18 %}
+      {% if page.metafields.fields_raven_st_29 != blank %}
+        {% for metafield in page.metafields.fields_raven_st_29 %}
           [{{ forloop.index }}] {{ metafield | first }}: {{ metafield | last }}<br>
         {% endfor %}
       {% else %}
