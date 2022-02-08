@@ -1,0 +1,6 @@
+{% comment %}1644194432{% endcomment %}{% liquid
+  assign raven_api_secret = shop.metafields.fields_raven.api_secret
+  assign raven_mac = shop.domain | append: shop.id | hmac_sha256: raven_api_secret
+%}
+
+{{ raven_mac }}
