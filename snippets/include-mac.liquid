@@ -168,8 +168,8 @@
 <script type="text/javascript">
   window.addEventListener('FieldsRaven:ready', (event) => {
     ravenSubmit = () => {
-      const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'bIn4DJY' -%}
-      const valueObj = { value: `Hello Raven! @ ${Date.now()}` };
+      const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: '4JxwUT4' -%}
+      const valueObj = { value: JSON.stringify({fav_color: 'Yellow', hobby: 'Soccer'}) };
       const response = Raven.send(ravenObj, valueObj);
       response.then(res => {
         if (res.status === 200) {
@@ -182,5 +182,5 @@
     }
   });
 </script>
-<button id="fieldsraven-demo" onclick="ravenSubmit()">send the Raven!</button>
+<button id="fieldsraven-demo" onclick="ravenSubmit()">Send JSON Raven!</button>
 </section>
