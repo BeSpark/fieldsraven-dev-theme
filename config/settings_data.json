@@ -76,21 +76,6 @@
 
     ],
     "blocks": {
-      "6356419554719212837": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/birthday-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id": "Kwf_cI4",
-          "submit_btn_text": "Reward me!",
-          "customer_logout_text": "<p><a href=\"\/account\/login\">Login<\/a> or <a href=\"\/account\/register\">create an account<\/a> to unlock your birthday gift 🎂<\/p>",
-          "bd_pre_submit_text": "<p>How about a little something somthing on your Birthday? 😉<\/p>",
-          "bd_post_submit_text": "<p>You're awesome! 🙌<\/p>",
-          "bd_wait_text": "<p>You're all set! We'll party soon...  🎉<\/p>",
-          "hide_popup_while_wait": true,
-          "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
-          "bd_code": "HappyBD2022"
-        }
-      },
       "6567124934620572698": {
         "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
         "disabled": false,
@@ -105,6 +90,21 @@
         "settings": {
           "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
           "include_alpine_js": true
+        }
+      },
+      "6356419554719212837": {
+        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/birthday-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
+        "disabled": false,
+        "settings": {
+          "raven_id": "Kwf_cI4",
+          "submit_btn_text": "Reward me!",
+          "customer_logout_text": "<p><a href=\"\/account\/login\">Login<\/a> or <a href=\"\/account\/register\">create an account<\/a> to unlock your birthday gift 🎂<\/p>",
+          "bd_pre_submit_text": "<p>How about a little something somthing on your Birthday? 😉<\/p>",
+          "bd_post_submit_text": "<p>You're awesome! 🙌<\/p>",
+          "bd_wait_text": "<p>You're all set! We'll party soon...  🎉<\/p>",
+          "hide_popup_while_wait": false,
+          "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
+          "bd_code": "HappyBD2022"
         }
       }
     }
