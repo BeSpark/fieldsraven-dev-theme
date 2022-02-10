@@ -84,11 +84,19 @@
           "include_alpine_js": true
         }
       },
+      "9985662080403605390": {
+        "type": "shopify:\/\/apps\/fieldsraven-stage\/blocks\/seo-hide-app-embed\/a39cc319-ee9d-4f4c-bff6-e6b35acde35c",
+        "disabled": false,
+        "settings": {
+          "raven_id": "DqK8a9Y",
+          "admin_email": "karim@bespark.ca"
+        }
+      },
       "1876704460801049681": {
         "type": "shopify:\/\/apps\/fieldsraven-stage\/blocks\/birthday-app-embed\/a39cc319-ee9d-4f4c-bff6-e6b35acde35c",
         "disabled": false,
         "settings": {
-          "raven_id": "2_cYFA4",
+          "raven_id": "VfuZDUU",
           "submit_btn_text": "Reward me!",
           "customer_logout_text": "<p><a href=\"\/account\/login\">Login<\/a> or <a href=\"\/account\/register\">create an account<\/a> to unlock your birthday gift 🎂<\/p>",
           "bd_pre_submit_text": "<p>How about a little something somthing on your Birthday? 😉<\/p>",
@@ -97,14 +105,6 @@
           "hide_popup_while_wait": false,
           "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
           "bd_code": "HappyBD2022"
-        }
-      },
-      "9985662080403605390": {
-        "type": "shopify:\/\/apps\/fieldsraven-stage\/blocks\/seo-hide-app-embed\/a39cc319-ee9d-4f4c-bff6-e6b35acde35c",
-        "disabled": false,
-        "settings": {
-          "raven_id": "DqK8a9Y",
-          "admin_email": "karim@bespark.ca"
         }
       }
     }
