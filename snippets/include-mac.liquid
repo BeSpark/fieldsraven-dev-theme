@@ -167,9 +167,9 @@
 <hr>
 <script type="text/javascript">
   window.addEventListener('FieldsRaven:ready', (event) => {
-    ravenSubmit = () => {
-      const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: '4JxwUT4' -%}
-      const valueObj = { value: JSON.stringify({fav_color: 'Yellow', hobby: 'Soccer'}) };
+    ravenSubmit = (value) => {
+      const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'w7un4mY' -%}
+      const valueObj = { value: value };
       const response = Raven.send(ravenObj, valueObj);
       response.then(res => {
         if (res.status === 200) {
@@ -182,5 +182,38 @@
     }
   });
 </script>
-<button id="fieldsraven-demo" onclick="ravenSubmit()">Send JSON Raven!</button>
+<button id="fieldsraven-demo" onclick="ravenSubmit(JSON.stringify([{fav_color: 'Yellow'},{hobby: 'Soccer'}, {country: 'Canada'}, {province: 'BC'}]))">Send JSON Raven!</button>
+<hr>
+<fieldset>
+  <legend>Wishlist test ({{ "now" | date: "%Y-%m-%d %H:%M:%S" }})</legend>
+  <script type="text/javascript">
+    {% assign wishlist = page.metafields.fields_raven.wishlist.value %}
+    {% if wishlist != blank %}
+      let wishlistObj = {{ wishlist | json }};
+    {% else %}
+      let wishlistObj = [];
+    {% endif %}
+    window.addEventListener('FieldsRaven:ready', (event) => {
+      addWishlistItem = (value) => {
+        wishlistObj.push(value)
+        let wishlistString = JSON.stringify(wishlistObj)
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'j399A_k' -%}
+        const valueObj = { value: wishlistString };
+        console.log('🎉 wishlistString', wishlistString)
+        console.log('🎉 valueObj', valueObj)
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res.json)
+          }
+        })
+        .catch(e => console.error(e));
+      }
+    });
+  </script>
+  <button id="fieldsraven-demo" onclick="addWishlistItem({product_id: {{page.id}}, created_at: new Date().toISOString()})">Add to Wishlist!</button>
+</fieldset>
+</section>
 </section>
