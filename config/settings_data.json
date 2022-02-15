@@ -76,14 +76,6 @@
 
     ],
     "blocks": {
-      "6567124934620572698": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id": "QwtCiJc",
-          "admin_email": "karim@fieldsraven.app"
-        }
-      },
       "9017896937276243741": {
         "type": "shopify:\/\/apps\/fieldsraven\/blocks\/storefront-kit-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
         "disabled": false,
@@ -105,6 +97,14 @@
           "hide_popup_while_wait": false,
           "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
           "bd_code": "HappyBD2022"
+        }
+      },
+      "6567124934620572698": {
+        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
+        "disabled": false,
+        "settings": {
+          "raven_id": "oRnDCZY",
+          "admin_email": "karim@fieldsraven.app"
         }
       }
     }
