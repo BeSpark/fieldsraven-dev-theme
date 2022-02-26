@@ -1,0 +1,219 @@
+<script type="text/javascript">
+  metafieldObj = function(key, value) {
+    return {
+      object_type: 'page',
+      object_id: {{ page.id }},
+      namespace: 'fields_raven_st_29',
+      key: key,
+      value: value,
+      value_type: 'number_integer'
+    }
+  }
+
+  window.PayloadGenTest = function() {
+    return {
+      fieldsRavenDataSubmit(ravenObj, valueObj) {
+        const requestParams = Object.assign({}, ravenObj, valueObj);
+        console.log('ravenObj: ', ravenObj)
+        console.log('ravenObj: ', typeof ravenObj)
+        console.log('valueObj: ', valueObj)
+        console.log('typeof valueObj: ', typeof valueObj)
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('✅ res.status: ', res.status)
+            console.log('✅ res.json: ', res.json)
+          } else {
+            console.error('🛑 res.json: ', res.json)
+          }
+        })
+      }
+    }
+  }
+</script>
+
+<section x-data="window.PayloadGenTest()"
+  x-init="console.log('FieldaRaven PayloadGenTest')"
+>
+{% comment %}
+  <h3>Payload gen test [{{ shop.name }}]</h3>
+
+  <fieldset>
+    <legend>single_line_text_field</legend>
+    <button @click="Raven.send(
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'UpBcS_I' -%},
+      { value: `Hello Raven! @ ${Date.now()}` }
+    )">Test!</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>multi_line_text_field</legend>
+    <button @click="fieldsRavenDataSubmit(
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'IWjZSuc' -%},
+      { value: `Hello Raven!\nHello world!\n${Date.now()}` }
+    )">Test!</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>number_integer</legend>
+    <button @click="fieldsRavenDataSubmit(
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'CX_GcTY' -%},
+      { value: 29 }
+    )">Test!</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>number_decimal</legend>
+    <button @click="fieldsRavenDataSubmit(
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'LkQMQvA' -%},
+      { value: 2.9 }
+    )">Test!</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>json</legend>
+    <button @click="fieldsRavenDataSubmit(
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'n6LBWj8' -%},
+      { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+    )">Test!</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>json on shop</legend>
+    <button @click="fieldsRavenDataSubmit(
+      {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'vOcZFBY' -%},
+      { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+    )">Test!</button>
+  </fieldset>
+
+  <hr>
+  <script type="text/javascript">
+    window.addEventListener('FieldsRaven:ready', (event) => {
+      ravenSubmit = () => {
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'WGv2c24' -%}
+        const valueObj = { value: `Hello Raven! @ ${Date.now()}` };
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res.json)
+          }
+        })
+        .catch(e => console.error(e));
+      }
+    });
+  </script>
+  <button id="fieldsraven-demo" onclick="ravenSubmit()">send the Raven!</button>
+{% endcomment %}
+<h3>Payload gen test [dev]</h3>
+
+<fieldset>
+  <legend>single_line_text_field</legend>
+  <button @click="Raven.send(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'bIn4DJY' -%},
+    { value: `Hello Raven! @ ${Date.now()}` }
+  )">Test!</button>
+</fieldset>
+
+<fieldset>
+  <legend>multi_line_text_field</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'OUcPueM' -%},
+    { value: `Hello Raven!\nHello world!\n${Date.now()}` }
+  )">Test!</button>
+</fieldset>
+
+<fieldset>
+  <legend>number_integer</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'XEBHzAo' -%},
+    { value: 29 }
+  )">Test!</button>
+</fieldset>
+
+<fieldset>
+  <legend>number_decimal</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'STwDD_Y' -%},
+    { value: 2.9 }
+  )">Test!</button>
+</fieldset>
+
+<fieldset>
+  <legend>json</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: '4JxwUT4' -%},
+    { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+  )">Test!</button>
+</fieldset>
+
+<fieldset>
+  <legend>json on shop</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'EQzQxbQ' -%},
+    { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+  )">Test!</button>
+</fieldset>
+
+<code>
+  {{ page.metafields.fields_raven['text test'] }}<br>
+  {{ page.metafields.fields_raven['multi line test'] }}<br>
+  {{ page.metafields.fields_raven.int_test }}<br>
+  {{ page.metafields.fields_raven['decimal test'] }}<br>
+  {{ page.metafields.fields_raven['json_test'] }}<br>
+</code><br>
+
+<hr>
+<script type="text/javascript">
+  window.addEventListener('FieldsRaven:ready', (event) => {
+    ravenSubmit = (value) => {
+      const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'w7un4mY' -%}
+      const valueObj = { value: value };
+      const response = Raven.send(ravenObj, valueObj);
+      response.then(res => {
+        if (res.status === 200) {
+          console.log('🎉', res.json)
+        } else {
+          console.error('😞', res.json)
+        }
+      })
+      .catch(e => console.error(e));
+    }
+  });
+</script>
+<button id="fieldsraven-demo" onclick="ravenSubmit(JSON.stringify([{fav_color: 'Yellow'},{hobby: 'Soccer'}, {country: 'Canada'}, {province: 'BC'}]))">Send JSON Raven!</button>
+<hr>
+<fieldset>
+  <legend>Wishlist test ({{ "2022-02-15T07:54:32.656Z" | date: "%Y-%m-%d %H:%M:%S" }})</legend>
+  <script type="text/javascript">
+    {% assign wishlist = page.metafields.fields_raven.wishlist.value %}
+    {% if wishlist != blank %}
+      let wishlistObj = {{ wishlist | json }};
+    {% else %}
+      let wishlistObj = [];
+    {% endif %}
+    window.addEventListener('FieldsRaven:ready', (event) => {
+      addWishlistItem = (value) => {
+        wishlistObj.push(value)
+        let wishlistString = JSON.stringify(wishlistObj)
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'j399A_k' -%}
+        const valueObj = { value: wishlistString };
+        console.log('🎉 wishlistString', wishlistString)
+        console.log('🎉 valueObj', valueObj)
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res.json)
+          }
+        })
+        .catch(e => console.error(e));
+      }
+    });
+  </script>
+  <button id="fieldsraven-demo" onclick="addWishlistItem({product_id: {{page.id}}, created_at: new Date().toISOString()})">Add to Wishlist!</button>
+</fieldset>
+</section>
+</section>
