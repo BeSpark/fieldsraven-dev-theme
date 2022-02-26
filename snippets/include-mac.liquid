@@ -41,7 +41,7 @@
   <fieldset>
     <legend>single_line_text_field</legend>
     <button @click="Raven.send(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'WGv2c24' -%},
+      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'UpBcS_I ' -%},
       { value: `Hello Raven! @ ${Date.now()}` }
     )">Test!</button>
   </fieldset>
@@ -185,7 +185,7 @@
 <button id="fieldsraven-demo" onclick="ravenSubmit(JSON.stringify([{fav_color: 'Yellow'},{hobby: 'Soccer'}, {country: 'Canada'}, {province: 'BC'}]))">Send JSON Raven!</button>
 <hr>
 <fieldset>
-  <legend>Wishlist test ({{ "now" | date: "%Y-%m-%d %H:%M:%S" }})</legend>
+  <legend>Wishlist test ({{ "2022-02-15T07:54:32.656Z" | date: "%Y-%m-%d %H:%M:%S" }})</legend>
   <script type="text/javascript">
     {% assign wishlist = page.metafields.fields_raven.wishlist.value %}
     {% if wishlist != blank %}
