@@ -5,6 +5,7 @@
   assign raven_mac = raven_digest_string | hmac_sha256: raven_api_secret
 -%}
 {
+	shop_name: '{{shop_name}}',
   raven_id: '{{ raven_id }}',
   resource_id: '{{ resource_id }}',
   raven_mac: '{{ raven_mac }}'
