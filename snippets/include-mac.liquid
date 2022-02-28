@@ -35,78 +35,8 @@
 <section x-data="window.PayloadGenTest()"
   x-init="console.log('FieldaRaven PayloadGenTest')"
 >
-{% comment %}
-  <h3>Payload gen test [{{ shop.name }}]</h3>
 
-  <fieldset>
-    <legend>single_line_text_field</legend>
-    <button @click="Raven.send(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'UpBcS_I' -%},
-      { value: `Hello Raven! @ ${Date.now()}` }
-    )">Test!</button>
-  </fieldset>
-
-  <fieldset>
-    <legend>multi_line_text_field</legend>
-    <button @click="fieldsRavenDataSubmit(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'IWjZSuc' -%},
-      { value: `Hello Raven!\nHello world!\n${Date.now()}` }
-    )">Test!</button>
-  </fieldset>
-
-  <fieldset>
-    <legend>number_integer</legend>
-    <button @click="fieldsRavenDataSubmit(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'CX_GcTY' -%},
-      { value: 29 }
-    )">Test!</button>
-  </fieldset>
-
-  <fieldset>
-    <legend>number_decimal</legend>
-    <button @click="fieldsRavenDataSubmit(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'LkQMQvA' -%},
-      { value: 2.9 }
-    )">Test!</button>
-  </fieldset>
-
-  <fieldset>
-    <legend>json</legend>
-    <button @click="fieldsRavenDataSubmit(
-      {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'n6LBWj8' -%},
-      { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
-    )">Test!</button>
-  </fieldset>
-
-  <fieldset>
-    <legend>json on shop</legend>
-    <button @click="fieldsRavenDataSubmit(
-      {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'vOcZFBY' -%},
-      { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
-    )">Test!</button>
-  </fieldset>
-
-  <hr>
-  <script type="text/javascript">
-    window.addEventListener('FieldsRaven:ready', (event) => {
-      ravenSubmit = () => {
-        const ravenObj = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'WGv2c24' -%}
-        const valueObj = { value: `Hello Raven! @ ${Date.now()}` };
-        const response = Raven.send(ravenObj, valueObj);
-        response.then(res => {
-          if (res.status === 200) {
-            console.log('🎉', res.json)
-          } else {
-            console.error('😞', res.json)
-          }
-        })
-        .catch(e => console.error(e));
-      }
-    });
-  </script>
-  <button id="fieldsraven-demo" onclick="ravenSubmit()">send the Raven!</button>
-{% endcomment %}
-<h3>Payload gen test [dev]</h3>
+<h3>Payload gen test [{{shop.name}}]</h3>
 
 <fieldset>
   <legend>single_line_text_field</legend>
