@@ -24,7 +24,7 @@
             console.log('✅ res.status: ', res.status)
             console.log('✅ res.json: ', res.json)
           } else {
-            console.error('🛑 res.json: ', res.json)
+            console.error('🛑 res: ', res)
           }
         })
       }
@@ -86,6 +86,14 @@
   )">Test!</button>
 </fieldset>
 
+<fieldset>
+  <legend>Needs approval test</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'qN9YYFA' -%},
+    { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+  )">Test!</button>
+</fieldset>
+  
 <code>
   {{ page.metafields.fields_raven['text test'] }}<br>
   {{ page.metafields.fields_raven['multi line test'] }}<br>
