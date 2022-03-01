@@ -90,7 +90,15 @@
   <legend>Needs approval page test</legend>
   <button @click="fieldsRavenDataSubmit(
     {%- render 'raven-mac-gen', resource_id: page.id, raven_id: 'EKpQUvY' -%},
-    { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) }
+    { value: JSON.stringify({fancy: 'pants!',approval: 'test'}) }
+  )">Test!</button>
+</fieldset>
+  
+<fieldset>
+  <legend>Needs approval shop test</legend>
+  <button @click="fieldsRavenDataSubmit(
+    {%- render 'raven-mac-gen', resource_id: page.id, raven_id: '2aispYs' -%},
+    { value: JSON.stringify({fancy: 'pants!',approval: 'test'}) }
   )">Test!</button>
 </fieldset>
   
