@@ -4,7 +4,7 @@
     <div class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden sm:w-40 sm:h-40">
       <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt="{{ prod_obj.featured_image.alt }}" class="w-full h-full object-center object-cover">
     </div>
-    <div class="flex-1 ml-6 text-sm">
+    <div class="flex-1 ml-6">
       <div class="font-medium text-gray-900 sm:flex sm:justify-between">
         <h5>{{ prod_obj.title }}</h5>
         <p class="mt-2 sm:mt-0">{{ prod_obj.price | money_with_currency }}</p>
