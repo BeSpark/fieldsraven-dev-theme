@@ -9,7 +9,7 @@
       wishlistRemoveItem(handle) {
         let newWishlist = this.wishlist.filter((item) => item.product_handle !== handle)
         console.log("newWishlist: ", newWishlist);
-        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
+        const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
         const valueObj = { value: JSON.stringify(newWishlist) };
         const response = Raven.send(ravenObj, valueObj);
         response.then(res => {
