@@ -7,7 +7,7 @@
     x-data='{
       wishlist: {{ wishlist | json }},
       wishlistRemoveItem(handle) {
-        let newWishlist = wishlist.filter((item) => item.product_handle !== handle)
+        let newWishlist = this.wishlist.filter((item) => item.product_handle !== handle)
         console.log("newWishlist: ", newWishlist)
       }
     }'
