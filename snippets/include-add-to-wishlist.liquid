@@ -40,7 +40,6 @@
       console.log('I can initialize');
       inWishlist = wishlist.filter(i => i.product_handle == '{{ product.handle }}').length > 0;
     "
-    class="bs-test"
   >
     <strong>Added to wish list?</strong><br>
     <button x-show="!done && !inWishlist" id="fieldsraven-demo" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">Add to Wishlist!</button>
@@ -49,6 +48,6 @@
   <div>
   </div>
 {% else %}
-  <p>Please <a href="/account/login">log in</a> (or <a href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
+  <p class="bs-test">Please <a href="/account/login">log in</a> (or <a href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
 {% endif %}
 
