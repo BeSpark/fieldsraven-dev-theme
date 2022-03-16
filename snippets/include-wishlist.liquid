@@ -3,7 +3,10 @@
   <code>
     {{ wishlist }}
   </code><br>
-  <ul>
+  <ul
+    x-data="{ wishlist: {{ wishlist | json }} }"
+    x-init="console.log('wishlist: ', wishlist)"
+  >
   {% for item in wishlist %}
     {% if item.product_handle == blank %}{% continue %}{% endif %}
     {% assign prod_obj = all_products[item.product_handle] %}
