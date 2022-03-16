@@ -1,6 +1,6 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-  {% render 'tmp' %}
+  {% render 'tmp', wishlist: wishlist %}
 
   <hr>
   <ul
@@ -28,7 +28,6 @@
     x-init="console.log('wishlist: ', wishlist)"
   >
   {% for item in wishlist %}
-    {% if item.product_handle == blank %}{% continue %}{% endif %}
     {% assign prod_obj = all_products[item.product_handle] %}
     <li x-show="isPresent('{{ item.product_handle }}')">
       <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt=""><br>
