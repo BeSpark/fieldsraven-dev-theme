@@ -4,7 +4,7 @@
     {{ wishlist }}
   </code><br>
   <ul
-    x-data="{ wishlist: {{ wishlist | json }} }"
+    x-data="{ wishlist: {{ wishlist | json }}, }"
     x-init="console.log('wishlist: ', wishlist)"
   >
   {% for item in wishlist %}
