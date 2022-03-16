@@ -19,6 +19,9 @@
             console.error("😞", res)
           }
         })
+      },
+      isPresent(handle) {
+        this.wishlist.map(i => i.product_handle).includes(handle)
       }
     }'
     x-init="console.log('wishlist: ', wishlist)"
@@ -26,7 +29,7 @@
   {% for item in wishlist %}
     {% if item.product_handle == blank %}{% continue %}{% endif %}
     {% assign prod_obj = all_products[item.product_handle] %}
-    <li>
+    <li x-show="isPresent('{{ item.product_handle }}')">
       <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt=""><br>
       <a href="{{ prod_obj.url }}">{{ prod_obj.title }}</a> | created at: {{ item.created_at | date: "%b %d, %y" }}<br>
       <button @click="wishlistRemoveItem('{{ item.product_handle }}')">Delete</button>
