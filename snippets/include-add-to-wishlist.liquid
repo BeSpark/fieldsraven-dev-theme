@@ -44,7 +44,7 @@
     <strong>Added to wish list?</strong><br>
     <button
       id="fieldsraven-demo"
-      class="flex items-center justify-center bg-white py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      class="flex items-center justify-center bg-white py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       x-show="!done && !inWishlist" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">
       <span></span>Add to Wishlist!
     </button>
