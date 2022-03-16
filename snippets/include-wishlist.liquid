@@ -33,8 +33,8 @@
           }
         })
       },
-      wishlistAddToCart(id, 1) {
-        addToCart({id: id, quantity: 1})
+      wishlistAddToCart(id, quantity) {
+        addToCart({id: id, quantity: quantity})
           .then(res => location = "/cart")
       },
       isPresent(handle) {
