@@ -30,7 +30,10 @@
         >Remove</a>
       </div>
       <div class="flex-1 pl-4 flex justify-center">
-        <a href="#" class="text-indigo-600 whitespace-nowrap hover:text-indigo-500">Buy again</a>
+        <a href="#"
+          class="text-indigo-600 whitespace-nowrap hover:text-indigo-500"
+          @click.prevent="wishlistAddToCart({{ prod_obj.selected_or_first_available_variant.id }},1)"
+        >Add to cart</a>
       </div>
     </div>
   </div>
