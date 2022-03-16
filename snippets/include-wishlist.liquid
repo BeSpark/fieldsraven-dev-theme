@@ -1,8 +1,8 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-  <code>
-    {{ wishlist | json }}
-  </code><br>
+  {% render 'tmp' %}
+
+  <hr>
   <ul
     x-data='{
       wishlist: {{ wishlist | json }},
