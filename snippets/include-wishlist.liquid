@@ -15,7 +15,6 @@
         response.then(res => {
           if (res.status === 200) {
             console.log("🎉", res.json)
-            this.done = true;
           } else {
             console.error("😞", res)
           }
