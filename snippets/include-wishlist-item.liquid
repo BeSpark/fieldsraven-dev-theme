@@ -39,11 +39,11 @@
 
 {%liquid
 	assign prod_title = "Short Sleeve Shirt - Red"
-	assign text_to_sync = prod_title | split: '-' | strip
+	assign text_to_sync = prod_title | split: '-' | last | strip
 	assign shadow_field = product.metafields.namespace.shadow_field.value
 	
 %}
 
 <code>
- {{ text_to_sync | last }}
+ {{ text_to_sync }}
 </code>
