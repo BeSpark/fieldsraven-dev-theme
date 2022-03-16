@@ -430,7 +430,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 /* ------ Add your CSS below this line (or @import your other CSS files). ------- */
-.preload {
+.wishlist-login {
   margin-top: 0.5rem;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
