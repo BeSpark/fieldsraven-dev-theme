@@ -8,7 +8,18 @@
       wishlist: {{ wishlist | json }},
       wishlistRemoveItem(handle) {
         let newWishlist = this.wishlist.filter((item) => item.product_handle !== handle)
-        console.log("newWishlist: ", newWishlist)
+        console.log("newWishlist: ", newWishlist);
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
+        const valueObj = { value: JSON.stringify(newWishlist) };
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log("🎉", res.json)
+            this.done = true;
+          } else {
+            console.error("😞", res)
+          }
+        })
       }
     }'
     x-init="console.log('wishlist: ', wishlist)"
