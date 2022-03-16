@@ -12,8 +12,8 @@
             <h5>{{ prod_obj.title }}</h5>
             <p class="mt-2 sm:mt-0">{{ prod_obj.price | | money_with_currency }}</p>
           </div>
-          <p class="hidden text-gray-500 sm:block sm:mt-2">
-            Are you a minimalist looking for a compact carry option? The Micro Backpack is the perfect size for your essential everyday carry items. Wear it like a backpack or carry it like a satchel for all-day use.
+          <p class="text-gray-500 mt-2">
+            {{ prod_obj.description }}
           </p>
         </div>
       </div>
