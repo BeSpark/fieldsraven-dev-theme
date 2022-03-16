@@ -1,43 +1,36 @@
-<div class="bg-white border-gray-200 shadow-sm rounded-lg border">
-  <ul role="list" class="divide-y divide-gray-200">
-  {% for item in wishlist %}
-    {% assign prod_obj = all_products[item.product_handle] %}
-    <li class="p-4 sm:p-6">
-      <div class="flex items-center sm:items-start">
-        <div class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden sm:w-40 sm:h-40">
-          <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt="{{ prod_obj.featured_image.alt }}" class="w-full h-full object-center object-cover">
-        </div>
-        <div class="flex-1 ml-6 text-sm">
-          <div class="font-medium text-gray-900 sm:flex sm:justify-between">
-            <h5>{{ prod_obj.title }}</h5>
-            <p class="mt-2 sm:mt-0">{{ prod_obj.price | money_with_currency }}</p>
-          </div>
-          <p class="text-gray-500 mt-2">
-            {{ prod_obj.description }}
-          </p>
-        </div>
+<li class="p-4 sm:p-6" x-show="isPresent('{{ item.product_handle }}')">
+  <div class="flex items-center sm:items-start">
+    <div class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden sm:w-40 sm:h-40">
+      <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt="{{ prod_obj.featured_image.alt }}" class="w-full h-full object-center object-cover">
+    </div>
+    <div class="flex-1 ml-6 text-sm">
+      <div class="font-medium text-gray-900 sm:flex sm:justify-between">
+        <h5>{{ prod_obj.title }}</h5>
+        <p class="mt-2 sm:mt-0">{{ prod_obj.price | money_with_currency }}</p>
       </div>
+      <p class="text-gray-500 mt-2">
+        {{ prod_obj.description }}
+      </p>
+    </div>
+  </div>
 
-      <div class="mt-6 sm:flex sm:justify-between">
-        <div class="flex items-center">
-          <svg class="w-5 h-5 text-green-500" x-description="Heroicon name: solid/check-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-          </svg>
-          <p class="ml-2 text-sm font-medium text-gray-500">Added on <time datetime="{{ item.created_at | date: "%Y-%m-%d" }}">{{ item.created_at | date: "%b %d, %y" }}</time></p>
-        </div>
+  <div class="mt-6 sm:flex sm:justify-between">
+    <div class="flex items-center">
+      <svg class="w-5 h-5 text-green-500" x-description="Heroicon name: solid/check-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+      </svg>
+      <p class="ml-2 text-sm font-medium text-gray-500">Added on <time datetime="{{ item.created_at | date: "%Y-%m-%d" }}">{{ item.created_at | date: "%b %d, %y" }}</time></p>
+    </div>
 
-        <div class="mt-6 border-t border-gray-200 pt-4 flex items-center space-x-4 divide-x divide-gray-200 text-sm font-medium sm:mt-0 sm:ml-4 sm:border-none sm:pt-0">
-          <div class="flex-1 flex justify-center">
-            <a href="#" class="text-indigo-600 whitespace-nowrap hover:text-indigo-500">View product</a>
-          </div>
-          <div class="flex-1 pl-4 flex justify-center">
-            <a href="#" class="text-indigo-600 whitespace-nowrap hover:text-indigo-500">Buy again</a>
-          </div>
-        </div>
+    <div class="mt-6 border-t border-gray-200 pt-4 flex items-center space-x-4 divide-x divide-gray-200 text-sm font-medium sm:mt-0 sm:ml-4 sm:border-none sm:pt-0">
+      <div class="flex-1 flex justify-center">
+        <a href="#" @click.prevent="wishlistRemoveItem('{{ item.product_handle }}')"
+          class="text-red-600 whitespace-nowrap hover:text-red-500"
+        >Remove</a>
       </div>
-    </li>
-  {% endfor %}
-  </ul>
-
-
-</div>
+      <div class="flex-1 pl-4 flex justify-center">
+        <a href="#" class="text-indigo-600 whitespace-nowrap hover:text-indigo-500">Buy again</a>
+      </div>
+    </div>
+  </div>
+</li>
