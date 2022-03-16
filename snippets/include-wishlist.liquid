@@ -21,6 +21,7 @@
         })
       },
       isPresent(handle) {
+        console.error("isPresent handle", handle)
         this.wishlist.map(i => i.product_handle).includes(handle)
       }
     }'
