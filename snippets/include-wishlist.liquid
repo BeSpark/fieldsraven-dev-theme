@@ -21,10 +21,7 @@
         })
       },
       isPresent(handle) {
-        console.log("isPresent handle", handle)
-        let handles = this.wishlist.map(i => i.product_handle)
-        console.log("wishlist handles", handles)
-        console.log("wishlist handles includes handle", handles.includes(handle))
+        return this.wishlist.map(i => i.product_handle).includes(handle)
       }
     }'
     x-init="console.log('wishlist: ', wishlist)"
