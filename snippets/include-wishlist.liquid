@@ -8,7 +8,7 @@
     {% if item.product_handle == blank %}{% continue %}{% endif %}
     {% assign prod_obj = all_products[item.product_handle] %}
     <li>
-      <img src="{{ prod_obj.featured_image | img_url: '250x' }}" alt=""><br>
+      <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt=""><br>
       <a href="{{ prod_obj.url }}">{{ prod_obj.title }}</a> | created at: {{ item.created_at | date: "%b %d, %y" }} [delete]<br>
     </li>
 
