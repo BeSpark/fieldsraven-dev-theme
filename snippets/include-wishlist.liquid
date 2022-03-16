@@ -1,9 +1,7 @@
+<div class="bg-white border-gray-200 shadow-sm rounded-lg border">
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-  {% render 'tmp', wishlist: wishlist %}
-
-  <hr>
-  <ul
+  <ul role="list" class="divide-y divide-gray-200"
     x-data='{
       wishlist: {{ wishlist | json }},
       wishlistRemoveItem(handle) {
@@ -28,15 +26,10 @@
     x-init="console.log('wishlist: ', wishlist)"
   >
   {% for item in wishlist %}
-    {% assign prod_obj = all_products[item.product_handle] %}
-    <li x-show="isPresent('{{ item.product_handle }}')">
-      <img src="{{ prod_obj.featured_image | img_url: '150x' }}" alt=""><br>
-      <a href="{{ prod_obj.url }}">{{ prod_obj.title }}</a> | created at: {{ item.created_at | date: "%b %d, %y" }}<br>
-      <button @click="wishlistRemoveItem('{{ item.product_handle }}')">Delete</button>
-    </li>
-
+    {% render 'include-wishlist-item', item: item %}
   {% endfor %}
   </ul>
 {% else %}
   <p>Please <a href="/account/login">log in</a> to view your wish list, or <a href="/account/register">register</a> to start adding items to a wish list.</p>
 {% endif %}
+</div>

@@ -1,3 +1,4 @@
+{% assign prod_obj = all_products[item.product_handle] %}
 <li class="p-4 sm:p-6" x-show="isPresent('{{ item.product_handle }}')">
   <div class="flex items-center sm:items-start">
     <div class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden sm:w-40 sm:h-40">
