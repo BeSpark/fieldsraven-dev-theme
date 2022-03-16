@@ -4,7 +4,13 @@
     {{ wishlist | json }}
   </code><br>
   <ul
-    x-data='{ wishlist: {{ wishlist | json }} }'
+    x-data='{
+      wishlist: {{ wishlist | json }},
+      wishlistRemoveItem(handle) {
+        let newWishlist = wishlist.filter((item) => item.product_handle !== handle)
+        console.log("newWishlist: ", newWishlist)
+      }
+    }'
     x-init="console.log('wishlist: ', wishlist)"
   >
   {% for item in wishlist %}
