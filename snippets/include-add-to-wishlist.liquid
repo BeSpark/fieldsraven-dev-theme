@@ -1,0 +1,53 @@
+{% comment %}
+  rave_id: gZ1enP0
+{% endcomment %}
+
+{% if customer %}
+  <script type="text/javascript">
+    {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
+    {% if wishlist != blank %}
+      window.wishlistObj = {{ wishlist | json }};
+    {% else %}
+      window.wishlistObj = [];
+    {% endif %}
+    console.log('window.wishlistObj: ', window.wishlistObj)
+  </script>
+  <div
+    x-data="{
+      wishlist: window.wishlistObj,
+      done: false,
+      inWishlist: false,
+      addWishlistItem(value) {
+        this.wishlist.push(value);
+        let wishlistString = JSON.stringify(wishlistObj);
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
+        const valueObj = { value: wishlistString };
+        console.log('🎉 wishlistString', wishlistString)
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+            this.done = true;
+          } else {
+            console.error('😞', res)
+          }
+        })
+        {% comment %}
+        {% endcomment %}
+      }
+    }"
+    x-init="
+      console.log('I can initialize');
+      inWishlist = wishlist.filter(i => i.product_handle == '{{ product.handle }}').length > 0;
+    "
+  >
+    <strong>Added to wish list?</strong><br>
+    <button x-show="!done && !inWishlist" id="fieldsraven-demo" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">Add to Wishlist!</button>
+    <span x-show="done || inWishlist">✅🙌</span>
+  </div>
+  <div>
+  </div>
+{% else %}
+  <p>Please <a href="/account/login">log in</a> (or <a href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
+{% endif %}
+

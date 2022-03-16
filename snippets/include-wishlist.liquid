@@ -1,0 +1,13 @@
+{% if customer %}
+  {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
+  <code>
+    {{ wishlist }}
+  </code><br>
+  {% for item in wishlist %}
+    {% if item.product_handle == blank %}{% continue %}{% endif %}
+    {% assign prod_obj = all_products[item.product_handle] %}
+    {{ prod_obj.title }} | created at: {{ item.created_at | date: "%b %d, %y" }} [delete]<br>
+  {% endfor %}
+{% else %}
+  <p>Please <a href="/account/login">log in</a> to view your wish list, or <a href="/account/register">register</a> to start adding items to a wish list.</p>
+{% endif %}
