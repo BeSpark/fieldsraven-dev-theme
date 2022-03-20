@@ -7,7 +7,7 @@
 
 <div class="customer register"
   x-data="{
-    isValid() { Object.values(this.custtomAttributes).some(v => v !== null || v !== '' ) },
+    isValid() { return Object.values(this.custtomAttributes).some(v => v !== null || v !== '' ) },
     custtomAttributes: {
       dateOfBirth: null,
       intrest: null,
