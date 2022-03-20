@@ -472,8 +472,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
+.tw-ml-6 {
+  margin-left: 1.5rem;
+}
+
 .tw-flex {
   display: flex;
+}
+
+.tw-h-20 {
+  height: 5rem;
+}
+
+.tw-h-full {
+  height: 100%;
+}
+
+.tw-w-20 {
+  width: 5rem;
+}
+
+.tw-w-full {
+  width: 100%;
+}
+
+.tw-flex-1 {
+  flex: 1 1 0%;
+}
+
+.tw-flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 .tw-items-center {
@@ -482,6 +510,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .tw-justify-center {
   justify-content: center;
+}
+
+.tw-overflow-hidden {
+  overflow: hidden;
 }
 
 .tw-whitespace-nowrap {
@@ -515,6 +547,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.tw-bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.tw-object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.tw-object-center {
+  -o-object-position: center;
+     object-position: center;
+}
+
 .tw-p-4 {
   padding: 1rem;
 }
@@ -539,6 +586,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
+.tw-text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.tw-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .tw-font-medium {
   font-weight: 500;
 }
@@ -556,6 +613,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
+}
+
+.tw-text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
 .tw-shadow-sm {
