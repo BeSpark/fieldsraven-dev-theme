@@ -6,12 +6,7 @@
 {% endcomment %}
 
 <div class="customer register"
-  x-data="custtomAttributes: {
-    dateOfBirth: null,
-    intrest: null,
-    acceptsEmail: false,
-    acceptsSMS: false
-  }"
+  x-data
 >
   <svg style="display: none">
     <symbol id="icon-error" viewBox="0 0 13 13">
@@ -118,7 +113,6 @@
       </label>
     </div>
     {% comment %}
-    {% endcomment %}
     <div class="xfield">
       <label for="start">Start date:</label>
       <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.dateOfBirth">
@@ -140,6 +134,7 @@
       <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
       <label for="vehicle2"> SMS</label><br>
     </div>
+    {% endcomment %}
     {%- if form.errors contains 'password' -%}
       <span id="RegisterForm-password-error" class="form__message">
         <svg aria-hidden="true" focusable="false" role="presentation">
