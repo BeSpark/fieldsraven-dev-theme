@@ -9,7 +9,7 @@
   x-data="{
     isValid() {
       let invalid = Object.values(this.custtomAttributes).some(v => v === null || v === '' );
-      console.log('🛑 is_valid: ', is_valid);
+      console.log('🛑 invalid: ', invalid);
       return !is_valid;
     },
     custtomAttributes: {
