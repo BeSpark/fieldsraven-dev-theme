@@ -7,7 +7,7 @@
 
 <div class="customer register"
   x-data="{
-    isValid: false,
+    isValid() { Object.values(this.custtomAttributes).some(v => v !== null || v !== '' ) },
     custtomAttributes: {
       dateOfBirth: null,
       intrest: null,
@@ -155,7 +155,7 @@
         {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
       </span>
     {%- endif -%}
-    <button x-show="isValid">
+    <button x-show="isValid()">
       {{ 'customer.register.submit' | t }}
     </button>
   {%- endform -%}
