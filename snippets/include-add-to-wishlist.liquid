@@ -41,13 +41,17 @@
       inWishlist = wishlist.filter(i => i.product_handle == '{{ product.handle }}').length > 0;
     "
   >
-    <strong>Added to wish list?</strong><br>
-    <button x-show="!done && !inWishlist" id="fieldsraven-demo" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">Add to Wishlist!</button>
+    <button
+      id="fieldsraven-demo"
+      class="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2.5 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-text-lg tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 tw-focus:tw-outline-none tw-focus:tw-ring-2 tw-focus:tw-ring-offset-2 tw-focus:tw-ring-indigo-500"
+      x-show="!done && !inWishlist" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">
+      <span></span>Add to Wishlist!
+    </button>
     <span x-show="done || inWishlist">✅🙌</span>
   </div>
   <div>
   </div>
 {% else %}
-  <p>Please <a href="/account/login">log in</a> (or <a href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
+  <p class="tw-text-gray-500 tw-mt-2">Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> (or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
 {% endif %}
 
