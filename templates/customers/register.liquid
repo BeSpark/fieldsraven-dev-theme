@@ -127,6 +127,10 @@
     {% comment %}
     {% endcomment %}
     <div class="field">
+      <label for="start">Start date:</label>
+      <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.dateOfBirth">
+    </div>
+    <div class="field">
       <p>What are you interested in?</p>
       <input type="radio" id="html" name="fav_language" value="HTML" x-model="custtomAttributes.intrest">
       <label for="html">HTML</label><br>
