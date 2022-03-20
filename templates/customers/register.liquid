@@ -9,10 +9,10 @@
   x-data="
     isValid: false,
     custtomAttributes: {
-      customerDateOfBirth: null,
-      customerIntrest: null,
-      customerAcceptsEmail: false,
-      customerAcceptsSMS: false
+      dateOfBirth: null,
+      intrest: null,
+      acceptsEmail: false,
+      acceptsSMS: false
     }
   "
   x-init="
@@ -123,6 +123,17 @@
       <label for="RegisterForm-password">
         {{ 'customer.register.password' | t }}
       </label>
+    </div>
+    {% comment %}
+    {% endcomment %}
+    <div class="field">
+      <p>What are you interested in?</p>
+      <input type="radio" id="html" name="fav_language" value="HTML" x-model="custtomAttributes.intrest">
+      <label for="html">HTML</label><br>
+      <input type="radio" id="css" name="fav_language" value="CSS" x-model="custtomAttributes.intrest">
+      <label for="css">CSS</label><br>
+      <input type="radio" id="javascript" name="fav_language" value="JavaScript" x-model="custtomAttributes.intrest">
+      <label for="javascript">JavaScript</label>
     </div>
     {%- if form.errors contains 'password' -%}
       <span id="RegisterForm-password-error" class="form__message">
