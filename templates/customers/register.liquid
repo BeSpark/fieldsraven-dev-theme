@@ -1,6 +1,25 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
-<div class="customer register">
+{% comment %}
+  localStorage.setItem(key, JSON.stringify(value));
+  JSON.parse(localStorage.getItem(key))
+{% endcomment %}
+
+<div class="customer register"
+  x-data="
+    isValid: false,
+    custtomAttributes: {
+      customerDateOfBirth: null,
+      customerIntrest: null,
+      customerAcceptsEmail: false,
+      customerAcceptsSMS: false
+    }
+  "
+  x-init="
+    $watch('custtomAttributes', value => console.log(value))
+  "
+
+>
   <svg style="display: none">
     <symbol id="icon-error" viewBox="0 0 13 13">
       <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
@@ -113,7 +132,7 @@
         {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
       </span>
     {%- endif -%}
-    <button>
+    <button x-show="isValid">
       {{ 'customer.register.submit' | t }}
     </button>
   {%- endform -%}
