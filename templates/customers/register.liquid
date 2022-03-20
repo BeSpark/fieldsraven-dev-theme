@@ -10,7 +10,7 @@
     isValid() {
       let invalid = Object.values(this.custtomAttributes).some(v => v === null || v === '' );
       console.log('🛑 invalid: ', invalid);
-      return !is_valid;
+      return !invalid;
     },
     custtomAttributes: {
       dateOfBirth: null,
@@ -128,6 +128,14 @@
         {{ 'customer.register.password' | t }}
       </label>
     </div>
+    {%- if form.errors contains 'password' -%}
+      <span id="RegisterForm-password-error" class="form__message">
+        <svg aria-hidden="true" focusable="false" role="presentation">
+          <use href="#icon-error" />
+        </svg>
+        {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
+      </span>
+    {%- endif -%}
     {% comment %}
     {% endcomment %}
     <div class="xfield">
@@ -151,14 +159,6 @@
       <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
       <label for="vehicle2"> SMS</label><br>
     </div>
-    {%- if form.errors contains 'password' -%}
-      <span id="RegisterForm-password-error" class="form__message">
-        <svg aria-hidden="true" focusable="false" role="presentation">
-          <use href="#icon-error" />
-        </svg>
-        {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
-      </span>
-    {%- endif -%}
     <button x-show="isValid()">
       {{ 'customer.register.submit' | t }}
     </button>
