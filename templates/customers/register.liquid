@@ -6,7 +6,12 @@
 {% endcomment %}
 
 <div class="customer register"
-  x-data=""
+  x-data="custtomAttributes: {
+    dateOfBirth: null,
+    intrest: null,
+    acceptsEmail: false,
+    acceptsSMS: false
+  }"
 >
   <svg style="display: none">
     <symbol id="icon-error" viewBox="0 0 13 13">
