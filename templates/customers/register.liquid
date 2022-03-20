@@ -8,9 +8,9 @@
 <div class="customer register"
   x-data="{
     isValid() {
-      let is_valid = Object.values(this.custtomAttributes).some(v => v !== null || v !== '' );
+      let invalid = Object.values(this.custtomAttributes).some(v => v === null || v === '' );
       console.log('🛑 is_valid: ', is_valid);
-      return is_valid;
+      return !is_valid;
     },
     custtomAttributes: {
       dateOfBirth: null,
