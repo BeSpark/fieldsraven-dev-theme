@@ -8,12 +8,7 @@
 <div class="customer register"
   x-data="
     isValid: false,
-    custtomAttributes: {
-      dateOfBirth: null,
-      intrest: null,
-      acceptsEmail: false,
-      acceptsSMS: false
-    }
+    custtomAttributes: {}
   "
   x-init="
     $watch('custtomAttributes', value => console.log(value))
