@@ -122,6 +122,7 @@
       </label>
     </div>
     {% comment %}
+    {% endcomment %}
     <div class="xfield">
       <label for="start">Start date:</label>
       <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.dateOfBirth">
@@ -143,7 +144,6 @@
       <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
       <label for="vehicle2"> SMS</label><br>
     </div>
-    {% endcomment %}
     {%- if form.errors contains 'password' -%}
       <span id="RegisterForm-password-error" class="form__message">
         <svg aria-hidden="true" focusable="false" role="presentation">
