@@ -15,7 +15,10 @@
       acceptsSMS: false
     }
   }"
-  x-init="console.log('🎉 Hello Alpine!')"
+  x-init="
+    console.log('🎉 Hello Alpine!');
+    $watch('custtomAttributes', value => console.log(value))
+  "
 >
   <svg style="display: none">
     <symbol id="icon-error" viewBox="0 0 13 13">
