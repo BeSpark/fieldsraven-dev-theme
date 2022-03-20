@@ -135,6 +135,14 @@
       <input type="radio" id="javascript" name="fav_language" value="JavaScript" x-model="custtomAttributes.intrest">
       <label for="javascript">JavaScript</label>
     </div>
+    <div class="field">
+      <input type="checkbox" id="vehicle1" name="vehicle1" x-model="custtomAttributes.acceptsEmail">
+      <label for="vehicle1"> Email</label><br>
+    </div>
+    <div class="field">
+      <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
+      <label for="vehicle2"> SMS</label><br>
+    </div>
     {%- if form.errors contains 'password' -%}
       <span id="RegisterForm-password-error" class="form__message">
         <svg aria-hidden="true" focusable="false" role="presentation">
