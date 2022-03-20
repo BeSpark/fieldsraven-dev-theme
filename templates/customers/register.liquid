@@ -6,7 +6,15 @@
 {% endcomment %}
 
 <div class="customer register"
-  x-data
+  x-data="{
+    isValid: false,
+    custtomAttributes: {
+      dateOfBirth: null,
+      intrest: null,
+      acceptsEmail: false,
+      acceptsSMS: false
+    }
+  }"
   x-init="console.log('🎉 Hello Alpine!')"
 >
   <svg style="display: none">
@@ -144,7 +152,7 @@
         {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
       </span>
     {%- endif -%}
-    <button>
+    <button x-show="isValid">
       {{ 'customer.register.submit' | t }}
     </button>
   {%- endform -%}
