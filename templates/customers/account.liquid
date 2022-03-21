@@ -16,6 +16,7 @@
         assign custom_attributes = customer.metafields.account_registration.custom_attributes.value
         assign dob = custom_attributes['dateOfBirth']
       %}
+      custom_attributes: {{ custom_attributes }}<br>
       dob: {{ dob }}<br>
     </fieldset>
   </div>
