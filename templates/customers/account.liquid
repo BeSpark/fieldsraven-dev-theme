@@ -15,9 +15,14 @@
       {% liquid
         assign custom_attributes = customer.metafields.account_registration.custom_attributes.value
         assign dob = custom_attributes['dateOfBirth']
+        assign intrest = custom_attributes.intrest
+        assign accepts_email = custom_attributes['acceptsEmail']
+        assign accepts_sms = custom_attributes['acceptsSMS']
       %}
-      custom_attributes: {{ custom_attributes }}<br>
       dob: {{ dob }}<br>
+      intrest: {{ intrest }}<br>
+      accepts_email: {{ accepts_email }}<br>
+      accepts_sms: {{ accepts_sms }}<br>
     </fieldset>
   </div>
 
