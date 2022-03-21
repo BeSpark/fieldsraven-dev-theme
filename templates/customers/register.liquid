@@ -21,7 +21,11 @@
   }"
   x-init="
     console.log('🎉 Hello Alpine!');
-    $watch('custtomAttributes', value => console.log(value))
+    $watch('custtomAttributes', value => {
+      if (isValid()) {
+        localStorage.setItem('customer_registration_custom_attributes', JSON.stringify(value));
+      }
+    })
   "
 >
   <svg style="display: none">
