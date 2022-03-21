@@ -1,8 +1,26 @@
 {% if customer %}
   <script type="text/javascript">
+    ravenCustomerCustomAttrsSubmit = (value) => {
+      const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: '4hV0Jdk' -%};
+      const valueObj = { value: value };
+      const response = Raven.send(ravenObj, valueObj);
+      response.then(res => {
+        if (res.status === 200) {
+          console.log('🎉', res.json)
+          localStorage.removeItem('customer_registration_custom_attributes');
+        } else {
+          console.error('😞', res.json)
+        }
+      })
+      .catch(e => console.error(e));
+    }
+
     window.addEventListener('DOMContentLoaded', (event) => {
       let customer_registration_custom_attributes  = JSON.parse(localStorage.getItem('customer_registration_custom_attributes'))
-      console.log('💾💾 customer_registration_custom_attributes 💾💾', customer_registration_custom_attributes);
+      if (customer_registration_custom_attributes) {
+        console.log('💾💾 customer_registration_custom_attributes 💾💾', customer_registration_custom_attributes);
+        ravenCustomerCustomAttrsSubmit(customer_registration_custom_attributes)
+      }
     });
   </script>
 {% endif %}
