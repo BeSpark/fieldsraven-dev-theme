@@ -1,6 +1,8 @@
 {% if customer %}
   <script type="text/javascript">
-    let customer_registration_custom_attributes  = JSON.parse(localStorage.getItem('customer_registration_custom_attributes'))
-    console.log('💾💾 customer_registration_custom_attributes 💾💾', customer_registration_custom_attributes);
+    window.addEventListener('DOMContentLoaded', (event) => {
+      let customer_registration_custom_attributes  = JSON.parse(localStorage.getItem('customer_registration_custom_attributes'))
+      console.log('💾💾 customer_registration_custom_attributes 💾💾', customer_registration_custom_attributes);
+    });
   </script>
 {% endif %}
