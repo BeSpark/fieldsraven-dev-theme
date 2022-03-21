@@ -11,7 +11,7 @@
     </a>
     <hr>
     <fieldset>
-      <legend>Custom attributes</legend>
+      <legend>Custom attributes:</legend>
       {% liquid
         assign custom_attributes = customer.metafields.account_registration.custom_attributes.value
         assign dob = custom_attributes['dateOfBirth']
