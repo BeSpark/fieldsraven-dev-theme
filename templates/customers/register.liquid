@@ -20,9 +20,9 @@
     }
   }"
   x-init="
-    console.log('🎉 Hello Alpine!');
     $watch('custtomAttributes', value => {
       if (isValid()) {
+        console.log('💾💾 saving customer_registration_custom_attributes to local storage 💾💾');
         localStorage.setItem('customer_registration_custom_attributes', JSON.stringify(value));
       }
     })
