@@ -10,7 +10,7 @@
       {{ 'customer.log_out' | t }}
     </a>
     <fieldset>
-      <legend><strong>Customer extra attributes:</strong></legend>
+      <strong>Customer extra attributes:</strong><br>
       {% liquid
         assign custom_attributes = customer.metafields.account_registration.custom_attributes.value
         assign dob = custom_attributes['dateOfBirth']
