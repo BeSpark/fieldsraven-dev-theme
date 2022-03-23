@@ -4,6 +4,8 @@
     x-data="{
       customerAttrs: {
         sidedish: null,
+        birthDay: null,
+        birthMonth: null
       }
     }"
     x-init="
@@ -11,7 +13,39 @@
       $watch('customerAttrs', value => console.log(value))
     "
   >
-    <div>
+    <div id="birthdate-wrapper">
+  <fieldset class="tw-mt-6 tw-bg-white">
+    <legend class="tw-block tw-text-xl tw-font-medium tw-text-gray-700">Care to share your birthday?</legend>
+    <div class="tw-mt-1 tw-rounded-md tw-shadow-sm tw-space-y-px">
+      <div>
+        <label for="birth-day" class="sr-only">Day</label>
+        <select x-model="customerAttrs.birthDay" id="birth-day" name="birth-day" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 relative tw-block w-full tw-rounded-none tw-rounded-t-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
+          <option value="Day" disabled selected>Day</option>
+          {% for day in (1..31) %}
+            <option value="{{ day }}">{{ day }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        {% assign months = "January, February, March, April, May, June, July, August, September, October, November, Decembe" | split: ',' %}
+        <label for="birth-month" class="sr-only">Month</label>
+        <select x-model="customerAttrs.birthMonth" id="birth-month" name="birth-month" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 relative tw-block w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
+          <option value="Month" disabled selected>Month</option>
+          {% for month_raw in months %}
+            {% assign month = month_raw | strip %}
+            <option value="{{ month }}">{{ month }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- <div>
+        <label for="postal-code" class="sr-only">ZIP / Postal code</label>
+        <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 relative tw-block w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300" placeholder="ZIP / Postal code">
+      </div> -->
+    </div>
+  </fieldset>
+</div>
+
+    <div id="sidedish-wrapper">
   <p class="tw-text-xl tw-leading-5 tw-text-gray-500">What's your favorite side dish?</p>
   <fieldset class="mt-4">
     <legend class="tw-sr-only">What's your favorite side dish?</legend>
