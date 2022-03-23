@@ -12,7 +12,7 @@
         !Object.values(this.customerAttrs).some(value => value === null)
       },
       submitData() {
-        if (isValid()) {
+        if (this.isValid()) {
           console.log('let us be friends 🎉👬');
         } else {
           this.error = true;
