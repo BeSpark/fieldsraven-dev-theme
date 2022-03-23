@@ -15,7 +15,7 @@
       submitData() {
         console.log('this.isValid() ->', this.isValid());
         if (this.isValid()) {
-          const ravenObj = {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'u9aAOVo' -%};
+          const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'u9aAOVo' -%};
           const valueObj = { value: JSON.stringify(this.customerAttrs) };
           const response = Raven.send(ravenObj, valueObj);
           response.then(res => {
