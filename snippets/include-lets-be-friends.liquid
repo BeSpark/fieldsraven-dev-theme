@@ -1,38 +1,45 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-  <div class="form-wrapper">
+  <div class="form-wrapper"
+    x-data="
+      customerAttrs: {
+        sidedish: null,
+      }
+    "
+    x-init=""
+  >
     <div>
   <p class="tw-text-xl tw-leading-5 tw-text-gray-500">What's your favorite side dish?</p>
   <fieldset class="mt-4">
     <legend class="tw-sr-only">What's your favorite side dish?</legend>
     <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-none" name="favorite-sidedish" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="None" id="sidedish-none" name="favorite-sidedish" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-none" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> None </label>
       </div>
 
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-baked-beans" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="Baked beans" id="sidedish-baked-beans" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-baked-beans" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Baked beans </label>
       </div>
 
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-coleslaw" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="Coleslaw" id="sidedish-coleslaw" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-coleslaw" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Coleslaw </label>
       </div>
 
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-frenchfries" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="French fries" id="sidedish-frenchfries" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-frenchfries" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> French fries </label>
       </div>
 
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-gardensalad" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="Garden salad" id="sidedish-gardensalad" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-gardensalad" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Garden salad </label>
       </div>
 
       <div class="tw-flex tw-items-center">
-        <input id="sidedish-mashed-potatoes" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <input value="Mashed potatoes" id="sidedish-mashed-potatoes" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
         <label for="sidedish-mashed-potatoes" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Mashed potatoes </label>
       </div>
     </div>
