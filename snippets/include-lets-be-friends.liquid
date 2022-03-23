@@ -1,6 +1,6 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-  <div class="form-wrapper"
+  <div class="form-state-wrapper"
     x-data="{
       customerAttrs: {
         sidedish: 'None',
@@ -58,75 +58,79 @@
   </div>
 </div>
     </template>
-    <div id="birthdate-wrapper">
-  <fieldset class="tw-mb-8 tw-bg-white tw-max-w-xs">
-    <legend class="tw-block tw-text-xl tw-font-medium tw-text-gray-700 tw-mb-4">Care to share your birthday?</legend>
-    <div class="tw-mt-1 tw-rounded-md tw-shadow-sm tw-space-y-px">
-      <div>
-        <label for="birth-day" class="tw-sr-only">Day</label>
-        <select x-model="customerAttrs.birthDay" id="birth-day" name="birth-day" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-t-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
-          <option value="" selected>Select day</option>
-          {% for day in (1..31) %}
-            <option value="{{ day }}">{{ day }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div>
-        {% assign months = "January, February, March, April, May, June, July, August, September, October, November, Decembe" | split: ',' %}
-        <label for="birth-month" class="tw-sr-only">Month</label>
-        <select x-model="customerAttrs.birthMonth" id="birth-month" name="birth-month" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
-          <option value="" selected>Select month</option>
-          {% for month_raw in months %}
-            {% assign month = month_raw | strip %}
-            <option value="{{ month }}">{{ month }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <!-- <div>
-        <label for="postal-code" class="sr-only">ZIP / Postal code</label>
-        <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300" placeholder="ZIP / Postal code">
-      </div> -->
+    <template x-if="!isSubmitted">
+      <div id="form-wrapper">
+        <div id="birthdate-wrapper">
+      <fieldset class="tw-mb-8 tw-bg-white tw-max-w-xs">
+        <legend class="tw-block tw-text-xl tw-font-medium tw-text-gray-700 tw-mb-4">Care to share your birthday?</legend>
+        <div class="tw-mt-1 tw-rounded-md tw-shadow-sm tw-space-y-px">
+          <div>
+            <label for="birth-day" class="tw-sr-only">Day</label>
+            <select x-model="customerAttrs.birthDay" id="birth-day" name="birth-day" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-t-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
+              <option value="" selected>Select day</option>
+              {% for day in (1..31) %}
+                <option value="{{ day }}">{{ day }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            {% assign months = "January, February, March, April, May, June, July, August, September, October, November, Decembe" | split: ',' %}
+            <label for="birth-month" class="tw-sr-only">Month</label>
+            <select x-model="customerAttrs.birthMonth" id="birth-month" name="birth-month" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
+              <option value="" selected>Select month</option>
+              {% for month_raw in months %}
+                {% assign month = month_raw | strip %}
+                <option value="{{ month }}">{{ month }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <!-- <div>
+            <label for="postal-code" class="sr-only">ZIP / Postal code</label>
+            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300" placeholder="ZIP / Postal code">
+          </div> -->
+        </div>
+      </fieldset>
     </div>
-  </fieldset>
-</div>
 
-    <div id="sidedish-wrapper">
-  <fieldset class="mt-4">
-    <legend class="tw-block tw-text-xl tw-font-medium tw-text-gray-700 tw-mb-4">What's your favorite side dish?</legend>
-    <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="None" id="sidedish-none" name="favorite-sidedish" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-none" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> None </label>
-      </div>
+        <div id="sidedish-wrapper">
+      <fieldset class="mt-4">
+        <legend class="tw-block tw-text-xl tw-font-medium tw-text-gray-700 tw-mb-4">What's your favorite side dish?</legend>
+        <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="None" id="sidedish-none" name="favorite-sidedish" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-none" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> None </label>
+          </div>
 
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="Baked beans" id="sidedish-baked-beans" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-baked-beans" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Baked beans </label>
-      </div>
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="Baked beans" id="sidedish-baked-beans" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-baked-beans" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Baked beans </label>
+          </div>
 
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="Coleslaw" id="sidedish-coleslaw" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-coleslaw" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Coleslaw </label>
-      </div>
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="Coleslaw" id="sidedish-coleslaw" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-coleslaw" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Coleslaw </label>
+          </div>
 
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="French fries" id="sidedish-frenchfries" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-frenchfries" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> French fries </label>
-      </div>
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="French fries" id="sidedish-frenchfries" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-frenchfries" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> French fries </label>
+          </div>
 
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="Garden salad" id="sidedish-gardensalad" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-gardensalad" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Garden salad </label>
-      </div>
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="Garden salad" id="sidedish-gardensalad" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-gardensalad" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Garden salad </label>
+          </div>
 
-      <div class="tw-flex tw-items-center">
-        <input x-model="customerAttrs.sidedish" value="Mashed potatoes" id="sidedish-mashed-potatoes" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
-        <label for="sidedish-mashed-potatoes" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Mashed potatoes </label>
-      </div>
+          <div class="tw-flex tw-items-center">
+            <input x-model="customerAttrs.sidedish" value="Mashed potatoes" id="sidedish-mashed-potatoes" name="favorite-sidedish" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+            <label for="sidedish-mashed-potatoes" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> Mashed potatoes </label>
+          </div>
+        </div>
+      </fieldset>
     </div>
-  </fieldset>
-</div>
-<button @click="submitData()" type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
+    <button @click="submitData()" type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
+      </div>
+    </template>
   </div>
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
