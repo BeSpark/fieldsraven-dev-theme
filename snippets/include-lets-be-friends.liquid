@@ -1,40 +1,8 @@
-{% assign prod_obj = all_products[item.product_handle] %}
-<li class="tw-p-4 sm:tw-p-6" x-show="isPresent('{{ item.product_handle }}')">
-  <div class="tw-flex tw-items-center sm:tw-items-start">
-    <div class="tw-flex-shrink-0 tw-w-20 tw-h-20 tw-bg-gray-200 tw-rounded-lg tw-overflow-hidden sm:tw-w-40 sm:tw-h-40">
-      <img src="{{ prod_obj.featured_image | img_url: '200x' }}" alt="{{ prod_obj.featured_image.alt }}" class="tw-w-full tw-h-full tw-object-center tw-object-cover">
-    </div>
-    <div class="tw-flex-1 tw-ml-6">
-      <div class="tw-font-medium tw-text-gray-900 sm:tw-flex sm:tw-justify-between">
-        <h5 class="tw-text-3xl">{{ prod_obj.title }}</h5>
-        <p class="tw-mt-2 sm:tw-mt-0">{{ prod_obj.price | money_with_currency }}</p>
-      </div>
-      <div class="tw-text-gray-500 tw-text-xl tw-mt-2">{{ prod_obj.description }}</div>
-    </div>
-  </div>
+<div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
+{% if customer %}
+  {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
 
-  <div class="tw-mt-6 sm:tw-flex sm:tw-justify-between">
-    <div class="tw-flex tw-items-center">
-      <svg class="tw-w-5 tw-h-5 tw-text-green-500" x-description="Heroicon name: solid/check-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-      </svg>
-      <p class="tw-ml-2 tw-text-lg tw-font-medium tw-text-gray-500">Added on <time datetime="{{ item.created_at | date: "%Y-%m-%d" }}">{{ item.created_at | date: "%b %d, %y" }}</time></p>
-    </div>
-
-    <div class="tw-mt-6 tw-border-t tw-border-gray-200 tw-pt-4 tw-flex tw-items-center tw-space-x-4 tw-divide-x tw-divide-gray-200 tw-text-sm tw-font-medium sm:tw-mt-0 sm:tw-ml-4 sm:tw-border-none sm:tw-pt-0">
-      <div class="tw-flex-1 tw-flex tw-justify-center">
-        <a href="#" @click.prevent="wishlistRemoveItem('{{ item.product_handle }}')"
-          class="tw-text-red-600 tw-whitespace-nowrap hover:tw-text-red-500 tw-text-xl"
-        >Remove</a>
-      </div>
-      <div class="tw-flex-1 tw-pl-4 tw-flex tw-justify-center">
-        <a href="#"
-          class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500 tw-text-xl"
-          @click.prevent="wishlistAddToCart({{ prod_obj.selected_or_first_available_variant.id }}, 1)"
-        >Add to cart</a>
-      </div>
-    </div>
-  </div>
-</li>
-
-
+{% else %}
+  <p>Friends share emails together 👬 Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> so we can be better friends 🙌</p>
+{% endif %}
+</div>
