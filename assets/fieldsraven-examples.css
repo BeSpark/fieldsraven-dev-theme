@@ -639,6 +639,18 @@ select {
   --tw-backdrop-sepia:  ;
 }
 
+.tw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .tw-mt-2 {
   margin-top: 0.5rem;
 }
@@ -653,6 +665,14 @@ select {
 
 .tw-ml-2 {
   margin-left: 0.5rem;
+}
+
+.tw-ml-3 {
+  margin-left: 0.75rem;
+}
+
+.tw-block {
+  display: block;
 }
 
 .tw-flex {
@@ -671,6 +691,10 @@ select {
   height: 1.25rem;
 }
 
+.tw-h-4 {
+  height: 1rem;
+}
+
 .tw-w-20 {
   width: 5rem;
 }
@@ -681,6 +705,10 @@ select {
 
 .tw-w-5 {
   width: 1.25rem;
+}
+
+.tw-w-4 {
+  width: 1rem;
 }
 
 .tw-flex-1 {
@@ -703,6 +731,12 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.tw-space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .tw-divide-x > :not([hidden]) ~ :not([hidden]) {
@@ -817,8 +851,17 @@ select {
   line-height: 1.25rem;
 }
 
+.tw-text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .tw-font-medium {
   font-weight: 500;
+}
+
+.tw-leading-5 {
+  line-height: 1.25rem;
 }
 
 .tw-text-gray-700 {
@@ -872,6 +915,11 @@ select {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.focus\:tw-ring-indigo-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:tw-mt-0 {
     margin-top: 0px;
@@ -897,8 +945,24 @@ select {
     align-items: flex-start;
   }
 
+  .sm\:tw-items-center {
+    align-items: center;
+  }
+
   .sm\:tw-justify-between {
     justify-content: space-between;
+  }
+
+  .sm\:tw-space-y-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
+
+  .sm\:tw-space-x-10 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(2.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .sm\:tw-border-none {

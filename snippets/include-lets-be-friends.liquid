@@ -2,28 +2,28 @@
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
   <div class="form-wrapper">
     <div>
-      <label class="text-base font-medium text-gray-900">Notifications</label>
-      <p class="text-sm leading-5 text-gray-500">How do you prefer to receive notifications?</p>
-      <fieldset class="mt-4">
-        <legend class="sr-only">Notification method</legend>
-        <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-          <div class="flex items-center">
-            <input id="email" name="notification-method" type="radio" checked class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-            <label for="email" class="ml-3 block text-sm font-medium text-gray-700"> Email </label>
-          </div>
+  <label class="tw-text-base tw-font-medium tw-text-gray-900">Notifications</label>
+  <p class="tw-text-sm tw-leading-5 tw-text-gray-500">How do you prefer to receive notifications?</p>
+  <fieldset class="mt-4">
+    <legend class="tw-sr-only">Notification method</legend>
+    <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
+      <div class="flex items-center">
+        <input id="email" name="notification-method" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <label for="email" class="tw-ml-3 tw-block tw-text-sm tw-font-medium tw-text-gray-700"> Email </label>
+      </div>
 
-          <div class="flex items-center">
-            <input id="sms" name="notification-method" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-            <label for="sms" class="ml-3 block text-sm font-medium text-gray-700"> Phone (SMS) </label>
-          </div>
+      <div class="flex items-center">
+        <input id="sms" name="notification-method" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <label for="sms" class="tw-ml-3 tw-block tw-text-sm tw-font-medium tw-text-gray-700"> Phone (SMS) </label>
+      </div>
 
-          <div class="flex items-center">
-            <input id="push" name="notification-method" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-            <label for="push" class="ml-3 block text-sm font-medium text-gray-700"> Push notification </label>
-          </div>
-        </div>
-      </fieldset>
+      <div class="flex items-center">
+        <input id="push" name="notification-method" type="radio" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300">
+        <label for="push" class="tw-ml-3 tw-block tw-text-sm tw-font-medium tw-text-gray-700"> Push notification </label>
+      </div>
     </div>
+  </fieldset>
+</div>
   </div>
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
