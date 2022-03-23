@@ -13,6 +13,7 @@
       },
       submitData() {
         if (this.isValid()) {
+          this.error = false;
           console.log('let us be friends 🎉👬');
         } else {
           this.error = true;
