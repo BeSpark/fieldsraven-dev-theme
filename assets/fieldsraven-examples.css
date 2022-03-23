@@ -687,6 +687,10 @@ select {
   margin-bottom: 1rem;
 }
 
+.tw-mt-8 {
+  margin-top: 2rem;
+}
+
 .tw-block {
   display: block;
 }
