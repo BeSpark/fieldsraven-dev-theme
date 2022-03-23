@@ -15,9 +15,20 @@
       submitData() {
         console.log('this.isValid() ->', this.isValid());
         if (this.isValid()) {
-          this.hasError = false;
-          this.isSubmitted = true;
-          console.log('let us be friends 🎉👬');
+          const ravenObj = {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: 'u9aAOVo' -%};
+          const valueObj = { value: JSON.stringify(this.customerAttrs) };
+          const response = Raven.send(ravenObj, valueObj);
+          response.then(res => {
+            if (res.status === 200) {
+              console.log('🎉', res.json)
+              this.hasError = false;
+              this.isSubmitted = true;
+              console.log('let us be friends 🎉👬');
+            } else {
+              console.error('😞', res)
+            }
+          })
+          .catch(e => console.error(e));
         } else {
           this.isSubmitted = false;
           this.hasError = true;
