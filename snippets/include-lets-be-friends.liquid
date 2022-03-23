@@ -15,8 +15,10 @@
       submitData() {
         if (this.isValid()) {
           this.hasError = false;
+          this.isSubmitted = true;
           console.log('let us be friends 🎉👬');
         } else {
+          this.isSubmitted = false;
           this.hasError = true;
         }
       }
