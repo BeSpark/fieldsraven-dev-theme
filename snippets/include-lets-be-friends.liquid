@@ -13,6 +13,7 @@
         !Object.values(this.customerAttrs).some(value => value === null)
       },
       submitData() {
+        console.log('this.isValid() ->', this.isValid());
         if (this.isValid()) {
           this.hasError = false;
           this.isSubmitted = true;
