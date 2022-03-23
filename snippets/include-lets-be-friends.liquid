@@ -10,7 +10,7 @@
       hasError: false,
       isSubmitted: false,
       isValid() {
-        return !Object.values(this.customerAttrs).some(value => value === null)
+        return !Object.values(this.customerAttrs).some(value => value === null || value === '')
       },
       submitData() {
         console.log('this.isValid() ->', this.isValid());
