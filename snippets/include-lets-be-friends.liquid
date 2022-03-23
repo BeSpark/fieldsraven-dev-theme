@@ -11,7 +11,13 @@
       isValid() {
         !Object.values(this.customerAttrs).some(value => value === null)
       },
-      submitData() {}
+      submitData() {
+        if (isValid()) {
+          console.log('let us be friends 🎉👬');
+        } else {
+          this.error = true;
+        }
+      }
     }"
     x-init="
       console.log('Hello Alpine 👋');
@@ -100,7 +106,7 @@
     </div>
   </fieldset>
 </div>
-<button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
+<button @click="submitData()" type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
   </div>
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
