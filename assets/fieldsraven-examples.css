@@ -651,6 +651,10 @@ select {
   border-width: 0;
 }
 
+.tw-relative {
+  position: relative;
+}
+
 .tw-mt-2 {
   margin-top: 0.5rem;
 }
