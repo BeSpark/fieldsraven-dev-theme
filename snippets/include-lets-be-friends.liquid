@@ -6,7 +6,10 @@
         sidedish: null,
       }
     }"
-    x-init="console.log('Hello Alpine 👋')"
+    x-init="
+      console.log('Hello Alpine 👋');
+      $watch((customerAttrs) => console.log(value))
+    "
   >
     <div>
   <p class="tw-text-xl tw-leading-5 tw-text-gray-500">What's your favorite side dish?</p>
