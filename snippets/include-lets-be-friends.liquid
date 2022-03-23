@@ -1,11 +1,11 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
   <div class="form-wrapper"
-    x-data="
+    x-data="{
       customerAttrs: {
         sidedish: null,
       }
-    "
+    }"
     x-init="console.log('Hello Alpine 👋')"
   >
     <div>
