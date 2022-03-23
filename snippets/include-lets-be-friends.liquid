@@ -7,6 +7,9 @@
         birthDay: null,
         birthMonth: null
       },
+      isValid() {
+        !Object.values(this.customerAttrs).some(value => value === null)
+      },
       submitData() {}
     }"
     x-init="
@@ -21,7 +24,7 @@
       <div>
         <label for="birth-day" class="tw-sr-only">Day</label>
         <select x-model="customerAttrs.birthDay" id="birth-day" name="birth-day" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-t-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
-          <option value="Day" disabled selected>Day</option>
+          <option value="" selected>Day</option>
           {% for day in (1..31) %}
             <option value="{{ day }}">{{ day }}</option>
           {% endfor %}
@@ -31,7 +34,7 @@
         {% assign months = "January, February, March, April, May, June, July, August, September, October, November, Decembe" | split: ',' %}
         <label for="birth-month" class="tw-sr-only">Month</label>
         <select x-model="customerAttrs.birthMonth" id="birth-month" name="birth-month" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-b-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
-          <option value="Month" disabled selected>Month</option>
+          <option value="" selected>Month</option>
           {% for month_raw in months %}
             {% assign month = month_raw | strip %}
             <option value="{{ month }}">{{ month }}</option>
