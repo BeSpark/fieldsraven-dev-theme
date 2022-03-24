@@ -37,7 +37,7 @@
       },
       submitDataSF() {
         const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'u9aAOVo' -%};
-        const valueObj = { value: JSON.stringify(this.customerAttrs) };
+        const valueObj = { value: this.test_field };
         const response = Raven.send(ravenObj, valueObj);
         response.then(res => {
           if (res.status === 200) {
