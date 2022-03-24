@@ -16,6 +16,7 @@
       },
       submitData() {
         console.log('this.isValid() ->', this.isValid());
+        console.log('JSON.stringify(this.customerAttrs) ->', JSON.stringify(this.customerAttrs));
         if (this.isValid()) {
           const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'u9aAOVo' -%};
           const valueObj = { value: JSON.stringify(this.customerAttrs) };
