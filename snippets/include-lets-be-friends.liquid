@@ -2,6 +2,7 @@
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
   <div class="form-state-wrapper"
     x-data="{
+      test_field: null,
       customerAttrs: {
         sidedish: 'None',
         birthDay: null,
@@ -33,6 +34,19 @@
           this.isSubmitted = false;
           this.hasError = true;
         }
+      },
+      submitDataSF() {
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'u9aAOVo' -%};
+        const valueObj = { value: JSON.stringify(this.customerAttrs) };
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res)
+          }
+        })
+        .catch(e => console.error(e));
       }
     }"
     x-init="
@@ -142,6 +156,9 @@
     <button @click="submitData()" type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
       </div>
     </template>
+    <hr>
+    <input type="text" x-model="test_field">
+    <button @click="submitDataSF()" type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">Let's be friends!</button>
   </div>
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
