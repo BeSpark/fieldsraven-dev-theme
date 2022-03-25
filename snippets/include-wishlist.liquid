@@ -23,6 +23,8 @@
   }
 </script>
 <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4"
+  {%- if customer -%}
+    {%- assign wishlist = customer.metafields.fields_raven.wish_list.value -%}
   x-data='{
     wishlist: {{ wishlist | json }},
     wishlistRemoveItem(handle) {
@@ -49,10 +51,9 @@
     }
   }'
   x-init="console.log('wishlist: ', wishlist)"
+  {%- endif -%}
 >
 {% if customer %}
-  {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
-
   <template x-if="wishlist && wishlist.length > 0">
     <ul role="list" class="tw-divide-y tw-divide-gray-200">
     {% for item in wishlist %}
