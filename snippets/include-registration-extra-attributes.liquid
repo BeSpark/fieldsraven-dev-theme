@@ -1,6 +1,6 @@
 <div class="xfield">
-  <label for="start">Start date:</label>
-  <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.dateOfBirth">
+  <label for="start">My most important date is:</label>
+  <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.mostImportantDate">
 </div>
 <fieldset>
   <legend>What are you interested in?</legend>
@@ -11,10 +11,31 @@
   <input type="radio" id="javascript" name="fav_language" value="JavaScript" x-model="custtomAttributes.intrest">
   <label for="javascript">JavaScript</label>
 </fieldset>
-<fieldset>
+<!-- <fieldset>
   <legend>Would you like to receive updates?</legend>
   <input type="checkbox" id="vehicle1" name="vehicle1" x-model="custtomAttributes.acceptsEmail">
   <label for="vehicle1"> Email</label><br>
   <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
   <label for="vehicle2"> SMS</label><br>
+</fieldset> -->
+
+
+<fieldset class="tw-space-y-5">
+  <legend class="tw-sr-only">Would you like to receive updates?</legend>
+  <div class="tw-relative tw-flex tw-items-start">
+    <div class="tw-flex tw-items-center tw-h-5">
+      <input id="updates_email" name="updates_email" type="checkbox" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 tw-border-gray-300 tw-rounded" x-model="custtomAttributes.acceptsEmail">
+    </div>
+    <div class="ml-3 text-sm">
+      <label for="updates_email" class="tw-font-medium tw-text-gray-700">Email</label>
+    </div>
+  </div>
+  <div class="tw-relative tw-flex tw-items-start">
+    <div class="tw-flex tw-items-center tw-h-5">
+      <input id="updates_sms" name="updates_sms" type="checkbox" class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 tw-border-gray-300 tw-rounded" x-model="custtomAttributes.acceptsSMS">
+    </div>
+    <div class="ml-3 text-sm">
+      <label for="updates_sms" class="tw-font-medium tw-text-gray-700">SMS</label>
+    </div>
+  </div>
 </fieldset>
