@@ -1,7 +1,16 @@
 {% if customer %}
+  {% liquid
+    if request.host == 'fieldsraven-stage.myshopify.com'
+      assign raven_id = ''
+    elsif request.host == 'fieldsraven-demo.myshopify.com'
+      assign raven_id = '7prnkkg'
+    else
+      assign raven_id = '4hV0Jdk'
+    endif
+  %}
   <script type="text/javascript">
     ravenCustomerCustomAttrsSubmit = (value) => {
-      const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: '4hV0Jdk' -%};
+      const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id -%};
       const valueObj = { value: value };
       const response = Raven.send(ravenObj, valueObj);
       response.then(res => {
