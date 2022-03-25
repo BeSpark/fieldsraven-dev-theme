@@ -26,7 +26,7 @@
       addWishlistItem(value) {
         this.wishlist.push(value);
         let wishlistString = JSON.stringify(wishlistObj);
-        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id -%};
         const valueObj = { value: wishlistString };
         console.log('🎉 wishlistString', wishlistString)
         const response = Raven.send(ravenObj, valueObj);
