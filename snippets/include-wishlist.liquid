@@ -1,0 +1,63 @@
+{% liquid
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id = 'eJYIVVs'
+  elsif request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id = 'ty7KWNs'
+  else
+    assign raven_id = 'gZ1enP0'
+  endif
+%}
+
+<script type="text/javascript">
+  window.addToCart = async (item) => {
+    let formData = { items: [item] };
+
+    const response = await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const cartJson = await response.json();
+    return cartJson;
+  }
+</script>
+<div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
+{% if customer %}
+  {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
+  <ul role="list" class="divide-y divide-gray-200"
+    x-data='{
+      wishlist: {{ wishlist | json }},
+      wishlistRemoveItem(handle) {
+        let newWishlist = this.wishlist.filter((item) => item.product_handle !== handle)
+        console.log("newWishlist: ", newWishlist);
+        const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: raven_id -%};
+        const valueObj = { value: JSON.stringify(newWishlist) };
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log("🎉", res.json)
+            this.wishlist = newWishlist;
+          } else {
+            console.error("😞", res)
+          }
+        })
+      },
+      wishlistAddToCart(id, quantity) {
+        addToCart({id: id, quantity: quantity})
+          .then(res => location = "/cart")
+      },
+      isPresent(handle) {
+        return this.wishlist.map(i => i.product_handle).includes(handle)
+      }
+    }'
+    x-init="console.log('wishlist: ', wishlist)"
+  >
+  {% for item in wishlist %}
+    {% render 'include-wishlist-item', item: item %}
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> to view your wish list, or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to start adding items to a wish list.</p>
+{% endif %}
+</div>

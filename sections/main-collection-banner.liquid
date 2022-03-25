@@ -5,7 +5,7 @@
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}} xoxo
+        {{- collection.title | escape -}}
       </h1>
       <code>
         {% liquid
@@ -13,7 +13,25 @@
         %}
         id: {{x.id}}
       </code><br>
-
+      <fieldset>
+        <script type="text/javascript">
+          ravenCollectionSubmit = (value) => {
+            const ravenObj = {%- render 'raven-mac-gen', resource_id: collection.id, raven_id: 'AFhNVIE' -%};
+            const valueObj = { value: value };
+            const response = Raven.send(ravenObj, valueObj);
+            response.then(res => {
+              if (res.status === 200) {
+                console.log('🎉', res.json)
+              } else {
+                console.error('😞', res.json)
+              }
+            })
+            .catch(e => console.error(e));
+          }
+        </script>
+        <legend>New collection field</legend>
+        <button id="fieldsraven-demo" onclick='ravenCollectionSubmit(JSON.stringify({"hello": "collection","updated_at": Date.now()}))'>Send a Shop Raven!</button>
+      </fieldset>
       {%- if section.settings.show_collection_description -%}
         <div class="collection-hero__description rte">{{ collection.description }}</div>
       {%- endif -%}

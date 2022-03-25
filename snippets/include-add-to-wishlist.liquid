@@ -1,0 +1,63 @@
+{% liquid
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id = 'eJYIVVs'
+  elsif request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id = 'ty7KWNs'
+  else
+    assign raven_id = 'gZ1enP0'
+  endif
+%}
+
+{% if customer %}
+  <script type="text/javascript">
+    {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
+    {% if wishlist != blank %}
+      window.wishlistObj = {{ wishlist | json }};
+    {% else %}
+      window.wishlistObj = [];
+    {% endif %}
+    console.log('window.wishlistObj: ', window.wishlistObj)
+  </script>
+  <div
+    x-data="{
+      wishlist: window.wishlistObj,
+      done: false,
+      inWishlist: false,
+      addWishlistItem(value) {
+        this.wishlist.push(value);
+        let wishlistString = JSON.stringify(wishlistObj);
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id -%};
+        const valueObj = { value: wishlistString };
+        console.log('🎉 wishlistString', wishlistString)
+        const response = Raven.send(ravenObj, valueObj);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+            this.done = true;
+          } else {
+            console.error('😞', res)
+          }
+        })
+        {% comment %}
+        {% endcomment %}
+      }
+    }"
+    x-init="
+      console.log('I can initialize');
+      inWishlist = wishlist.filter(i => i.product_handle == '{{ product.handle }}').length > 0;
+    "
+  >
+    <button
+      id="fieldsraven-demo"
+      class="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2.5 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-text-lg tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 tw-focus:tw-outline-none tw-focus:tw-ring-2 tw-focus:tw-ring-offset-2 tw-focus:tw-ring-indigo-500"
+      x-show="!done && !inWishlist" @click="addWishlistItem({product_handle: '{{product.handle}}', created_at: new Date().toISOString()})">
+      <span></span>Add to Wishlist!
+    </button>
+    <span x-show="done || inWishlist">✅🙌</span>
+  </div>
+  <div>
+  </div>
+{% else %}
+  <p class="tw-text-gray-500 tw-mt-2">Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> (or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a>) to be able to add this item to your wishlist.</p>
+{% endif %}
+
