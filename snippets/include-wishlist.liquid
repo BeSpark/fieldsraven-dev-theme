@@ -1,3 +1,13 @@
+{% liquid
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id = 'eJYIVVs'
+  elsif request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id = 'eJYIVVs'
+  else
+    assign raven_id = 'gZ1enP0'
+  endif
+%}
+
 <script type="text/javascript">
   window.addToCart = async (item) => {
     let formData = { items: [item] };
@@ -21,7 +31,7 @@
       wishlistRemoveItem(handle) {
         let newWishlist = this.wishlist.filter((item) => item.product_handle !== handle)
         console.log("newWishlist: ", newWishlist);
-        const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: 'gZ1enP0' -%};
+        const ravenObj = {%- render 'raven-mac-gen-2', resource_id: customer.id, raven_id: raven_id -%};
         const valueObj = { value: JSON.stringify(newWishlist) };
         const response = Raven.send(ravenObj, valueObj);
         response.then(res => {
