@@ -956,6 +956,10 @@ select {
   padding-left: 1rem;
 }
 
+.tw-text-left {
+  text-align: left;
+}
+
 .tw-text-center {
   text-align: center;
 }
