@@ -53,14 +53,14 @@
 {% if customer %}
   {% assign wishlist = customer.metafields.fields_raven.wish_list.value %}
 
-  <template x-if="wishlist.length > 0">
+  <template x-if="wishlist && wishlist.length > 0">
     <ul role="list" class="tw-divide-y tw-divide-gray-200">
     {% for item in wishlist %}
       {% render 'include-wishlist-item', item: item %}
     {% endfor %}
     </ul>
   </template>
-  <template x-if="wishlist.length < 1">
+  <template x-if="!wishlist">
     {% render 'include-empty-wishlist' %}
   </template>
 {% else %}
