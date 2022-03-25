@@ -61,7 +61,7 @@
     {% endfor %}
     </ul>
   </template>
-  <template x-if="!wishlist">
+  <template x-if="!wishlist || wishlist.length < 1">
     {% render 'include-empty-wishlist' %}
   </template>
 {% else %}
