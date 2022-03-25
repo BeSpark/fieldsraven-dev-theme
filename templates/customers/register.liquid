@@ -1,10 +1,5 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
-{% comment %}
-  localStorage.setItem(key, JSON.stringify(value));
-  JSON.parse(localStorage.getItem(key))
-{% endcomment %}
-
 <div class="customer register"
   x-data="{
     isValid() {
