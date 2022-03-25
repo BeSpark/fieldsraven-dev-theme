@@ -1,4 +1,13 @@
 {% if customer %}
+  {% liquid
+    if request.host == 'fieldsraven-stage.myshopify.com'
+      assign raven_id = 'F_fpqPU'
+    elsif request.host == 'fieldsraven-demo.myshopify.com'
+      assign raven_id = ''
+    else
+      assign raven_id = 'u9aAOVo'
+    endif
+  %}
   <div class="form-state-wrapper"
     x-data="{
       test_field: null,
