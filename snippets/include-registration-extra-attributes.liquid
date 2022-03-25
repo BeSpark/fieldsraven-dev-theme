@@ -22,6 +22,13 @@
 <fieldset class="mt-4">
   <legend class="tw-block tw-text-2xl tw-text-left tw-font-medium tw-text-gray-900 tw-mb-4">What are you interested in?</legend>
   <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
+    <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.mostImportantDate" class="focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-relative tw-block tw-w-full tw-rounded-none tw-rounded-t-md tw-bg-transparent focus:tw-z-10 sm:tw-text-xl tw-border-gray-300">
+  </div>
+</fieldset>
+
+<fieldset class="mt-4">
+  <legend class="tw-block tw-text-2xl tw-text-left tw-font-medium tw-text-gray-900 tw-mb-4">What are you interested in?</legend>
+  <div class="tw-space-y-4 sm:tw-flex sm:tw-items-center sm:tw-space-y-0 sm:tw-space-x-10">
     <div class="tw-flex tw-items-center">
       <input x-model="customerAttrs.sidedish" value="HTML" id="html" name="customer-intrest" type="radio" checked class="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 border-gray-300" x-model="custtomAttributes.intrest">
       <label for="sidedish-none" class="tw-ml-3 tw-block tw-text-xl tw-font-medium tw-text-gray-700"> HTML </label>
