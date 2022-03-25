@@ -1,11 +1,14 @@
 {% if customer %}
   {% liquid
     if request.host == 'fieldsraven-stage.myshopify.com'
-      assign raven_id = 'F_fpqPU'
+      assign raven_id_1 = 'F_fpqPU'
+      assign raven_id_2 = 'KzNDQEQ'
     elsif request.host == 'fieldsraven-demo.myshopify.com'
-      assign raven_id = ''
+      assign raven_id_1 = ''
+      assign raven_id_2 = ''
     else
-      assign raven_id = 'u9aAOVo'
+      assign raven_id_1 = 'u9aAOVo'
+      assign raven_id_2 = 'YNJ8wjQ'
     endif
   %}
   <div class="form-state-wrapper"
@@ -25,7 +28,7 @@
         console.log('this.isValid() ->', this.isValid());
         console.log('JSON.stringify(this.customerAttrs) ->', JSON.stringify(this.customerAttrs));
         if (this.isValid()) {
-          const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'u9aAOVo' -%};
+          const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
           const valueObj = { value: JSON.stringify(this.customerAttrs) };
           const response = Raven.send(ravenObj, valueObj);
           response.then(res => {
@@ -45,7 +48,7 @@
         }
       },
       submitDataSF() {
-        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'YNJ8wjQ' -%};
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
         const valueObj = { value: this.test_field };
         const response = Raven.send(ravenObj, valueObj);
         response.then(res => {
