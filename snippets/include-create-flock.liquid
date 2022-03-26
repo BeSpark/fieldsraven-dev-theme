@@ -5,17 +5,27 @@
   elsif request.host == 'fieldsraven-demo.myshopify.com'
     assign raven_id = '7prnkkg'
   else
-    assign raven_id = '9wFjNzs'
+    assign raven_id_1 = 'RVbErjo'
+    assign raven_id_2 = 'MsbJ9iY'
+    assign raven_id_3 = 'PVnmeOc'
   endif
 %}
 <script type="text/javascript"></script>
 <div x-data="{
   flockSubmit() {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id -%};
-    const valueObjOne = { value: value };
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenOneObj, valueOneObj);
 
-    const requestParams = {flock: [requestParamsOne]}
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
+    const valueObjTwo = { value: 'text value' };
+    const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
+
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const valueObjThree = { value: 'text value' };
+    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
+
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
