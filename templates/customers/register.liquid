@@ -1,10 +1,5 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
-{% comment %}
-  localStorage.setItem(key, JSON.stringify(value));
-  JSON.parse(localStorage.getItem(key))
-{% endcomment %}
-
 <div class="customer register"
   x-data="{
     isValid() {
@@ -13,7 +8,7 @@
       return !invalid;
     },
     custtomAttributes: {
-      dateOfBirth: null,
+      mostImportantDate: null,
       intrest: null,
       acceptsEmail: false,
       acceptsSMS: false
@@ -47,7 +42,7 @@
         </svg>
         {{ 'templates.contact.form.error_heading' | t }}
       </h2>
-      <ul> 
+      <ul>
         {%- for field in form.errors -%}
           <li>
             {%- if field == 'form' -%}
@@ -62,7 +57,7 @@
         {%- endfor -%}
       </ul>
     {%- endif -%}
-    <div class="field">      
+    <div class="field">
       <input
         type="text"
         name="customer[first_name]"
@@ -88,7 +83,7 @@
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
-    <div class="field">      
+    <div class="field">
       <input
         type="email"
         name="customer[email]"
@@ -116,7 +111,7 @@
         {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
       </span>
     {%- endif -%}
-    <div class="field">     
+    <div class="field">
       <input
         type="password"
         name="customer[password]"
@@ -142,26 +137,8 @@
     {%- endif -%}
     {% comment %}
     {% endcomment %}
-    <div class="xfield">
-      <label for="start">Start date:</label>
-      <input type="date" id="start" name="customer-dob" x-model="custtomAttributes.dateOfBirth">
-    </div>
-    <fieldset>
-      <legend>What are you interested in?</legend>
-      <input type="radio" id="html" name="fav_language" value="HTML" x-model="custtomAttributes.intrest">
-      <label for="html">HTML</label><br>
-      <input type="radio" id="css" name="fav_language" value="CSS" x-model="custtomAttributes.intrest">
-      <label for="css">CSS</label><br>
-      <input type="radio" id="javascript" name="fav_language" value="JavaScript" x-model="custtomAttributes.intrest">
-      <label for="javascript">JavaScript</label>
-    </fieldset>
-    <fieldset>
-      <legend>Would you like to receive updates?</legend>
-      <input type="checkbox" id="vehicle1" name="vehicle1" x-model="custtomAttributes.acceptsEmail">
-      <label for="vehicle1"> Email</label><br>
-      <input type="checkbox" id="vehicle2" name="vehicle2" x-model="custtomAttributes.acceptsSMS">
-      <label for="vehicle2"> SMS</label><br>
-    </fieldset>
+    {% render 'include-registration-extra-attributes' %}
+
     <button x-show="isValid()">
       {{ 'customer.register.submit' | t }}
     </button>
