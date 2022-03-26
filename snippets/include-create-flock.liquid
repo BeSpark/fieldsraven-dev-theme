@@ -17,12 +17,15 @@
 
     const requestParams = {flock: [requestParamsOne]}
 
-    const response = await fetch('/apps/raven/create_multiple_metafields', {
+    const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestParams)
     })
 
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
   }
 }">
   <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
