@@ -42,7 +42,7 @@
     const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
-    const response = fetch('/apps/raven/create_update_metafield', {
+    const response = fetch('/apps/raven/create_metafield', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestParamsOne)
