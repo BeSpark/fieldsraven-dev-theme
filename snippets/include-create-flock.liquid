@@ -21,7 +21,7 @@
     const valueObjTwo = { value: 'text value' };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'raven_id_3' -%};
     const valueObjThree = { value: 'text value' };
     const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
