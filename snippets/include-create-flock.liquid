@@ -38,7 +38,7 @@
       .then(resJson => console.log('resJson: ', resJson))
   },
   ravenSubmit() {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: 'customer.id', raven_id: raven_id_1 -%};
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
     const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
