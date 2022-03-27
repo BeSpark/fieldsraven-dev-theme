@@ -17,11 +17,11 @@
     const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
-    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'raven_id_2' -%};
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'raven_id_3' -%};
     const valueObjThree = { value: 1.2 };
     const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
