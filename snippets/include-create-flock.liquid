@@ -1,0 +1,120 @@
+<script type="text/javascript">
+  window.addEventListener('FieldsRavenJSKitReady', (event) => {
+    console.log('🚀 FieldsRavenJSKitReady 🚀');
+  });
+</script>
+{% if customer %}
+{% liquid
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id_1 = 'iuHcpXI'
+    assign raven_id_2 = 'coSwxYw'
+    assign raven_id_3 = 'gYFDhrU'
+  elsif request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id_1 = ''
+    assign raven_id_2 = ''
+    assign raven_id_3 = ''
+  else
+    assign raven_id_1 = 'RVbErjo'
+    assign raven_id_2 = 'MsbJ9iY'
+    assign raven_id_3 = 'PVnmeOc'
+  endif
+%}
+<script type="text/javascript"></script>
+<div x-data="{
+  flockSubmit() {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: 'text value' };
+    const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
+
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
+    const valueObjTwo = { value: 1 };
+    const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
+
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const valueObjThree = { value: 1.2 };
+    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
+
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
+
+    const response = fetch('/apps/raven/create_multiple_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  fieldsRavenSendMultiple() {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: 'text value' };
+    const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
+
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
+    const valueObjTwo = { value: 1 };
+    const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
+
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const valueObjThree = { value: 1.2 };
+    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
+
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
+
+    response.then(res => console.log('FieldsRaven.send response: ', res))
+  },
+  ravenSubmit() {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: 'text value' };
+    const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
+
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParamsOne)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  fieldsRavenSend(value = 'xoxo') {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: value };
+    const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
+
+    const response = FieldsRaven.send(requestParamsOne);
+
+    response.then(res => console.log('FieldsRaven.send response: ', res))
+  },
+  fieldsRavenDeprecatedSend(value = 'xoxo') {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const valueObjOne = { value: value };
+    const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
+
+    const response = Raven.send(requestParamsOne);
+
+    response.then(res => console.log('FieldsRaven.send response: ', res))
+  }
+}">
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="ravenSubmit()"
+  >Test sending a raven</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="fieldsRavenDeprecatedSend()"
+  >Test sending a raven (Deprecated)</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="fieldsRavenSend()"
+  >Test sending a raven (JS KIT)</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="flockSubmit()"
+  >Test sending a flock</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="fieldsRavenSendMultiple()"
+  >Test sending a flock (JS KIT)</button>
+</div>
+{% else %}
+  <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
+    <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
+  </div>
+{% endif %}
