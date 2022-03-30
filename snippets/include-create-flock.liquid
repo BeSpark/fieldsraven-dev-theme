@@ -57,7 +57,7 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  FieldsRavenSend(value = 'xoxo') {
+  fieldsRavenSend(value = 'xoxo') {
     const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
     const valueObjOne = { value: value };
     const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
@@ -71,7 +71,7 @@
     @click="ravenSubmit()"
   >Test sending a raven</button><br>
   <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
-    @click="ravenSubmit()"
+    @click="fieldsRavenSend()"
   >Test sending a raven (JS)</button><br>
   <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
     @click="flockSubmit()"
