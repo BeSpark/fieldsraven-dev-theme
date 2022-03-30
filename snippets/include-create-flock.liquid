@@ -57,9 +57,9 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  FieldsRavenSend(value = 'text value') {
+  FieldsRavenSend() {
     const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
-    const valueObjOne = { value: value };
+    const valueObjOne = { value: 'text value' };
     const requestParamsOne = { Object.assign({}, ravenObjOne, valueObjOne) };
 
     const response = FieldsRaven.send(requestParamsOne);
