@@ -88,7 +88,7 @@
     const valueObjOne = { value: value };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
-    const response = FieldsRaven.send(requestParamsOne);
+    const response = Raven.send(requestParamsOne);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   }
