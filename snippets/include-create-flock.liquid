@@ -88,8 +88,8 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  fieldsRavenSend(value = 'xoxo') {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+  fieldsRavenSend(value = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()})) {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
     const valueObjOne = { value: value };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
