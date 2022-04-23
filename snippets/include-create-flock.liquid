@@ -65,7 +65,11 @@
     const valueObjThree = { value: 1.2 };
     const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
-    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
+    const ravenObjFour = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
+    const valueObjFour = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()});
+    const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);        
+     
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree, requestParamsFour]);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
