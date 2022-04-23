@@ -40,7 +40,7 @@
     const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);
              
              
-    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree, requestParamsFour]}
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
@@ -69,7 +69,7 @@
     const valueObjFour = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()});
     const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);        
      
-    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree, requestParamsFour]);
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
