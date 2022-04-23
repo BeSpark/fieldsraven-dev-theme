@@ -13,6 +13,7 @@
     assign raven_id_1 = 'iuHcpXI'
     assign raven_id_2 = 'coSwxYw'
     assign raven_id_3 = 'gYFDhrU'
+    assign raven_id_4 = 'Vmr0AG8'
   else
     assign raven_id_1 = 'RVbErjo'
     assign raven_id_2 = 'MsbJ9iY'
@@ -34,7 +35,12 @@
     const valueObjThree = { value: 1.2 };
     const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
-    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
+    const ravenObjFour = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
+    const valueObjFour = JSON.stringify({"color": "blue","size": "large","updated_at": Date.now()});
+    const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);
+             
+             
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree, requestParamsFour]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
