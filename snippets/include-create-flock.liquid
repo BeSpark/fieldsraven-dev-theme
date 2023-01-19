@@ -65,7 +65,7 @@
   },
   ravenSubmit() {
     const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
-    const valueObjOne = { value: 'text value' };
+    const valueObjOne = { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) };
     const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
 
     const response = fetch('/apps/raven/create_metafield', {
