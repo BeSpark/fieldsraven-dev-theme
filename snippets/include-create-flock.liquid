@@ -30,11 +30,7 @@
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
-    const valueObjThree = { value: 1.2 };
-    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
-
-    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
