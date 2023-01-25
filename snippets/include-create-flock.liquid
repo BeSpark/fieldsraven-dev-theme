@@ -55,11 +55,11 @@
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    //const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
-    //const valueObjThree = { value: 1.2 };
-    //const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
+    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    const valueObjThree = { value: 1.2 };
+    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
-    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo]);
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
