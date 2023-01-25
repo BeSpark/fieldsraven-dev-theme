@@ -15,7 +15,7 @@
     assign raven_id_3 = 'gYFDhrU'
   else
     assign raven_id_1 = 'nM0Ssuk'
-    assign raven_id_2 = 'MsbJ9iY'
+    assign raven_id_2 = 'lOeIrXI'
     assign raven_id_3 = 'PVnmeOc'
   endif
 %}
@@ -55,11 +55,11 @@
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
-    const valueObjThree = { value: 1.2 };
-    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
+    //const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
+    //const valueObjThree = { value: 1.2 };
+    //const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
 
-    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo]);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
