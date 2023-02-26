@@ -1,0 +1,44 @@
+{% liquid
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id = ''
+  elsif request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id = ''
+  elsif request.host == 'fieldsraven-dev-next.myshopify.com'
+    assign raven_id = 'II5bSfU'
+  else
+    assign raven_id = ''
+  endif
+%}
+
+<script type="text/javascript">
+
+</script>
+
+<div
+  x-data="{
+    ravenShowHideSEO() {
+      const ravenObjOne = {%- render 'raven-mac-gen', resource_id: product.id, raven_id: raven_id -%};
+      const valueObjOne = { value: 1 };
+      const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
+
+      const response = fetch('/apps/raven/create_metafield', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestParamsOne)
+      })
+
+      response
+        .then(res => res.json())
+        .then(resJson => console.log('resJson: ', resJson))
+    },
+  }"
+>
+  <button
+    id="fieldsraven-demo"
+    class="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2.5 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-text-lg tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 tw-focus:tw-outline-none tw-focus:tw-ring-2 tw-focus:tw-ring-offset-2 tw-focus:tw-ring-indigo-500"
+    @click="ravenShowHideSEO()">
+    SEO Hide/Show
+  </button>
+</div>
+<div>
+</div>

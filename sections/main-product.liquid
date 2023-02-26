@@ -208,6 +208,7 @@
             </div>
           {%- when 'description' -%}
             {% render 'include-add-to-wishlist' %}
+            {% render 'include-seo-hide-show' %}
             {%- if product.description != blank -%}
               <div class="product__description rte">
                 {{ product.description }}

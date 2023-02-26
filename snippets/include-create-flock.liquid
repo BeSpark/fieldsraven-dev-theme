@@ -6,41 +6,40 @@
 {% if customer %}
 {% liquid
   if request.host == 'fieldsraven-stage.myshopify.com'
-    assign raven_id_1 = '6GgiaZY'
-    assign raven_id_2 = 'JETWD7c'
+    assign raven_id_1_text = '6GgiaZY'
+    assign raven_id_2_int = 'JETWD7c'
     assign raven_id_3 = 'Kltwc_w'
   elsif request.host == 'fieldsraven-demo.myshopify.com'
-    assign raven_id_1 = 'iuHcpXI'
-    assign raven_id_2 = 'coSwxYw'
+    assign raven_id_1_text = 'iuHcpXI'
+    assign raven_id_2_int = 'coSwxYw'
     assign raven_id_3 = 'gYFDhrU'
-    assign raven_id_4 = 'vmr0AG8'
+  elsif request.host == 'fieldsraven-dev-next.myshopify.com'
+    assign raven_id_1_text = '_-IEGa8'
+    assign raven_page_id_text = 'r5YKsGo'
+    assign raven_id_shop_text = 'PO_5u2I'
+    assign raven_id_2_int = 'VPVkMrs'
+    assign raven_id_3_dec = 'sTeWUo0'
+    assign raven_id_4_json = 'b28AHcs'
   else
-    assign raven_id_1 = 'RVbErjo'
-    assign raven_id_2 = 'MsbJ9iY'
+    assign raven_id_1_text = '6FFFYOs'
+    assign raven_id_2_int = 'K_eBCWo'
     assign raven_id_3 = 'PVnmeOc'
   endif
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenObjOne: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%},
+  valueObjOne: { value: `Timestamp: ${Date.now()}` },
   flockSubmit() {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
     const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
-    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2_int -%};
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
-    const valueObjThree = { value: 1.2 };
-    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
-
-    const ravenObjFour = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
-    const valueObjFour = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()});
-    const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);
-             
-             
-    const requestParams = {flock: [requestParamsOne, requestParamsTwo, requestParamsThree]}
+    const requestParams = {flock: [requestParamsOne, requestParamsTwo]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
@@ -53,29 +52,22 @@
       .then(resJson => console.log('resJson: ', resJson))
   },
   fieldsRavenSendMultiple() {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
     const valueObjOne = { value: 'text value' };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
-    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2 -%};
+    const ravenObjTwo = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_2_int -%};
     const valueObjTwo = { value: 1 };
     const requestParamsTwo = Object.assign({}, ravenObjTwo, valueObjTwo);
 
-    const ravenObjThree = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_3 -%};
-    const valueObjThree = { value: 1.2 };
-    const requestParamsThree = Object.assign({}, ravenObjThree, valueObjThree);
-
-    const ravenObjFour = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
-    const valueObjFour = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()});
-    const requestParamsFour = Object.assign({}, ravenObjFour, valueObjFour);        
-     
-    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo, requestParamsThree]);
+    const response = FieldsRaven.sendMultiple([requestParamsOne, requestParamsTwo]);
 
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
   ravenSubmit() {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
-    const valueObjOne = { value: 'text value' };
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
+    //const valueObjOne = { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest'}) };
+    const valueObjOne = { value: `Timestamp: ${Date.now()}` };
     const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
 
     const response = fetch('/apps/raven/create_metafield', {
@@ -88,8 +80,38 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  fieldsRavenSend(value = JSON.stringify({color: 'blue',size: 'large',updated_at: Date.now()})) {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_4 -%};
+  ravenPageSubmit() {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: page.id, raven_id: raven_page_id -%};
+    const valueObjOne = { value: `Timestamp: ${Date.now()}` };
+    const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
+
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParamsOne)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  ravenShopSubmit() {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: 'shop', raven_id: raven_id_shop -%};
+    const valueObjOne = { value: `Timestamp: ${Date.now()}` };
+    const requestParamsOne = { raven: Object.assign({}, ravenObjOne, valueObjOne) };
+
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParamsOne)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  fieldsRavenSend(value = 'xoxo') {
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
     const valueObjOne = { value: value };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
@@ -98,7 +120,7 @@
     response.then(res => console.log('FieldsRaven.send response: ', res))
   },
   fieldsRavenDeprecatedSend(value = 'xoxo') {
-    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1 -%};
+    const ravenObjOne = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
     const valueObjOne = { value: value };
     const requestParamsOne = Object.assign({}, ravenObjOne, valueObjOne);
 
@@ -109,7 +131,13 @@
 }">
   <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
     @click="ravenSubmit()"
-  >Test sending a raven</button><br>
+  >Test sending a customer raven</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="ravenPageSubmit()"
+  >Test sending a page raven</button><br>
+  <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+    @click="ravenShopSubmit()"
+  >Test sending a shop raven</button><br>
   <button type="button" class="tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
     @click="fieldsRavenDeprecatedSend()"
   >Test sending a raven (Deprecated)</button><br>
