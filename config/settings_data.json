@@ -9,6 +9,7 @@
     "colors_background_2": "#F3F3F3",
     "type_header_font": "assistant_n4",
     "type_body_font": "assistant_n4",
+    "favicon": "shopify:\/\/shop_images\/logo-1200x1200.png",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -74,40 +75,7 @@
     },
     "content_for_index": [
 
-    ],
-    "blocks": {
-      "9017896937276243741": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/storefront-kit-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
-          "include_alpine_js": true
-        }
-      },
-      "6567124934620572698": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id": "oRnDCZY",
-          "admin_email": "karim@fieldsraven.app"
-        }
-      },
-      "6356419554719212837": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/birthday-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id": "GoYAtvw",
-          "submit_btn_text": "Reward me!",
-          "customer_logout_text": "<p><a href=\"\/account\/login\">Login<\/a> or <a href=\"\/account\/register\">create an account<\/a> to unlock your birthday gift 🎂<\/p>",
-          "bd_pre_submit_text": "<p>How about a little something somthing on your Birthday? 😉<\/p>",
-          "bd_post_submit_text": "<p>You're awesome! 🙌<\/p>",
-          "bd_wait_text": "<p>You're all set! We'll party soon...  🎉<\/p>",
-          "hide_popup_while_wait": false,
-          "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
-          "bd_code": "HappyBD2022"
-        }
-      }
-    }
+    ]
   },
   "presets": {
     "Default": {
