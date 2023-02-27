@@ -75,7 +75,17 @@
     },
     "content_for_index": [
 
-    ]
+    ],
+    "blocks": {
+      "9017896937276243741": {
+        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/storefront-kit-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
+        "disabled": false,
+        "settings": {
+          "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
+          "include_alpine_js": true
+        }
+      }
+    }
   },
   "presets": {
     "Default": {
