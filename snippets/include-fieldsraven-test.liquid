@@ -31,6 +31,13 @@
   endcase
 
   if request.host == 'fieldsraven-demo.myshopify.com'
+    if request.page_type == 'index'
+      assign raven_id_1_text = '6r4fdes'
+      assign raven_id_2_multi_line_text = 'EdjT0C4'
+      assign raven_id_3_int = 'PoYbdg0'
+      assign raven_id_4_dec = 'xQ3SiAE'
+      assign raven_id_5_json = 'kLG4AFk'
+    endif
   endif
 
   if request.host == 'fieldsraven-stage-next.myshopify.com'
