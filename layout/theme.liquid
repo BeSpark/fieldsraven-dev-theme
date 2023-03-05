@@ -138,6 +138,16 @@
     {% section 'announcement-bar' %}
     {% section 'header' %}
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {% liquid
+        assign is_variant = false
+
+        if product and product.handle == 'the-multi-managed-snowboard'
+          assign is_variant = true
+        endif
+
+        render 'include-fieldsraven-test', is_variant: is_variant
+      %}
+
       {{ content_for_layout }}
     </main>
 

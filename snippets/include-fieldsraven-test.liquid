@@ -1,0 +1,291 @@
+<script type="text/javascript">
+  window.addEventListener('FieldsRavenJSKitReady', (event) => {
+    console.log('🚀 FieldsRavenJSKitReady 🚀');
+  });
+</script>
+
+{% if customer %}
+{% liquid
+  case request.page_type
+    when 'index'
+      assign resource_id = 'shop'
+      assign resource_name = 'shop'
+    when 'page'
+      assign resource_id = page.id
+      assign resource_name = 'page'
+    when 'customers/account'
+      assign resource_id = customer.id
+      assign resource_name = 'customer'
+    when 'collection'
+      assign resource_id = collection.id
+      assign resource_name = 'collection'
+    when 'product'
+      assign resource_id = product.id
+      assign resource_name = 'product'
+    when 'blog'
+      assign resource_id = blog.id
+      assign resource_name = 'blog'
+    when 'article'
+      assign resource_id = article.id
+      assign resource_name = 'article'
+  endcase
+
+  if request.host == 'fieldsraven-demo.myshopify.com'
+    if request.page_type == 'index'
+      assign raven_id_1_text = '6r4fdes'
+      assign raven_id_2_multi_line_text = 'EdjT0C4'
+      assign raven_id_3_int = 'PoYbdg0'
+      assign raven_id_4_dec = 'xQ3SiAE'
+      assign raven_id_5_json = 'kLG4AFk'
+    endif
+
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'vl73b5w'
+      assign raven_id_2_multi_line_text = 'YoNsiPE'
+      assign raven_id_3_int = '7w0hp3s'
+      assign raven_id_4_dec = 'klUDErk'
+      assign raven_id_5_json = '6a2cgOo'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'mtdyENM'
+      assign raven_id_2_multi_line_text = '4TktccA'
+      assign raven_id_3_int = 'rp1C67s'
+      assign raven_id_4_dec = 'nA-pjk0'
+      assign raven_id_5_json = '2iM8EJ8'
+    endif
+  endif
+
+  if request.host == 'fieldsraven-stage.myshopify.com'
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'fCSnVTw'
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = 'xzFB5ew'
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'index'
+      assign raven_id_1_text = 'ygWc-aE'
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'collection'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'product'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'product' and is_variant
+      assign resource_id = product.selected_or_first_available_variant.id
+      assign resource_name = 'variant'
+
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'blog'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'article'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+  endif
+
+  if request.host == 'fieldsraven-dev-next.myshopify.com'
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'lKqTxEc'
+      assign raven_id_2_multi_line_text = 'PrZ5w4Y'
+      assign raven_id_3_int = 'NmEm6fg'
+      assign raven_id_4_dec = 'Fm6b354'
+      assign raven_id_5_json = 'qsAfT78'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'Ocpmv_A'
+      assign raven_id_2_multi_line_text = 'siZKUmM'
+      assign raven_id_3_int = 'v_NNGqk'
+      assign raven_id_4_dec = 'nXEp1vM'
+      assign raven_id_5_json = '4kNFSbw'
+    endif
+
+    if request.page_type == 'index'
+      assign raven_id_1_text = 'b_8gg8k'
+      assign raven_id_2_multi_line_text = 'Kt-LwQM'
+      assign raven_id_3_int = 'Gd0buAU'
+      assign raven_id_4_dec = 'tlHzyC0'
+      assign raven_id_5_json = 'ryQN8Hc'
+    endif
+
+    if request.page_type == 'collection'
+      assign raven_id_1_text = 'a53ept0'
+      assign raven_id_2_multi_line_text = '4D-D9Qo'
+      assign raven_id_3_int = 'YMaiufE'
+      assign raven_id_4_dec = 'F9g9kg4'
+      assign raven_id_5_json = '-VDRuzU'
+    endif
+
+    if request.page_type == 'product'
+      assign raven_id_1_text = 'AgwARv4'
+      assign raven_id_2_multi_line_text = 'B11EDow'
+      assign raven_id_3_int = 'L7_aoik'
+      assign raven_id_4_dec = 'uzRnjyI'
+      assign raven_id_5_json = 'Yua2JHo'
+    endif
+
+    if request.page_type == 'product' and is_variant
+      assign resource_id = product.selected_or_first_available_variant.id
+      assign resource_name = 'variant'
+
+      assign raven_id_1_text = 'AHZ7U0A'
+      assign raven_id_2_multi_line_text = 'm1XzXpw'
+      assign raven_id_3_int = 'gqcP1TE'
+      assign raven_id_4_dec = 'FkkRXFk'
+      assign raven_id_5_json = '4IRsI58'
+    endif
+
+    if request.page_type == 'blog'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+
+    if request.page_type == 'article'
+      assign raven_id_1_text = ''
+      assign raven_id_2_multi_line_text = ''
+      assign raven_id_3_int = ''
+      assign raven_id_4_dec = ''
+      assign raven_id_5_json = ''
+    endif
+  endif
+
+  if request.host == 'fieldsraven-dev.myshopify.com'
+  endif
+%}
+<script type="text/javascript"></script>
+<div x-data="{
+  ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
+  valueText: { value: `Timestamp: ${Date.now()}` },
+  ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
+  valueMultiLineText: { value: '95% Cotton\n5% Spandex' },
+  ravenInt: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_3_int -%},
+  valueInt: { value: 27999 },
+  ravenDec: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_4_dec -%},
+  valueDec: { value: 27.999 },
+  ravenJson: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json -%},
+  valueJson: { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest',timestamp: `${Date.now()}`}) },
+  sendRaven(params) {
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitTextRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenText, this.valueText) };
+    this.sendRaven(requestParams)
+  },
+  submitMultiLineTextRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText) };
+    this.sendRaven(requestParams)
+  },
+  submitIntRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenInt, this.valueInt) };
+    console.log('🚧 requestParams: ', requestParams)
+    this.sendRaven(requestParams)
+  },
+  submitDecRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenDec, this.valueDec) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenJson, this.valueJson) };
+    this.sendRaven(requestParams)
+  },
+  submitFlock() {
+    const requestParams = {flock: [
+      Object.assign({}, this.ravenText, this.valueText),
+      Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
+      Object.assign({}, this.ravenInt, this.valueInt),
+      Object.assign({}, this.ravenDec, this.valueDec),
+      Object.assign({}, this.ravenJson, this.valueJson)
+    ]}
+
+    const response = fetch('/apps/raven/create_multiple_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  }
+}">
+  {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
+  <fieldset>
+    <legend>Create {{ resource_name }} metafields</legend>
+    <button type="button" class="{{ button_classes }}" @click="submitTextRaven()">
+      Test sending text raven
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitMultiLineTextRaven()">
+      Test sending multi line text raven
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitIntRaven()">
+      Test sending int raven
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitDecRaven()">
+      Test sending dec raven
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonRaven()">
+      Test sending JSON raven
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitFlock()">
+      Test sending flock
+    </button><br>
+  </fieldset>
+</div>
+{% else %}
+  <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
+    <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
+  </div>
+{% endif %}
