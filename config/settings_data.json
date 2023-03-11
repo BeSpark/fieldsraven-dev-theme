@@ -87,7 +87,7 @@
       },
       "6525065150774688679": {
         "type": "shopify:\/\/apps\/fieldsraven-dev\/blocks\/birthday-app-embed\/85b20da3-13b0-4913-bd3d-c284255cddf9",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "raven_id": "e3R_VFs",
           "submit_btn_text": "Reward me!",
