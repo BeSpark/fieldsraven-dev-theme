@@ -84,6 +84,18 @@
           "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
           "include_alpine_js": true
         }
+      },
+      "6567124934620572698": {
+        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
+        "disabled": false,
+        "settings": {
+          "raven_id_collection": "",
+          "raven_id_product": "",
+          "raven_id_article": "",
+          "raven_id_blog": "",
+          "raven_id_page": "_G6DVoc",
+          "admin_email": "karim@bespark.ca"
+        }
       }
     }
   },
