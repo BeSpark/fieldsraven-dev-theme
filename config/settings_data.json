@@ -107,7 +107,7 @@
           "bd_pre_submit_text": "<p>How about a little something somthing on your Birthday? 😉<\/p>",
           "bd_post_submit_text": "<p>You're awesome! 🙌<\/p>",
           "bd_wait_text": "<p>You're all set! We'll party soon...  🎉<\/p>",
-          "hide_popup_while_wait": true,
+          "hide_popup_while_wait": false,
           "bd_text": "<p>Happy Birthday 🎉 Have a fantastic day, here is a 25% discount code:<\/p>",
           "bd_code": "HappyBirthday"
         }
