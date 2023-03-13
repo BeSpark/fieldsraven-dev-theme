@@ -99,7 +99,7 @@
       },
       "6356419554719212837": {
         "type": "shopify:\/\/apps\/fieldsraven\/blocks\/birthday-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "raven_id": "dnluN2Q",
           "submit_btn_text": "Surprise me!",
