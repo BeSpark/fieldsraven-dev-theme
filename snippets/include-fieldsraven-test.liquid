@@ -56,13 +56,65 @@
     endif
   endif
 
+  if request.host == 'shopraven-app-trial.myshopify.com'
+    if request.page_type == 'index'
+      assign raven_id_1_text = 'NX-xPFc'
+      assign raven_id_2_multi_line_text = 'E_w0HRU'
+      assign raven_id_3_int = 'mCRloKI'
+      assign raven_id_4_dec = '9OPuVEs'
+      assign raven_id_5_json = 'Hg-ZGE0'
+    endif
+
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'clzSaIk'
+      assign raven_id_2_multi_line_text = 'uRTN-kw'
+      assign raven_id_3_int = 'hUEFbKc'
+      assign raven_id_4_dec = 'PYbIQIc'
+      assign raven_id_5_json = 'HaQeMPQ'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'cuRonjI'
+      assign raven_id_2_multi_line_text = 'QIyhQWo'
+      assign raven_id_3_int = 'y9LuliY'
+      assign raven_id_4_dec = 'h_2jkp0'
+      assign raven_id_5_json = '1cGu9Ko'
+    endif
+  endif
+
+  if request.host == 'fieldsraven-demo-next.myshopify.com'
+    if request.page_type == 'index'
+      assign raven_id_1_text = 'sdRaI_Y'
+      assign raven_id_2_multi_line_text = 'ssy7ETI'
+      assign raven_id_3_int = 'OTVbmvw'
+      assign raven_id_4_dec = '3WYSh4M'
+      assign raven_id_5_json = 'NM1BDi4'
+    endif
+
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'LCUInVg'
+      assign raven_id_2_multi_line_text = 'pKIPB7Y'
+      assign raven_id_3_int = 'gZryxKs'
+      assign raven_id_4_dec = 'b1928Ys'
+      assign raven_id_5_json = '1xyedQA'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = '-WDXoUI'
+      assign raven_id_2_multi_line_text = 'JyUoJWI'
+      assign raven_id_3_int = 'F2etuHw'
+      assign raven_id_4_dec = 'X9ovL08'
+      assign raven_id_5_json = '87HXnnc'
+    endif
+  endif
+
   if request.host == 'fieldsraven-stage.myshopify.com'
     if request.page_type == 'page'
-      assign raven_id_1_text = 'fCSnVTw'
-      assign raven_id_2_multi_line_text = ''
-      assign raven_id_3_int = 'xzFB5ew'
-      assign raven_id_4_dec = ''
-      assign raven_id_5_json = ''
+      assign raven_id_1_text = 'lcAay1s'
+      assign raven_id_2_multi_line_text = 'kPN8Ipg'
+      assign raven_id_3_int = '1gV8x2M'
+      assign raven_id_4_dec = 'oOF-QaE'
+      assign raven_id_5_json = 'ztD0Akc'
     endif
 
     if request.page_type == 'customers/account'
@@ -195,6 +247,13 @@
   endif
 
   if request.host == 'fieldsraven-dev.myshopify.com'
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'q-J2L9o'
+      assign raven_id_2_multi_line_text = 'NQ7dCyE'
+      assign raven_id_3_int = '6qH-6k8'
+      assign raven_id_4_dec = 'hTIkgUg'
+      assign raven_id_5_json = '0iq9xbU'
+    endif
   endif
 %}
 <script type="text/javascript"></script>
