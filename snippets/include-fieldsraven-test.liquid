@@ -1,3 +1,9 @@
+{%- liquid
+  assign raven_api_secret = "fieldsraven_nMJsbhxzuBNJohcaXlBXSg"
+  assign raven_digest_string = 'yCyZ8FY' | append: '5852386488621'
+  assign raven_mac = raven_digest_string | hmac_sha256: raven_api_secret
+-%}
+  <code>{{ raven_mac }}</code><br>
 <script type="text/javascript">
   window.addEventListener('FieldsRavenJSKitReady', (event) => {
     console.log('🚀 FieldsRavenJSKitReady 🚀');
