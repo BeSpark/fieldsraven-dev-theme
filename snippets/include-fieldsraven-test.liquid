@@ -1,10 +1,10 @@
-{% liquid
+{%- liquid
   assign raven_api_secret = 'fieldsraven_nMJsbhxzuBNJohcaXlBXSg'
   assign raven_digest_string = 'yCyZ8FY' | append: '6855206830381'
   assign raven_mac = raven_digest_string | hmac_sha256: raven_api_secret
-%}
+-%}
   <code>
-    raven_digest_string 2: {{ raven_digest_string }}<br>
+    raven_digest_string: {{ raven_digest_string }}<br>
     raven_mac: {{ raven_mac }}
   </code><br>
 <script type="text/javascript">
