@@ -334,7 +334,7 @@
     this.sendRaven(requestParams)
   },
   submitJsonKlaviyo() {
-    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonArrayOfObjs) };
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonNested) };
     this.sendRaven(requestParams)
   },
   submitFlock() {
