@@ -333,8 +333,16 @@
     const requestParams = { raven: Object.assign({}, this.ravenJson, this.valueJson) };
     this.sendRaven(requestParams)
   },
-  submitJsonKlaviyo() {
+  submitJsonKlaviyoNested() {
     const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonNested) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyoNestedWithArray() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonNestedWithArray) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyoArrayOfObjs() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonArrayOfObjs) };
     this.sendRaven(requestParams)
   },
   submitFlock() {
@@ -378,8 +386,14 @@
     <button type="button" class="{{ button_classes }}" @click="submitFlock()">
       Test sending flock
     </button><br>
-    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyo()">
-      Test sending JSON raven to Klaviyo
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoNested()">
+      Test sending JSON (Nested) raven to Klaviyo
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoNestedWithArray()">
+      Test sending JSON (Nested with array) raven to Klaviyo
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoArrayOfObjs()">
+      Test sending JSON (Array of Objs) raven to Klaviyo
     </button><br>
   </fieldset>
 </div>
