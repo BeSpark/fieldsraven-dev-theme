@@ -1,14 +1,6 @@
-{%- liquid
-  assign raven_api_secret = "fieldsraven_nMJsbhxzuBNJohcaXlBXSg"
-  assign raven_digest_string = 'yCyZ8FY' | append: '5852386488621'
-  assign raven_mac = raven_digest_string | hmac_sha256: raven_api_secret
--%}
-{% comment %}
-  <code>{{ raven_mac }}</code><br>
-{% endcomment %}
 <script type="text/javascript">
   window.addEventListener('FieldsRavenJSKitReady', (event) => {
-    console.log('🚀 FieldsRavenJSKitReady 🚀');
+    console.log('🚀🚧 FieldsRavenJSKitReady 🚧🚀');
   });
 </script>
 
@@ -116,13 +108,39 @@
     endif
   endif
 
+  if request.host == 'fieldsraven-stage-next.myshopify.com'
+    if request.page_type == 'page'
+      assign raven_id_1_text = 'n9lDkDQ'
+      assign raven_id_2_multi_line_text = 'G5s4JgI'
+      assign raven_id_3_int = 'sSL46_Y'
+      assign raven_id_4_dec = 'rr15j4Q'
+      assign raven_id_5_json = '3cKr37M'
+    endif
+
+    if request.page_type == 'index'
+      assign raven_id_1_text = 's2A33pw'
+      assign raven_id_2_multi_line_text = '4j-7cXA'
+      assign raven_id_3_int = 'u8nFQxo'
+      assign raven_id_4_dec = 'mwmb980'
+      assign raven_id_5_json = 'Pxb8Xhg'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'G_V7wgc'
+      assign raven_id_2_multi_line_text = '0EiX74s'
+      assign raven_id_3_int = 'rpCc9vk'
+      assign raven_id_4_dec = 'rhPmUuM'
+      assign raven_id_5_json = 'KyNiDWg'
+    endif
+  endif
+
   if request.host == 'fieldsraven-stage.myshopify.com'
     if request.page_type == 'page'
-      assign raven_id_1_text = 'fCSnVTw'
-      assign raven_id_2_multi_line_text = ''
-      assign raven_id_3_int = 'xzFB5ew'
-      assign raven_id_4_dec = ''
-      assign raven_id_5_json = ''
+      assign raven_id_1_text = 'lcAay1s'
+      assign raven_id_2_multi_line_text = 'kPN8Ipg'
+      assign raven_id_3_int = '1gV8x2M'
+      assign raven_id_4_dec = 'oOF-QaE'
+      assign raven_id_5_json = 'ztD0Akc'
     endif
 
     if request.page_type == 'customers/account'
@@ -256,11 +274,12 @@
 
   if request.host == 'fieldsraven-dev.myshopify.com'
     if request.page_type == 'customers/account'
-      assign raven_id_1_text = 'q-J2L9o'
-      assign raven_id_2_multi_line_text = 'NQ7dCyE'
-      assign raven_id_3_int = '6qH-6k8'
-      assign raven_id_4_dec = 'hTIkgUg'
-      assign raven_id_5_json = '0iq9xbU'
+      assign raven_id_1_text = 'Rl83G_g'
+      assign raven_id_2_multi_line_text = 'gGJblDk'
+      assign raven_id_3_int = 'jEKxqnk'
+      assign raven_id_4_dec = 'XrskynY'
+      assign raven_id_5_json = 'pPI-hyk'
+      assign raven_id_5_json_klaviyo = 'ccchC8o'
     endif
   endif
 %}
@@ -275,6 +294,7 @@
   ravenDec: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_4_dec -%},
   valueDec: { value: 27.999 },
   ravenJson: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json -%},
+  ravenJsonKlaviyo: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json_klaviyo -%},
   valueJson: { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest',timestamp: `${Date.now()}`}) },
   sendRaven(params) {
     const response = fetch('/apps/raven/create_metafield', {
@@ -306,6 +326,10 @@
   },
   submitJsonRaven() {
     const requestParams = { raven: Object.assign({}, this.ravenJson, this.valueJson) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyo() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJson) };
     this.sendRaven(requestParams)
   },
   submitFlock() {
@@ -348,6 +372,9 @@
     </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitFlock()">
       Test sending flock
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyo()">
+      Test sending JSON raven to Klaviyo
     </button><br>
   </fieldset>
 </div>
