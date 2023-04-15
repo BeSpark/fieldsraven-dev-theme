@@ -296,6 +296,7 @@
   ravenJson: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json -%},
   ravenJsonKlaviyo: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json_klaviyo -%},
   valueJson: { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest',timestamp: `${Date.now()}`}) },
+  valueJson2: { value: JSON.stringify({'Serial Number': '000123456789','Country of Residence': 'Canada','Where did you purchase your meter?': 'Amazon'}) },
   sendRaven(params) {
     const response = fetch('/apps/raven/create_metafield', {
       method: 'PUT',
@@ -329,7 +330,7 @@
     this.sendRaven(requestParams)
   },
   submitJsonKlaviyo() {
-    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJson) };
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJson2) };
     this.sendRaven(requestParams)
   },
   submitFlock() {
