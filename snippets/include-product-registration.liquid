@@ -42,11 +42,6 @@
     serialNumber: null,
     countryOfResidence: null,
     purchaseLocation: null,
-    productRegistrationObj: {
-      'Serial Number': this.serialNumber,
-      'Country': this.countryOfResidence,
-      'Where did you purchase': this.purchaseLocation
-    },
     newRegistrationString() {
       return JSON.stringify(this.productRegistrationObj);
     },
@@ -60,7 +55,7 @@
     sendNewRegistration() {
       if (this.isValid()) {
         const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'rXiU5TM' -%};
-        const valueObj = { value: this.newRegistrationString() };
+        const valueObj = { value: JSON.stringify({'Serial Number': this.serialNumber, 'Country': this.countryOfResidence, 'Where did you purchase': this.purchaseLocation})};
         const requestParams = Object.assign({}, ravenObj, valueObj);
         console.log('🚧 productRegistrationObj 👉 ', this.productRegistrationObj)
         console.log('🚧 requestParams 👉 ', requestParams)
