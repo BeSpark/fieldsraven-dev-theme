@@ -32,47 +32,7 @@
     'Slovenia',
     'Slovakia',
   ];
-
-  {% if product_registrations != blank %}
-    window.customerProductRegistrations = {{ product_registrations_json }};
-  {% else %}
-    window.customerProductRegistrations = [];
-  {% endif %}
-
-  console.log('🚧 customerProductRegistrations', window.customerProductRegistrations)
-  console.log('🚧 product_registrations json ', {{ product_registrations | json }})
-  console.log('🚧 product_registrations', '{{ product_registrations }}')
 </script>
-{% comment %}
-<br>
-  <h2>JSON metafield</h2>
-  <code>
-    {% for registration in product_registrations %}
-     {{ registration["Serial Number"] }}<br>
-     {{ registration["Country of Residence"] }}<br>
-     {{ registration["Where did you purchase your meter?"] }}<br>
-     ---<br>
-    {% endfor %}
-  </code>
-  <br>
-{% endcomment %}
-  <h2>Individual metafields</h2>
-  <code>
-    api_secret: {{ shop.metafields.fields_raven.api_secret }}<br>
-    customer.id: {{ customer.id }}<br>
-    {% if customer.metafields.custom.serial_number != blank %}
-     {{ customer.metafields.custom.serial_number }}<br>
-    {% endif %}
-
-    {% if customer.metafields.custom.country_of_residence != blank %}
-      {{ customer.metafields.custom.country_of_residence }}<br>
-    {% endif %}
-
-    {% if customer.metafields.custom.where_did_you_purchase_your_meter != blank %}
-      {{ customer.metafields.custom.where_did_you_purchase_your_meter }}<br>
-    {% endif %}
-  </code>
-  <br>
 
 <div
   x-data="{
