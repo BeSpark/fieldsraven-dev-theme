@@ -42,9 +42,6 @@
     serialNumber: null,
     countryOfResidence: null,
     purchaseLocation: null,
-    newRegistrationString() {
-      return JSON.stringify(this.productRegistrationObj);
-    },
     isValid() {
       const validation = (Iodine.assertMinLength(this.serialNumber, 20) &&  Iodine.assertMaxLength(this.serialNumber, 22)) &&
       Iodine.assertRequired(this.countryOfResidence) &&
@@ -57,7 +54,7 @@
         const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'rXiU5TM' -%};
         const valueObj = { value: JSON.stringify({'Serial Number': this.serialNumber, 'Country': this.countryOfResidence, 'Where did you purchase': this.purchaseLocation})};
         const requestParams = Object.assign({}, ravenObj, valueObj);
-        console.log('🚧 productRegistrationObj 👉 ', this.productRegistrationObj)
+        console.log('🚧 valueObj 👉 ', valueObj)
         console.log('🚧 requestParams 👉 ', requestParams)
 
         {% comment %}
