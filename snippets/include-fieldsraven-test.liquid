@@ -53,7 +53,8 @@
       assign raven_id_3_int = 'rp1C67s'
       assign raven_id_4_dec = 'nA-pjk0'
       assign raven_id_5_json = '2iM8EJ8'
-      assign raven_id_5_json_klaviyo = '0iiyCqQ'
+      assign ex_raven_id_5_json_klaviyo = '0iiyCqQ'
+      assign raven_id_5_json_klaviyo = 'kqv5FRQ'
     endif
   endif
 
@@ -150,6 +151,8 @@
       assign raven_id_3_int = 'x3dHLQQ'
       assign raven_id_4_dec = '1wqRJhs'
       assign raven_id_5_json = 'O-rXW1E'
+      assign raven_id_5_json_klaviyo = 'drnSfKw'
+      assign raven_id_airtable = 'uN_SHSw'
     endif
 
     if request.page_type == 'index'
@@ -281,6 +284,7 @@
       assign raven_id_4_dec = 'XrskynY'
       assign raven_id_5_json = 'pPI-hyk'
       assign raven_id_5_json_klaviyo = 'ccchC8o'
+      assign raven_id_airtable = 'rXiU5TM'
     endif
   endif
 %}
@@ -397,6 +401,9 @@
     </button><br>
   </fieldset>
 </div>
+<hr>
+<h2>product registration form + airtable sync</h2>
+{% render 'include-product-registration', raven_id_airtable: raven_id_airtable %}
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
