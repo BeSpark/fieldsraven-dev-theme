@@ -402,7 +402,7 @@
 </div>
 <hr>
 <h2>product registration form + airtable sync</h2>
-{% render 'include-product-registration' %}
+{% render 'include-product-registration', raven_id_airtable: raven_id_airtable %}
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>

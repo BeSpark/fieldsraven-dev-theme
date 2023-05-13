@@ -51,7 +51,7 @@
     },
     sendNewRegistration() {
       if (this.isValid()) {
-        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'rXiU5TM' -%};
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_airtable -%};
         const valueObj = { value: JSON.stringify({'Serial Number': this.serialNumber, 'Country': this.countryOfResidence, 'Where did you purchase': this.purchaseLocation})};
         const requestParams = Object.assign({}, ravenObj, valueObj);
         console.log('🚧 valueObj 👉 ', valueObj)
