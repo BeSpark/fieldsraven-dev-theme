@@ -1,6 +1,6 @@
 <script type="text/javascript">
   window.addEventListener('FieldsRavenJSKitReady', (event) => {
-    console.log('🚀 FieldsRavenJSKitReady 🚀');
+    console.log('🚀🚧 FieldsRavenJSKitReady 🚧🚀');
   });
 </script>
 
@@ -53,6 +53,7 @@
       assign raven_id_3_int = 'rp1C67s'
       assign raven_id_4_dec = 'nA-pjk0'
       assign raven_id_5_json = '2iM8EJ8'
+      assign raven_id_5_json_klaviyo = '0iiyCqQ'
     endif
   endif
 
@@ -108,13 +109,29 @@
     endif
   endif
 
-  if request.host == 'fieldsraven-stage.myshopify.com'
+  if request.host == 'fieldsraven-stage-next.myshopify.com'
     if request.page_type == 'page'
-      assign raven_id_1_text = 'fCSnVTw'
-      assign raven_id_2_multi_line_text = ''
-      assign raven_id_3_int = 'xzFB5ew'
-      assign raven_id_4_dec = ''
-      assign raven_id_5_json = ''
+      assign raven_id_1_text = 'n9lDkDQ'
+      assign raven_id_2_multi_line_text = 'G5s4JgI'
+      assign raven_id_3_int = 'sSL46_Y'
+      assign raven_id_4_dec = 'rr15j4Q'
+      assign raven_id_5_json = '3cKr37M'
+    endif
+
+    if request.page_type == 'index'
+      assign raven_id_1_text = 's2A33pw'
+      assign raven_id_2_multi_line_text = '4j-7cXA'
+      assign raven_id_3_int = 'u8nFQxo'
+      assign raven_id_4_dec = 'mwmb980'
+      assign raven_id_5_json = 'Pxb8Xhg'
+    endif
+
+    if request.page_type == 'customers/account'
+      assign raven_id_1_text = 'G_V7wgc'
+      assign raven_id_2_multi_line_text = '0EiX74s'
+      assign raven_id_3_int = 'rpCc9vk'
+      assign raven_id_4_dec = 'rhPmUuM'
+      assign raven_id_5_json = 'KyNiDWg'
     endif
   endif
 
@@ -258,11 +275,13 @@
 
   if request.host == 'fieldsraven-dev.myshopify.com'
     if request.page_type == 'customers/account'
-      assign raven_id_1_text = 'q-J2L9o'
-      assign raven_id_2_multi_line_text = 'NQ7dCyE'
-      assign raven_id_3_int = '6qH-6k8'
-      assign raven_id_4_dec = 'hTIkgUg'
-      assign raven_id_5_json = '0iq9xbU'
+      assign raven_id_1_text = 'Rl83G_g'
+      assign raven_id_2_multi_line_text = 'gGJblDk'
+      assign raven_id_3_int = 'jEKxqnk'
+      assign raven_id_4_dec = 'XrskynY'
+      assign raven_id_5_json = 'pPI-hyk'
+      assign raven_id_5_json_klaviyo = 'ccchC8o'
+      assign raven_id_airtable = 'rXiU5TM'
     endif
   endif
 %}
@@ -277,7 +296,12 @@
   ravenDec: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_4_dec -%},
   valueDec: { value: 27.999 },
   ravenJson: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json -%},
+  ravenJsonKlaviyo: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_5_json_klaviyo -%},
   valueJson: { value: JSON.stringify({facebook: 'Share on Facebook',twitter: 'Tweet on Twitter',pinterest: 'Pin on Pinterest',timestamp: `${Date.now()}`}) },
+  valueJson2: { value: JSON.stringify({'Serial Number': '000123456789','Country of Residence': 'Canada','Where did you purchase your meter?': 'Amazon'}) },
+  valueJsonNested: { value: JSON.stringify({'name':'Ram','age':27,'vehicles': {'car':'limousine','bike':'ktm-duke','plane':'lufthansa'}}) },
+  valueJsonNestedWithArray: { value: JSON.stringify({'name': 'Ram','age': 27,'vehicles': ['limousine', 'ktm-duke', 'lufthansa']}) },
+  valueJsonArrayOfObjs: { value: JSON.stringify([{'name':'Martha', 'age':37, 'other':{'Favorite color':'Blue', 'Vehicle':'2009 SSC Aero', 'GUID':'890d954a-4a57-4659-b10d-e16427358b99'}},{'name':'Bonnie', 'age':29, 'other':{'Favorite color':'Orange', 'Vehicle':'1998 Daewoo Prince', 'GUID':'b902c384-2e1c-44de-a8d3-59b92a2afddd'}},{'name':'Bridgette', 'age':41, 'other':{'Favorite color':'Purple', 'Vehicle':'1997 Suzuki Cappuccino', 'GUID':'aad8ceb9-566e-4b9f-a64a-23af8671eb96'}}]) },
   sendRaven(params) {
     const response = fetch('/apps/raven/create_metafield', {
       method: 'PUT',
@@ -308,6 +332,18 @@
   },
   submitJsonRaven() {
     const requestParams = { raven: Object.assign({}, this.ravenJson, this.valueJson) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyoNested() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonNested) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyoNestedWithArray() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonNestedWithArray) };
+    this.sendRaven(requestParams)
+  },
+  submitJsonKlaviyoArrayOfObjs() {
+    const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonArrayOfObjs) };
     this.sendRaven(requestParams)
   },
   submitFlock() {
@@ -351,8 +387,20 @@
     <button type="button" class="{{ button_classes }}" @click="submitFlock()">
       Test sending flock
     </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoNested()">
+      Test sending JSON (Nested) raven to Klaviyo
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoNestedWithArray()">
+      Test sending JSON (Nested with array) raven to Klaviyo
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoArrayOfObjs()">
+      Test sending JSON (Array of Objs) raven to Klaviyo
+    </button><br>
   </fieldset>
 </div>
+<hr>
+<h2>product registration form + airtable sync</h2>
+{% render 'include-product-registration' %}
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
