@@ -1,0 +1,136 @@
+<script src="https://cdn.jsdelivr.net/npm/@caneara/iodine@8.3.0/dist/iodine.min.umd.min.js"></script>
+
+<script type="text/javascript">
+  window.EuCountries = [
+    'Select country',
+    'Austria',
+    'Belgium',
+    'Bulgaria',
+    'Cyprus',
+    'Czech Republic',
+    'Germany',
+    'Denmark',
+    'Estonia',
+    'Spain',
+    'Finland',
+    'France',
+    'United Kingdom',
+    'Greece',
+    'Hungary',
+    'Croatia',
+    'Republic of Ireland',
+    'Italy',
+    'Lithuania',
+    'Luxembourg',
+    'Latvia',
+    'Malta',
+    'Netherlands',
+    'Poland',
+    'Portugal',
+    'Romania',
+    'Sweden',
+    'Slovenia',
+    'Slovakia',
+  ];
+</script>
+
+<div
+  x-data="{
+    done: false,
+    countries: window.EuCountries,
+    placesOfPurchase: ['Select an option','Corner store', 'Amazon', 'eBay', 'Other'],
+    serialNumber: null,
+    countryOfResidence: null,
+    purchaseLocation: null,
+    isValid() {
+      const validation = (Iodine.assertMinLength(this.serialNumber, 20) &&  Iodine.assertMaxLength(this.serialNumber, 22)) &&
+      Iodine.assertRequired(this.countryOfResidence) &&
+      Iodine.assertRequired(this.purchaseLocation);
+
+      return validation;
+    },
+    sendNewRegistration() {
+      if (this.isValid()) {
+        const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_airtable -%};
+        const valueObj = { value: JSON.stringify({'Serial Number': this.serialNumber, 'Country': this.countryOfResidence, 'Where did you purchase': this.purchaseLocation})};
+        const requestParams = Object.assign({}, ravenObj, valueObj);
+        console.log('🚧 valueObj 👉 ', valueObj)
+        console.log('🚧 requestParams 👉 ', requestParams)
+
+        {% comment %}{% endcomment %}
+        const response = FieldsRaven.send(requestParams);
+        response.then(res => {
+          if (res.status === 200) {
+            console.log('🎉', res.json)
+          } else {
+            console.error('😞', res)
+          }
+        })
+        .catch(e => console.error(e));
+
+      } else {
+        alert('serial_number length should be between 20 and 22')
+      }
+    },
+  }"
+>
+  <template x-if="done">
+    <p>Thank you!</p>
+  </template>
+  <template x-if="!done">
+    <div class="contact__fields">
+      <div class="field">
+        <input
+          class="field__input"
+          autocomplete="off"
+          type="text"
+          id="ProductRegistrationForm-serialNumber"
+          name="ProductRegistrationForm[serialNumber]"
+          placeholder="Please add your serial_number"
+          x-model="serialNumber"
+        >
+        <label class="field__label" for="ProductRegistrationForm-serialNumber">Serial Number</label>
+      </div>
+
+      <div class="field">
+        <div class="select">
+          <select
+            id="ProductRegistrationForm-countryOfResidence"
+            name="ProductRegistrationForm[countryOfResidence]"
+            class="select__select"
+            x-model="countryOfResidence"
+          >
+            <template x-for="(country, index) in countries">
+              <option :value="country" x-text="country" :disabled="index === 0"></option>
+            </template>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="select">
+          <select
+            id="ProductRegistrationForm-purchaseLocation"
+            name="ProductRegistrationForm[purchaseLocation]"
+            class="select__select"
+            x-model="purchaseLocation"
+          >
+            <template x-for="(placeOfPurchase, index) in placesOfPurchase">
+              <option :value="placeOfPurchase" x-text="placeOfPurchase" :disabled="index === 0"></option>
+            </template>
+          </select>
+        </div>
+      </div>
+      <div class="submit__button">
+        <button
+          type="submit"
+          class="button"
+          @click="sendNewRegistration()"
+          :disabled="!isValid()"
+        >
+          Register my product
+        </button>
+      </div>
+    </div>
+  </template>
+</div>
