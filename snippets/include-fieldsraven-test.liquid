@@ -48,6 +48,7 @@
     endif
 
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = 'IXLRw54'
       assign raven_id_1_text = 'mtdyENM'
       assign raven_id_2_multi_line_text = '4TktccA'
       assign raven_id_3_int = 'rp1C67s'
@@ -138,6 +139,9 @@
   endif
 
   if request.host == 'fieldsraven-stage.myshopify.com'
+    assign raven_id_product_reference_test = 'LOiRk9w'
+    assign raven_id_product_reference_list_test = 'fzk4PZA'
+
     if request.page_type == 'page'
       assign raven_id_1_text = 'lcAay1s'
       assign raven_id_2_multi_line_text = 'kPN8Ipg'
@@ -279,6 +283,9 @@
   endif
 
   if request.host == 'fieldsraven-dev.myshopify.com'
+    assign raven_id_product_reference_test = 'UB6rqng'
+    assign raven_id_product_reference_list_test = 'AvdrLV4'
+
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
       assign raven_id_1_text = 'Rl83G_g'
@@ -293,8 +300,12 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
+  ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
+  valueProductIdsList: { value: ['7516097249502', '7516097118430'] },
+  valueProductId: { value: '{{ product.id }}' },
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
   valueMultiLineText: { value: '95% Cotton\n5% Spandex' },
@@ -319,6 +330,14 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitProductReferenceListTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenProductReferenceListTest, this.valueProductIdsList) };
+    this.sendRaven(requestParams)
+  },
+  submitProductReferenceTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
+    this.sendRaven(requestParams)
   },
   submitMetafieldsSetTypeTest() {
     const requestParams = { raven: Object.assign({}, this.ravenMetafieldsSetTypeTest, this.valueText) };
@@ -377,9 +396,20 @@
       .then(resJson => console.log('resJson: ', resJson))
   }
 }">
+  <code>
+    product.id: {{ product.id }}
+  </code>
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
+    {% if customer %}
+      <button type="button" class="{{ button_classes }}" @click="submitProductReferenceListTest()">
+        Test list.product_reference_test {{ product.id }}
+      </button><br>
+      <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
+        Test product_reference_test {{ product.id }}
+      </button><br>
+    {% endif %}
     <button type="button" class="{{ button_classes }}" @click="submitMetafieldsSetTypeTest()">
       Test metafields_set_type_test
     </button><br>
