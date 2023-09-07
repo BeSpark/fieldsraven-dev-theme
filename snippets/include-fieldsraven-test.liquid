@@ -403,12 +403,12 @@
   }
 }">
   <script type="text/javascript">
-    console.log('🚧 list_product_reference_test: ', {{customer.metafields.list_product_reference_test|json}})
+    console.log('🚧 list_product_reference_test: ', {{customer.metafields.list_product_reference_test.value|json}})
 
   </script>
   <code>
     product.id: {{ product.id }}<br>
-    list_product_reference_test: {{customer.metafields.list_product_reference_test}}
+    list_product_reference_test: {{customer.metafields.list_product_reference_test.value}}
   </code>
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
