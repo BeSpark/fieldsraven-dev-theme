@@ -285,6 +285,7 @@
   if request.host == 'fieldsraven-dev.myshopify.com'
     assign raven_id_product_reference_test = 'UB6rqng'
     assign raven_id_product_reference_list_test = 'AvdrLV4'
+    assign product_ids_list = '7516097249502,7516097118430' | split: ','
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
@@ -304,7 +305,7 @@
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
-  valueProductIdsList: { value: ['7516097249502', '7516097118430'] },
+  valueProductIdsList: { value: {{ product_ids_list }} },
   valueProductId: { value: '{{ product.id }}' },
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
