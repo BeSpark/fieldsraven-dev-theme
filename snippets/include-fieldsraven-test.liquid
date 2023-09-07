@@ -48,6 +48,7 @@
     endif
 
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = 'IXLRw54'
       assign raven_id_1_text = 'mtdyENM'
       assign raven_id_2_multi_line_text = '4TktccA'
       assign raven_id_3_int = 'rp1C67s'
@@ -147,6 +148,7 @@
     endif
 
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = '5xb-yFE'
       assign raven_id_1_text = 'JvgpVig'
       assign raven_id_2_multi_line_text = 'RZdTuZQ'
       assign raven_id_3_int = 'x3dHLQQ'
@@ -278,6 +280,8 @@
   endif
 
   if request.host == 'fieldsraven-dev.myshopify.com'
+    assign raven_id_product_reference_test = 'UB6rqng'
+
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
       assign raven_id_1_text = 'Rl83G_g'
@@ -292,8 +296,10 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
+  valueProductId: { value: `Timestamp: ${Date.now()}` },
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
   valueMultiLineText: { value: '95% Cotton\n5% Spandex' },
@@ -318,6 +324,10 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitProductReferenceTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
+    this.sendRaven(requestParams)
   },
   submitMetafieldsSetTypeTest() {
     const requestParams = { raven: Object.assign({}, this.ravenMetafieldsSetTypeTest, this.valueText) };
