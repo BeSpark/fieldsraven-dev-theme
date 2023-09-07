@@ -296,7 +296,7 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
-  ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_product_reference_test -%},
+  ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
   valueProductId: { value: '{{ product.id }}' },
@@ -392,9 +392,11 @@
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
-    <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
-      Test product_reference_test {{ product.id }}
-    </button><br>
+    {% if customer %}
+      <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
+        Test product_reference_test {{ product.id }}
+      </button><br>
+    {% endif %}
     <button type="button" class="{{ button_classes }}" @click="submitMetafieldsSetTypeTest()">
       Test metafields_set_type_test
     </button><br>
