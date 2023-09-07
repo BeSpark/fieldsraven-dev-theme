@@ -320,7 +320,7 @@
       .then(resJson => console.log('resJson: ', resJson))
   },
   submitMetafieldsSetTypeTest() {
-    const requestParams = { raven: Object.assign({}, this.ravenText, this.valueText) };
+    const requestParams = { raven: Object.assign({}, this.ravenMetafieldsSetTypeTest, this.valueText) };
     this.sendRaven(requestParams)
   },
   submitTextRaven() {
