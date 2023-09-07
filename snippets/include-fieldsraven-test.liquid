@@ -281,6 +281,7 @@
 
   if request.host == 'fieldsraven-dev.myshopify.com'
     assign raven_id_product_reference_test = 'UB6rqng'
+    assign raven_id_product_reference_list_test = 'AvdrLV4'
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
@@ -296,6 +297,7 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
@@ -324,6 +326,10 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitProductReferenceListTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
+    this.sendRaven(requestParams)
   },
   submitProductReferenceTest() {
     const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
