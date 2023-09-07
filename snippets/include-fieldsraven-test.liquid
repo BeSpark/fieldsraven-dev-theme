@@ -393,6 +393,9 @@
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
     {% if customer %}
+      <button type="button" class="{{ button_classes }}" @click="submitProductReferenceListTest()">
+        Test list.product_reference_test {{ product.id }}
+      </button><br>
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
         Test product_reference_test {{ product.id }}
       </button><br>
