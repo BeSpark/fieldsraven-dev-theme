@@ -48,6 +48,7 @@
     endif
 
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = 'IXLRw54'
       assign raven_id_1_text = 'mtdyENM'
       assign raven_id_2_multi_line_text = '4TktccA'
       assign raven_id_3_int = 'rp1C67s'
@@ -147,6 +148,7 @@
     endif
 
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = '5xb-yFE'
       assign raven_id_1_text = 'JvgpVig'
       assign raven_id_2_multi_line_text = 'RZdTuZQ'
       assign raven_id_3_int = 'x3dHLQQ'
@@ -279,6 +281,7 @@
 
   if request.host == 'fieldsraven-dev.myshopify.com'
     if request.page_type == 'customers/account'
+      assign raven_id_metafields_set_type_test = 'rxzICAQ'
       assign raven_id_1_text = 'Rl83G_g'
       assign raven_id_2_multi_line_text = 'gGJblDk'
       assign raven_id_3_int = 'jEKxqnk'
@@ -291,6 +294,7 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
@@ -316,6 +320,10 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitMetafieldsSetTypeTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenMetafieldsSetTypeTest, this.valueText) };
+    this.sendRaven(requestParams)
   },
   submitTextRaven() {
     const requestParams = { raven: Object.assign({}, this.ravenText, this.valueText) };
@@ -373,6 +381,9 @@
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
+    <button type="button" class="{{ button_classes }}" @click="submitMetafieldsSetTypeTest()">
+      Test metafields_set_type_test
+    </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitTextRaven()">
       Test sending text raven
     </button><br>
