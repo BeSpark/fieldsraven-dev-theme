@@ -53,7 +53,9 @@
       assign raven_id_3_int = 'rp1C67s'
       assign raven_id_4_dec = 'nA-pjk0'
       assign raven_id_5_json = '2iM8EJ8'
-      assign raven_id_5_json_klaviyo = '0iiyCqQ'
+      assign ex_raven_id_5_json_klaviyo = '0iiyCqQ'
+      assign raven_id_5_json_klaviyo = 'kqv5FRQ'
+      assign raven_id_airtable = 'PcJjpIo'
     endif
   endif
 
@@ -150,6 +152,8 @@
       assign raven_id_3_int = 'x3dHLQQ'
       assign raven_id_4_dec = '1wqRJhs'
       assign raven_id_5_json = 'O-rXW1E'
+      assign raven_id_5_json_klaviyo = 'drnSfKw'
+      assign raven_id_airtable = 'uN_SHSw'
     endif
 
     if request.page_type == 'index'
@@ -287,6 +291,7 @@
 %}
 <script type="text/javascript"></script>
 <div x-data="{
+  ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
@@ -312,6 +317,10 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitMetafieldsSetTypeTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenText, this.valueText) };
+    this.sendRaven(requestParams)
   },
   submitTextRaven() {
     const requestParams = { raven: Object.assign({}, this.ravenText, this.valueText) };
@@ -369,6 +378,9 @@
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
+    <button type="button" class="{{ button_classes }}" @click="submitMetafieldsSetTypeTest()">
+      Test metafields_set_type_test
+    </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitTextRaven()">
       Test sending text raven
     </button><br>
@@ -400,7 +412,7 @@
 </div>
 <hr>
 <h2>product registration form + airtable sync</h2>
-{% render 'include-product-registration' %}
+{% render 'include-product-registration', raven_id_airtable: raven_id_airtable %}
 {% else %}
   <div class="tw-bg-white tw-border-gray-200 tw-shadow-sm tw-rounded-lg tw-border tw-p-4">
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
