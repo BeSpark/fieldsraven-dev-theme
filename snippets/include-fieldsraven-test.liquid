@@ -31,6 +31,10 @@
   endcase
 
   if request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id_product_reference_test = 'oZnqU_U'
+    assign raven_id_product_reference_list_test = 'IntgzvQ'
+    assign product_ids_list = '6702989607012,6702989475940' | split: ','
+
     if request.page_type == 'index'
       assign raven_id_1_text = '6r4fdes'
       assign raven_id_2_multi_line_text = 'EdjT0C4'
@@ -398,8 +402,15 @@
       .then(resJson => console.log('resJson: ', resJson))
   }
 }">
+  <script type="text/javascript">
+    console.log('🚧 list_product_reference_test: ', {{customer.metafields.fields_raven.list_product_reference_test.value|json}})
+    console.log('🚧 product_reference_test_1: ', {{customer.metafields.fields_raven.product_reference_test_1.value|json}})
+
+  </script>
   <code>
-    product.id: {{ product.id }}
+    product.id: {{ product.id }}<br>
+    list_product_reference_test: {{customer.metafields.fields_raven.list_product_reference_test.value}}
+    product_reference_test_1: {{customer.metafields.fields_raven.product_reference_test_1.value}}
   </code>
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
@@ -452,3 +463,7 @@
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
   </div>
 {% endif %}
+
+<div x-data>
+  <button @click="submitMultiLineTextRaven()">find_or_create_customer_and_add_metafields</button>
+</div>
