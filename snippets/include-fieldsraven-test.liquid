@@ -464,6 +464,25 @@
   </div>
 {% endif %}
 
-<div x-data>
-  <button @click="submitMultiLineTextRaven()">find_or_create_customer_and_add_metafields</button>
+<div x-data="{
+  params: {
+    email: 'karim+dec5-test-002@fieldsraven.app',
+    metafields: [
+       {key: 'new_dec_5_1', value: 'newvalue', type: 'single_line_text_field', namespace: 'global'},
+       {key: 'new_dec_5_2', value: 'newvalue_2', type: 'single_line_text_field', namespace: 'global'}
+    ]
+  },
+  findOrCreateCustomerReq(params) {
+    const response = fetch('/apps/raven/find_or_create_customer_and_add_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  }
+}">
+  <button @click="findOrCreateCustomerReq()">find_or_create_customer_and_add_metafields</button>
 </div>
