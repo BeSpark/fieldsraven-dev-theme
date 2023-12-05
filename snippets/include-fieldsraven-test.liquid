@@ -482,7 +482,10 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitFindOrCreateCustomerReq() {
+    this.findOrCreateCustomerReq(this.params)
   }
 }">
-  <button @click="findOrCreateCustomerReq()">find_or_create_customer_and_add_metafields</button>
+  <button @click="submitFindOrCreateCustomerReq()">find_or_create_customer_and_add_metafields</button>
 </div>
