@@ -383,18 +383,13 @@
     const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonArrayOfObjs) };
     this.sendRaven(requestParams)
   },
-  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'j1OWY4c' -%},
-  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'I0tt9N4' -%},
-  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'IT0lxKY' -%},
-  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: '0l3f7WA' -%},
-  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'G6AeKWU' -%},
   submitFlock() {
     const requestParams = {flock: [
-      Object.assign({}, this.ravenTextNoResource, this.valueText),
-      Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText),
-      Object.assign({}, this.ravenIntNoResource, this.valueInt),
-      Object.assign({}, this.ravenDecNoResource, this.valueDec),
-      Object.assign({}, this.ravenJsonNoResource, this.valueJson)
+      Object.assign({}, this.ravenText, this.valueText),
+      Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
+      Object.assign({}, this.ravenInt, this.valueInt),
+      Object.assign({}, this.ravenDec, this.valueDec),
+      Object.assign({}, this.ravenJson, this.valueJson)
     ]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
@@ -407,14 +402,19 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'j1OWY4c' -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'I0tt9N4' -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'IT0lxKY' -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: '0l3f7WA' -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'G6AeKWU' -%},
   submitFlockWithEmail() {
     const requestParams = {
       flock: [
-        Object.assign({}, this.ravenText, this.valueText),
-        Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
-        Object.assign({}, this.ravenInt, this.valueInt),
-        Object.assign({}, this.ravenDec, this.valueDec),
-        Object.assign({}, this.ravenJson, this.valueJson)
+        Object.assign({}, this.ravenTextNoResource, this.valueText),
+        Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText),
+        Object.assign({}, this.ravenIntNoResource, this.valueInt),
+        Object.assign({}, this.ravenDecNoResource, this.valueDec),
+        Object.assign({}, this.ravenJsonNoResource, this.valueJson)
       ],
       customer_email: 'karim-flock-with-email-001@example.com'
     }
