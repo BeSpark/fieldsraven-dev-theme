@@ -410,7 +410,7 @@
   submitFlockWithEmail() {
     const requestParams = {
       flock: [
-        Object.assign({}, this.ravenTextNoResource, this.valueText, { customer_email: 'karim-flock-with-email-001@example.com' }),
+        Object.assign({}, this.ravenTextNoResource, this.valueText, { customer_email: 'karim-flock-with-email-${Math.floor(Math.random() * 1000)}@example.com' }),
         Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText, { customer_email: 'karim-flock-with-email-001@example.com' }),
         Object.assign({}, this.ravenIntNoResource, this.valueInt, { customer_email: 'karim-flock-with-email-001@example.com' }),
         Object.assign({}, this.ravenDecNoResource, this.valueDec, { customer_email: 'karim-flock-with-email-001@example.com' }),
