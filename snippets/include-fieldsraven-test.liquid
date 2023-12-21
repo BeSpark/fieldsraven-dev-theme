@@ -390,7 +390,26 @@
       Object.assign({}, this.ravenInt, this.valueInt),
       Object.assign({}, this.ravenDec, this.valueDec),
       Object.assign({}, this.ravenJson, this.valueJson)
-    ], customer_email: 'karim-xoxo@example.com'}
+    ]}
+
+    const response = fetch('/apps/raven/create_multiple_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitFlockWithEmail() {
+    const requestParams = {flock: [
+      Object.assign({}, this.ravenText, this.valueText),
+      Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
+      Object.assign({}, this.ravenInt, this.valueInt),
+      Object.assign({}, this.ravenDec, this.valueDec),
+      Object.assign({}, this.ravenJson, this.valueJson)
+    ]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
