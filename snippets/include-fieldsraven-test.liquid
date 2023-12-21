@@ -383,13 +383,18 @@
     const requestParams = { raven: Object.assign({}, this.ravenJsonKlaviyo, this.valueJsonArrayOfObjs) };
     this.sendRaven(requestParams)
   },
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_1_text -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_2_multi_line_text -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_3_int -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_4_dec -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_5_json -%},
   submitFlock() {
     const requestParams = {flock: [
-      Object.assign({}, this.ravenText, this.valueText),
-      Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
-      Object.assign({}, this.ravenInt, this.valueInt),
-      Object.assign({}, this.ravenDec, this.valueDec),
-      Object.assign({}, this.ravenJson, this.valueJson)
+      Object.assign({}, this.ravenTextNoResource, this.valueText),
+      Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText),
+      Object.assign({}, this.ravenIntNoResource, this.valueInt),
+      Object.assign({}, this.ravenDecNoResource, this.valueDec),
+      Object.assign({}, this.ravenJsonNoResource, this.valueJson)
     ]}
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
@@ -403,13 +408,16 @@
       .then(resJson => console.log('resJson: ', resJson))
   },
   submitFlockWithEmail() {
-    const requestParams = {flock: [
-      Object.assign({}, this.ravenText, this.valueText),
-      Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
-      Object.assign({}, this.ravenInt, this.valueInt),
-      Object.assign({}, this.ravenDec, this.valueDec),
-      Object.assign({}, this.ravenJson, this.valueJson)
-    ]}
+    const requestParams = {
+      flock: [
+        Object.assign({}, this.ravenText, this.valueText),
+        Object.assign({}, this.ravenMultiLineText, this.valueMultiLineText),
+        Object.assign({}, this.ravenInt, this.valueInt),
+        Object.assign({}, this.ravenDec, this.valueDec),
+        Object.assign({}, this.ravenJson, this.valueJson)
+      ],
+      customer_email: 'karim-flock-with-email-001@example.com'
+    }
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
@@ -479,6 +487,9 @@
     </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitCustomerEmailRaven()">
       Test customer email
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitFlockWithEmail()">
+      Test sending flock with customer email
     </button><br>
   </fieldset>
 </div>
