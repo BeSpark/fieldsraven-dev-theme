@@ -430,7 +430,7 @@
       .then(resJson => console.log('resJson: ', resJson))
   },
   submitCustomerEmailRaven() {
-    const requestParams = { raven: Object.assign({}, this.ravenTextCustomerEmail, this.valueText, {customer_email: 'karim-ab@bexample.com'}) };
+    const requestParams = { raven: Object.assign({}, this.ravenTextCustomerEmail, this.valueText, {customer_email: `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`}) };
     this.sendRaven(requestParams)
   }
 }">
