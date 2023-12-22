@@ -31,6 +31,10 @@
   endcase
 
   if request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id_product_reference_test = 'oZnqU_U'
+    assign raven_id_product_reference_list_test = 'IntgzvQ'
+    assign product_ids_list = '6702989607012,6702989475940' | split: ','
+
     if request.page_type == 'index'
       assign raven_id_1_text = '6r4fdes'
       assign raven_id_2_multi_line_text = 'EdjT0C4'
@@ -288,6 +292,8 @@
     assign raven_id_product_reference_list_test = 'AvdrLV4'
     assign product_ids_list = '7516097249502,7516097118430' | split: ','
 
+    assign raven_id_customer_email_text_field_test = '5231sdA'
+
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
       assign raven_id_1_text = 'Rl83G_g'
@@ -306,6 +312,7 @@
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
+  ravenTextCustomerEmail: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_customer_email_text_field_test -%},
   valueProductIdsList: { value: [{% for id in product_ids_list %}{{ id }}{% unless forloop.last %},{% endunless %}{% endfor %}] },
   valueProductId: { value: '{{ product.id }}' },
   valueText: { value: `Timestamp: ${Date.now()}` },
@@ -396,10 +403,49 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'j1OWY4c' -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'I0tt9N4' -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'IT0lxKY' -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: '0l3f7WA' -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'G6AeKWU' -%},
+  submitFlockWithEmail() {
+    const requestParams = {
+      flock: [
+        Object.assign({}, this.ravenTextNoResource, this.valueText),
+        Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText),
+        Object.assign({}, this.ravenIntNoResource, this.valueInt),
+        Object.assign({}, this.ravenDecNoResource, this.valueDec),
+        Object.assign({}, this.ravenJsonNoResource, this.valueJson)
+      ],
+      //customer_email: `karim-flock-with-email-22@example.com`
+      customer_email: `karim-flock-with-email-${Math.floor(Math.random() * 1000)}@example.com`
+    }
+
+    const response = fetch('/apps/raven/create_multiple_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitCustomerEmailRaven() {
+    const requestParams = { raven: Object.assign({}, this.ravenTextCustomerEmail, this.valueText, {customer_email: `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`}) };
+    this.sendRaven(requestParams)
   }
 }">
+  <script type="text/javascript">
+    console.log('🚧 list_product_reference_test: ', {{customer.metafields.fields_raven.list_product_reference_test.value|json}})
+    console.log('🚧 product_reference_test_1: ', {{customer.metafields.fields_raven.product_reference_test_1.value|json}})
+
+  </script>
   <code>
-    product.id: {{ product.id }}
+    product.id: {{ product.id }}<br>
+    list_product_reference_test: {{customer.metafields.fields_raven.list_product_reference_test.value}}
+    product_reference_test_1: {{customer.metafields.fields_raven.product_reference_test_1.value}}
   </code>
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
   <fieldset>
@@ -442,6 +488,12 @@
     <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoArrayOfObjs()">
       Test sending JSON (Array of Objs) raven to Klaviyo
     </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitCustomerEmailRaven()">
+      Test customer email
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitFlockWithEmail()">
+      Test sending flock with customer email
+    </button><br>
   </fieldset>
 </div>
 <hr>
@@ -452,3 +504,29 @@
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
   </div>
 {% endif %}
+
+<div x-data="{
+  params: {
+    email: 'karim+dec5-test-002@fieldsraven.app',
+    metafields: [
+       {key: 'new_dec_5_1', value: 'newvalue', type: 'single_line_text_field', namespace: 'global'},
+       {key: 'new_dec_5_2', value: 'newvalue_2', type: 'single_line_text_field', namespace: 'global'}
+    ]
+  },
+  findOrCreateCustomerReq(params) {
+    const response = fetch('/apps/raven/find_or_create_customer_and_add_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitFindOrCreateCustomerReq() {
+    this.findOrCreateCustomerReq(this.params)
+  }
+}">
+  <button @click="submitFindOrCreateCustomerReq()">find_or_create_customer_and_add_metafields</button>
+</div>
