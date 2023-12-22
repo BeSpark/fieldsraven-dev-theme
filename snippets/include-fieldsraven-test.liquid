@@ -420,6 +420,8 @@
   ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdDecNoResource -%},
   ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdJsonNoResource -%},
   submitFlockWithEmail() {
+    const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
+    console.log('💥👷👉 customer_email: ', customer_email);
     const requestParams = {
       flock: [
         Object.assign({}, this.ravenTextNoResource, this.valueText),
@@ -428,8 +430,7 @@
         Object.assign({}, this.ravenDecNoResource, this.valueDec),
         Object.assign({}, this.ravenJsonNoResource, this.valueJson)
       ],
-      //customer_email: `karim-flock-with-email-22@example.com`
-      customer_email: `karim-flock-with-email-${Math.floor(Math.random() * 1000)}@example.com`
+      customer_email: customer_email
     }
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
