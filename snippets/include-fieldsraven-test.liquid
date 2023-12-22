@@ -293,11 +293,11 @@
     assign raven_id_product_reference_list_test = 'AvdrLV4'
     assign product_ids_list = '7516097249502,7516097118430' | split: ','
     assign raven_id_customer_email_text_field_test = '5231sdA'
-    assign ravenIdTextNoResource = ''
-    assign ravenIdMultiLineTextNoResource = ''
-    assign ravenIdIntNoResource = ''
-    assign ravenIdDecNoResource = ''
-    assign ravenIdJsonNoResource = ''
+    assign ravenIdTextNoResource = 'j1OWY4c'
+    assign ravenIdMultiLineTextNoResource = 'I0tt9N4'
+    assign ravenIdIntNoResource = 'IT0lxKY'
+    assign ravenIdDecNoResource = '0l3f7WA'
+    assign ravenIdJsonNoResource = 'G6AeKWU'
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
@@ -409,11 +409,11 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'j1OWY4c' -%},
-  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'I0tt9N4' -%},
-  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'IT0lxKY' -%},
-  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: '0l3f7WA' -%},
-  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'G6AeKWU' -%},
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdTextNoResource -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdMultiLineTextNoResource -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdIntNoResource -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdDecNoResource -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdJsonNoResource -%},
   submitFlockWithEmail() {
     const requestParams = {
       flock: [
