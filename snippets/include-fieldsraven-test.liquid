@@ -34,6 +34,12 @@
     assign raven_id_product_reference_test = 'oZnqU_U'
     assign raven_id_product_reference_list_test = 'IntgzvQ'
     assign product_ids_list = '6702989607012,6702989475940' | split: ','
+    assign raven_id_customer_email_text_field_test = ''
+    assign ravenIdTextNoResource = ''
+    assign ravenIdMultiLineTextNoResource = ''
+    assign ravenIdIntNoResource = ''
+    assign ravenIdDecNoResource = ''
+    assign ravenIdJsonNoResource = ''
 
     if request.page_type == 'index'
       assign raven_id_1_text = '6r4fdes'
@@ -146,6 +152,12 @@
     assign raven_id_product_reference_test = 'LOiRk9w'
     assign raven_id_product_reference_list_test = 'fzk4PZA'
     assign product_ids_list = '7527505002710,7527505690838' | split: ','
+    assign raven_id_customer_email_text_field_test = 'O9Np8IU'
+    assign ravenIdTextNoResource = 'rkrajVE'
+    assign ravenIdMultiLineTextNoResource = '2FQkOoA'
+    assign ravenIdIntNoResource = 'NzwmSAM'
+    assign ravenIdDecNoResource = 'r23ir5c'
+    assign ravenIdJsonNoResource = 'YTWDemY'
 
     if request.page_type == 'page'
       assign raven_id_1_text = 'lcAay1s'
@@ -291,6 +303,12 @@
     assign raven_id_product_reference_test = 'UB6rqng'
     assign raven_id_product_reference_list_test = 'AvdrLV4'
     assign product_ids_list = '7516097249502,7516097118430' | split: ','
+    assign raven_id_customer_email_text_field_test = '5231sdA'
+    assign ravenIdTextNoResource = 'j1OWY4c'
+    assign ravenIdMultiLineTextNoResource = 'I0tt9N4'
+    assign ravenIdIntNoResource = 'IT0lxKY'
+    assign ravenIdDecNoResource = '0l3f7WA'
+    assign ravenIdJsonNoResource = 'G6AeKWU'
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
@@ -310,6 +328,7 @@
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
   ravenText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_1_text -%},
+  ravenTextCustomerEmail: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_customer_email_text_field_test -%},
   valueProductIdsList: { value: [{% for id in product_ids_list %}{{ id }}{% unless forloop.last %},{% endunless %}{% endfor %}] },
   valueProductId: { value: '{{ product.id }}' },
   valueText: { value: `Timestamp: ${Date.now()}` },
@@ -400,6 +419,48 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+  },
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdTextNoResource -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdMultiLineTextNoResource -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdIntNoResource -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdDecNoResource -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdJsonNoResource -%},
+  submitFlockWithEmail() {
+    const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
+    console.log('💥👷👉 customer_email: ', customer_email);
+    const requestParams = {
+      flock: [
+        Object.assign({}, this.ravenTextNoResource, this.valueText),
+        Object.assign({}, this.ravenMultiLineTextNoResource, this.valueMultiLineText),
+        Object.assign({}, this.ravenIntNoResource, this.valueInt),
+        Object.assign({}, this.ravenDecNoResource, this.valueDec),
+        Object.assign({}, this.ravenJsonNoResource, this.valueJson)
+      ],
+      customer_email: customer_email
+    }
+
+    const start = Date.now();
+
+    const response = fetch('/apps/raven/create_multiple_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => {
+        console.log('resJson: ', resJson)
+        const end = Date.now();
+        console.log(`⏰⏰ Execution time: ${end - start} ms`);
+      })
+
+  },
+  submitCustomerEmailRaven() {
+    const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
+    console.log('💥👷👉 customer_email: ', customer_email);
+    const requestParams = { raven: Object.assign({}, this.ravenTextCustomerEmail, this.valueText, {customer_email: customer_email}) };
+    this.sendRaven(requestParams)
   }
 }">
   <script type="text/javascript">
@@ -453,6 +514,12 @@
     <button type="button" class="{{ button_classes }}" @click="submitJsonKlaviyoArrayOfObjs()">
       Test sending JSON (Array of Objs) raven to Klaviyo
     </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitCustomerEmailRaven()">
+      Test customer email
+    </button><br>
+    <button type="button" class="{{ button_classes }}" @click="submitFlockWithEmail()">
+      Test sending flock with customer email 💥
+    </button><br>
   </fieldset>
 </div>
 <hr>
@@ -463,3 +530,29 @@
     <p>Please <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/login">log in</a> or <a class="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500" href="/account/register">register</a> to test this!</p>
   </div>
 {% endif %}
+
+<div x-data="{
+  params: {
+    email: 'karim+dec5-test-002@fieldsraven.app',
+    metafields: [
+       {key: 'new_dec_5_1', value: 'newvalue', type: 'single_line_text_field', namespace: 'global'},
+       {key: 'new_dec_5_2', value: 'newvalue_2', type: 'single_line_text_field', namespace: 'global'}
+    ]
+  },
+  findOrCreateCustomerReq(params) {
+    const response = fetch('/apps/raven/find_or_create_customer_and_add_metafields', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    })
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
+  },
+  submitFindOrCreateCustomerReq() {
+    this.findOrCreateCustomerReq(this.params)
+  }
+}">
+  <button @click="submitFindOrCreateCustomerReq()">find_or_create_customer_and_add_metafields</button>
+</div>
