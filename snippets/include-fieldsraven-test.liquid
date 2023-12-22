@@ -433,6 +433,8 @@
       customer_email: customer_email
     }
 
+    const start = Date.now();
+
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -442,6 +444,9 @@
     response
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
+
+    const end = Date.now();
+    console.log(`⏰⏰ Execution time: ${end - start} ms`);
   },
   submitCustomerEmailRaven() {
     const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
