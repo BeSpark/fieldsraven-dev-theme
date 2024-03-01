@@ -34,6 +34,12 @@
     assign raven_id_product_reference_test = 'oZnqU_U'
     assign raven_id_product_reference_list_test = 'IntgzvQ'
     assign product_ids_list = '6702989607012,6702989475940' | split: ','
+    assign raven_id_customer_email_text_field_test = 'bnRIjmA'
+    assign ravenIdTextNoResource = 'b0lp0d8'
+    assign ravenIdMultiLineTextNoResource = '47l7iA0'
+    assign ravenIdIntNoResource = 'eL6n4Gc'
+    assign ravenIdDecNoResource = 'MX2y3EI'
+    assign ravenIdJsonNoResource = 'Rk5NRkw'
 
     if request.page_type == 'index'
       assign raven_id_1_text = '6r4fdes'
@@ -147,6 +153,11 @@
     assign raven_id_product_reference_list_test = 'fzk4PZA'
     assign product_ids_list = '7527505002710,7527505690838' | split: ','
     assign raven_id_customer_email_text_field_test = 'O9Np8IU'
+    assign ravenIdTextNoResource = 'rkrajVE'
+    assign ravenIdMultiLineTextNoResource = '2FQkOoA'
+    assign ravenIdIntNoResource = 'NzwmSAM'
+    assign ravenIdDecNoResource = 'r23ir5c'
+    assign ravenIdJsonNoResource = 'YTWDemY'
 
     if request.page_type == 'page'
       assign raven_id_1_text = 'lcAay1s'
@@ -293,6 +304,11 @@
     assign raven_id_product_reference_list_test = 'AvdrLV4'
     assign product_ids_list = '7516097249502,7516097118430' | split: ','
     assign raven_id_customer_email_text_field_test = '5231sdA'
+    assign ravenIdTextNoResource = 'j1OWY4c'
+    assign ravenIdMultiLineTextNoResource = 'I0tt9N4'
+    assign ravenIdIntNoResource = 'IT0lxKY'
+    assign ravenIdDecNoResource = '0l3f7WA'
+    assign ravenIdJsonNoResource = 'G6AeKWU'
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
@@ -301,7 +317,7 @@
       assign raven_id_3_int = 'jEKxqnk'
       assign raven_id_4_dec = 'XrskynY'
       assign raven_id_5_json = 'pPI-hyk'
-      assign raven_id_5_json_klaviyo = 'ccchC8o'
+      assign raven_id_5_json_klaviyo = 'fwiMxNg'
       assign raven_id_airtable = 'rXiU5TM'
     endif
   endif
@@ -404,12 +420,14 @@
       .then(res => res.json())
       .then(resJson => console.log('resJson: ', resJson))
   },
-  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'j1OWY4c' -%},
-  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'I0tt9N4' -%},
-  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'IT0lxKY' -%},
-  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: '0l3f7WA' -%},
-  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: 'G6AeKWU' -%},
+  ravenTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdTextNoResource -%},
+  ravenMultiLineTextNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdMultiLineTextNoResource -%},
+  ravenIntNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdIntNoResource -%},
+  ravenDecNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdDecNoResource -%},
+  ravenJsonNoResource: {%- render 'raven-mac-gen', resource_id: nil, raven_id: ravenIdJsonNoResource -%},
   submitFlockWithEmail() {
+    const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
+    console.log('💥👷👉 customer_email: ', customer_email);
     const requestParams = {
       flock: [
         Object.assign({}, this.ravenTextNoResource, this.valueText),
@@ -418,9 +436,10 @@
         Object.assign({}, this.ravenDecNoResource, this.valueDec),
         Object.assign({}, this.ravenJsonNoResource, this.valueJson)
       ],
-      //customer_email: `karim-flock-with-email-22@example.com`
-      customer_email: `karim-flock-with-email-${Math.floor(Math.random() * 1000)}@example.com`
+      customer_email: customer_email
     }
+
+    const start = Date.now();
 
     const response = fetch('/apps/raven/create_multiple_metafields', {
       method: 'PUT',
@@ -430,7 +449,12 @@
 
     response
       .then(res => res.json())
-      .then(resJson => console.log('resJson: ', resJson))
+      .then(resJson => {
+        console.log('resJson: ', resJson)
+        const end = Date.now();
+        console.log(`⏰⏰ Execution time: ${end - start} ms`);
+      })
+
   },
   submitCustomerEmailRaven() {
     const customer_email = `karim-test-${Math.floor(Math.random() * 1000)}@bexample.com`;
@@ -491,10 +515,10 @@
       Test sending JSON (Array of Objs) raven to Klaviyo
     </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitCustomerEmailRaven()">
-      Test customer email xoxo
+      Test customer email
     </button><br>
     <button type="button" class="{{ button_classes }}" @click="submitFlockWithEmail()">
-      Test sending flock with customer email
+      Test sending flock with customer email 💥
     </button><br>
   </fieldset>
 </div>
