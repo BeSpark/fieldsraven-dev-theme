@@ -329,20 +329,23 @@
 
 <!-- JavaScript + Liquid -->
 <script type="text/javascript">
-  // fieldsRavenDeleteTest = (value) => {
-  //   const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
-  //   const valueObj = { value: value };
-  //   const requestParams = Object.assign({}, ravenObj, valueObj);
-  //   const response = FieldsRaven.send(requestParams);
-  //   response.then(res => {
-  //     if (res.status === 200) {
-  //       console.log('🎉', res.json)
-  //     } else {
-  //       console.error('😞', res)
-  //     }
-  //   })
-  //   .catch(e => console.error(e));
-  // }
+  {% comment %}
+
+  fieldsRavenDeleteTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const valueObj = { value: value };
+    const requestParams = Object.assign({}, ravenObj, valueObj);
+    const response = FieldsRaven.send(requestParams);
+    response.then(res => {
+      if (res.status === 200) {
+        console.log('🎉', res.json)
+      } else {
+        console.error('😞', res)
+      }
+    })
+    .catch(e => console.error(e));
+  }
+  {% endcomment %}
 
   fieldsRavenDeleteTest = (value) => {
     const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
