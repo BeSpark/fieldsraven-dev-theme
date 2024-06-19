@@ -322,8 +322,29 @@
     endif
   endif
 %}
-<script type="text/javascript"></script>
-<div x-data="{
+
+<!-- JavaScript + Liquid -->
+<script type="text/javascript">
+  fieldsRavenDeleteTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const valueObj = { value: value };
+    const requestParams = Object.assign({}, ravenObj, valueObj);
+    const response = FieldsRaven.send(requestParams);
+    response.then(res => {
+      if (res.status === 200) {
+        console.log('🎉', res.json)
+      } else {
+        console.error('😞', res)
+      }
+    })
+    .catch(e => console.error(e));
+  }
+</script>
+
+<!-- HTML -->
+<button id="fieldsraven-demo" onclick="fieldsRavenDeleteTest('Hello Raven!')">Send the Raven!</button>
+
+<div style="display: none;" x-data="{
   ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
