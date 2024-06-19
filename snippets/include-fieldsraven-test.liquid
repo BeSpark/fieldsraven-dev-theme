@@ -329,19 +329,34 @@
 
 <!-- JavaScript + Liquid -->
 <script type="text/javascript">
+  // fieldsRavenDeleteTest = (value) => {
+  //   const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+  //   const valueObj = { value: value };
+  //   const requestParams = Object.assign({}, ravenObj, valueObj);
+  //   const response = FieldsRaven.send(requestParams);
+  //   response.then(res => {
+  //     if (res.status === 200) {
+  //       console.log('🎉', res.json)
+  //     } else {
+  //       console.error('😞', res)
+  //     }
+  //   })
+  //   .catch(e => console.error(e));
+  // }
+
   fieldsRavenDeleteTest = (value) => {
-    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'TBD' -%}
     const valueObj = { value: value };
-    const requestParams = Object.assign({}, ravenObj, valueObj);
-    const response = FieldsRaven.send(requestParams);
-    response.then(res => {
-      if (res.status === 200) {
-        console.log('🎉', res.json)
-      } else {
-        console.error('😞', res)
-      }
+    const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParamsOne)
     })
-    .catch(e => console.error(e));
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson))
   }
 </script>
 
