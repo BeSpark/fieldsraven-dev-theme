@@ -348,18 +348,18 @@
   {% endcomment %}
 
   fieldsRavenDeleteTest = (value) => {
-    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%};
     const valueObj = { value: value };
     const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
     const response = fetch('/apps/raven/create_metafield', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestParamsOne)
-    })
+    });
 
     response
       .then(res => res.json())
-      .then(resJson => console.log('resJson: ', resJson))
+      .then(resJson => console.log('resJson: ', resJson));
   }
 </script>
 
