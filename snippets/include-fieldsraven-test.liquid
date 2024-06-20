@@ -423,7 +423,7 @@
   deleteProductReferenceListTest() {
     const requestParams = {
       resource_id: {{ customer.id }},
-      raven_id: {{ raven_id_product_reference_list_test }}
+      raven_id: '{{ raven_id_product_reference_list_test }}'
     };
     const response = fetch('/apps/raven/delete_metafield', {
       method: 'DELETE',
