@@ -534,14 +534,13 @@
     product_reference_test_1: {{customer.metafields.fields_raven.product_reference_test_1.value}}
   </code>
   {% assign button_classes = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500' %}
-  {% assign button_classes_delete = 'tw-mt-8 tw-inline-flex tw-items-center tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-xl tw-font-medium tw-rounded-md tw-shadow-sm tw-text-white tw-bg-red-600 hover:tw-bg-red-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-red-500' %}
   <fieldset>
     <legend>Create {{ resource_name }} metafields</legend>
     {% if customer %}
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceListTest()">
         Test list.product_reference_test {{ product.id }}
       </button><br>
-      <button type="button" class="{{ button_classes_delete }}" @click="submitProductReferenceListTest()">
+      <button type="button" class="{{ button_classes }}" @click="deleteProductReferenceListTest()">
         Delete list.product_reference_test
       </button><br>
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
