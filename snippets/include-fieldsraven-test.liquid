@@ -421,8 +421,19 @@
     this.sendRaven(requestParams)
   },
   deleteProductReferenceListTest() {
-    const requestParams = { raven: Object.assign({}, this.ravenProductReferenceListTest, this.valueProductIdsList) };
-    this.sendRaven(requestParams)
+    const requestParams = {
+      resource_id: {{ customer.id }},
+      raven_id: {{ raven_id_product_reference_list_test }}
+    };
+    const response = fetch('/apps/raven/delete_metafield', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
   },
   submitProductReferenceTest() {
     const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
