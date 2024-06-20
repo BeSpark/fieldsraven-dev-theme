@@ -363,12 +363,10 @@
   }
 
   fieldsRavenTestDelete = (value) => {
-    const ravenObj = {
+    const requestParams = {
       resource_id: {{ customer.id }},
       raven_id: 'fbr7INM'
     };
-    const valueObj = { value: value };
-    const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
     const response = fetch('/apps/raven/delete_metafield', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
