@@ -323,6 +323,7 @@
       assign raven_id_5_json = 'pPI-hyk'
       assign raven_id_5_json_klaviyo = 'ccchC8o'
       assign raven_id_airtable = 'rXiU5TM'
+      assign raven_id_delete_test = 'fbr7INM'
     endif
   endif
 %}
@@ -348,7 +349,7 @@
   {% endcomment %}
 
   fieldsRavenTest = (value) => {
-    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%};
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_delete_test -%};
     const valueObj = { value: value };
     const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
     const response = fetch('/apps/raven/create_metafield', {
@@ -365,7 +366,7 @@
   fieldsRavenTestDelete = () => {
     const requestParams = {
       resource_id: {{ customer.id }},
-      raven_id: 'fbr7INM'
+      raven_id: raven_id_delete_test
     };
     const response = fetch('/apps/raven/delete_metafield', {
       method: 'DELETE',
