@@ -364,7 +364,7 @@
 
   fieldsRavenTestDelete = () => {
     const requestParams = {
-      resource_id: 123,
+      resource_id: {{ customer.id }},
       raven_id: 'fbr7INM'
     };
     const response = fetch('/apps/raven/delete_metafield', {
