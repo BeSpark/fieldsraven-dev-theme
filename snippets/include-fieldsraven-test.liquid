@@ -148,6 +148,10 @@
     endif
   endif
 
+  comment
+    dev: pk_f2c46b599d47b2c39b50e9310fa929cb8b
+    stage: pk_09f7a1eba91426889be2e2b411f25e493c
+  endcomment
   if request.host == 'fieldsraven-stage.myshopify.com'
     assign raven_id_product_reference_test = 'LOiRk9w'
     assign raven_id_product_reference_list_test = 'fzk4PZA'
@@ -322,8 +326,64 @@
     endif
   endif
 %}
-<script type="text/javascript"></script>
-<div x-data="{
+
+<!-- JavaScript + Liquid -->
+<script type="text/javascript">
+  {% comment %}
+
+  fieldsRavenDeleteTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const valueObj = { value: value };
+    const requestParams = Object.assign({}, ravenObj, valueObj);
+    const response = FieldsRaven.send(requestParams);
+    response.then(res => {
+      if (res.status === 200) {
+        console.log('🎉', res.json)
+      } else {
+        console.error('😞', res)
+      }
+    })
+    .catch(e => console.error(e));
+  }
+  {% endcomment %}
+
+  fieldsRavenTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%};
+    const valueObj = { value: value };
+    const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
+  }
+
+  fieldsRavenTestDelete = () => {
+    const requestParams = {
+      resource_id: {{ customer.id }},
+      raven_id: 'fbr7INM'
+    };
+    const response = fetch('/apps/raven/delete_metafield', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
+  }
+</script>
+
+<!-- HTML -->
+<button id="fieldsraven-demo" onclick="fieldsRavenTest('TEST')">fieldsRavenTest</button><br>
+<button id="fieldsraven-demo" onclick="fieldsRavenTestDelete()">fieldsRavenTestDelete</button>
+
+<div style="display: ex-none;" x-data="{
   ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
@@ -359,6 +419,21 @@
   submitProductReferenceListTest() {
     const requestParams = { raven: Object.assign({}, this.ravenProductReferenceListTest, this.valueProductIdsList) };
     this.sendRaven(requestParams)
+  },
+  deleteProductReferenceListTest() {
+    const requestParams = {
+      resource_id: {{ customer.id }},
+      raven_id: '{{ raven_id_product_reference_list_test }}'
+    };
+    const response = fetch('/apps/raven/delete_metafield', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
   },
   submitProductReferenceTest() {
     const requestParams = { raven: Object.assign({}, this.ravenProductReferenceTest, this.valueProductId) };
@@ -479,6 +554,9 @@
     {% if customer %}
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceListTest()">
         Test list.product_reference_test {{ product.id }}
+      </button><br>
+      <button type="button" class="{{ button_classes }}" @click="deleteProductReferenceListTest()">
+        Delete list.product_reference_test
       </button><br>
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
         Test product_reference_test {{ product.id }}
