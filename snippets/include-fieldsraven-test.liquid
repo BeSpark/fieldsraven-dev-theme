@@ -362,7 +362,7 @@
       .then(resJson => console.log('resJson: ', resJson));
   }
 
-  fieldsRavenTestDelete = (value) => {
+  fieldsRavenTestDelete = () => {
     const requestParams = {
       resource_id: {{ customer.id }},
       raven_id: 'fbr7INM'
@@ -381,7 +381,7 @@
 
 <!-- HTML -->
 <button id="fieldsraven-demo" onclick="fieldsRavenTest('TEST')">fieldsRavenTest</button><br>
-<button id="fieldsraven-demo" onclick="fieldsRavenTestDelete(null)">fieldsRavenTestDelete</button>
+<button id="fieldsraven-demo" onclick="fieldsRavenTestDelete()">fieldsRavenTestDelete</button>
 
 <div style="display: ex-none;" x-data="{
   ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
