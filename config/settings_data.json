@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "colors_solid_button_labels": "#FFFFFF",
@@ -25,8 +34,7 @@
         "block_order": [
           "announcement-bar-0"
         ],
-        "settings": {
-        }
+        "settings": {}
       },
       "header": {
         "type": "header",
@@ -53,7 +61,7 @@
             "type": "text",
             "settings": {
               "heading": "Heading",
-              "subtext": "<p>Share store details, promotions, or brand content with your customers.<\/p>"
+              "subtext": "<p>Share store details, promotions, or brand content with your customers.</p>"
             }
           }
         },
@@ -72,15 +80,13 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
-      "7952288978299920346": {
-        "type": "shopify:\/\/apps\/fieldsraven-stage\/blocks\/storefront-kit-app-embed\/a39cc319-ee9d-4f4c-bff6-e6b35acde35c",
+      "9017896937276243741": {
+        "type": "shopify://apps/fieldsraven/blocks/storefront-kit-app-embed/16a10c61-af87-4e42-9076-e03156f23f56",
         "disabled": false,
         "settings": {
-          "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
+          "alpine_js_script_tag": "<script defer src=\"https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js\"></script>",
           "include_alpine_js": true
         }
       }
@@ -111,8 +117,7 @@
           "block_order": [
             "announcement-bar-0"
           ],
-          "settings": {
-          }
+          "settings": {}
         }
       }
     },
@@ -132,13 +137,11 @@
           "blocks": {
             "menu": {
               "type": "link_list",
-              "settings": {
-              }
+              "settings": {}
             },
             "text": {
               "type": "text",
-              "settings": {
-              }
+              "settings": {}
             }
           },
           "block_order": [
