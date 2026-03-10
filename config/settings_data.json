@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "colors_solid_button_labels": "#FFFFFF",
@@ -9,7 +18,7 @@
     "colors_background_2": "#F3F3F3",
     "type_header_font": "assistant_n4",
     "type_body_font": "assistant_n4",
-    "favicon": "shopify:\/\/shop_images\/logo-1200x1200.png",
+    "favicon": "shopify://shop_images/logo-1200x1200.png",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -26,8 +35,7 @@
         "block_order": [
           "announcement-bar-0"
         ],
-        "settings": {
-        }
+        "settings": {}
       },
       "header": {
         "type": "header",
@@ -54,7 +62,7 @@
             "type": "text",
             "settings": {
               "heading": "Heading",
-              "subtext": "<p>Share store details, promotions, or brand content with your customers.<\/p>"
+              "subtext": "<p>Share store details, promotions, or brand content with your customers.</p>"
             }
           }
         },
@@ -73,43 +81,14 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
-      "9017896937276243741": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/storefront-kit-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
+      "13485763659823208815": {
+        "type": "shopify://apps/fieldsraven-dev/blocks/storefront-kit-app-embed/85b20da3-13b0-4913-bd3d-c284255cddf9",
         "disabled": false,
         "settings": {
-          "alpine_js_script_tag": "<script defer src=\"https:\/\/unpkg.com\/alpinejs@3.7.1\/dist\/cdn.min.js\"><\/script>",
+          "alpine_js_script_tag": "<script defer src=\"https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js\"></script>",
           "include_alpine_js": true
-        }
-      },
-      "6567124934620572698": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/seo-hide-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id_collection": "",
-          "raven_id_product": "",
-          "raven_id_article": "",
-          "raven_id_blog": "",
-          "raven_id_page": "_G6DVoc",
-          "admin_email": "karim@bespark.ca"
-        }
-      },
-      "6356419554719212837": {
-        "type": "shopify:\/\/apps\/fieldsraven\/blocks\/birthday-app-embed\/16a10c61-af87-4e42-9076-e03156f23f56",
-        "disabled": false,
-        "settings": {
-          "raven_id": "dnluN2Q",
-          "submit_btn_text": "Surprise me!",
-          "customer_logout_text": "<p><a href=\"\/account\/login\">Login<\/a> or <a href=\"\/account\/register\">create an account<\/a> to unlock your birthday gift 🎂<\/p>",
-          "bd_pre_submit_text": "<p>Fancy a Birthday gift?<\/p>",
-          "bd_post_submit_text": "<p>You're awesome! 🙌<\/p>",
-          "bd_wait_text": "<p>You're all set! We'll party soon...  🎉<\/p>",
-          "hide_popup_while_wait": false,
-          "bd_text": "<p>Happy Birthday 🎉 here is gift discount code:<\/p>",
-          "bd_code": "HAPPY_BIRTHDAY"
         }
       }
     }
@@ -139,8 +118,7 @@
           "block_order": [
             "announcement-bar-0"
           ],
-          "settings": {
-          }
+          "settings": {}
         }
       }
     },
@@ -160,13 +138,11 @@
           "blocks": {
             "menu": {
               "type": "link_list",
-              "settings": {
-              }
+              "settings": {}
             },
             "text": {
               "type": "text",
-              "settings": {
-              }
+              "settings": {}
             }
           },
           "block_order": [
