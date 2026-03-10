@@ -352,7 +352,7 @@
   {% endcomment %}
 
   fieldsRavenTest = (value) => {
-    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_delete_test -%};
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'wYb4QdA' -%};
     const valueObj = { value: value };
     const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
     const response = fetch('/apps/raven/create_metafield', {
