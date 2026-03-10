@@ -319,14 +319,14 @@
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = 'rxzICAQ'
-      assign raven_id_1_text = 'wYb4QdA'
+      assign raven_id_1_text = 'Rl83G_g'
       assign raven_id_2_multi_line_text = 'gGJblDk'
       assign raven_id_3_int = 'jEKxqnk'
       assign raven_id_4_dec = 'XrskynY'
       assign raven_id_5_json = 'pPI-hyk'
       assign raven_id_5_json_klaviyo = 'ccchC8o'
       assign raven_id_airtable = 'rXiU5TM'
-      assign raven_id_delete_test = 'wYb4QdA'
+      assign raven_id_delete_test = 'fbr7INM'
     endif
   endif
 %}
@@ -352,7 +352,7 @@
   {% endcomment %}
 
   fieldsRavenTest = (value) => {
-    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_1_text -%};
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_delete_test -%};
     const valueObj = { value: value };
     const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
     const response = fetch('/apps/raven/create_metafield', {
@@ -384,9 +384,7 @@
 </script>
 
 <!-- HTML -->
-customer.id: {{ customer.id }}
-<hr>
-<button id="fieldsraven-demo" onclick="fieldsRavenTest('TEST')">fieldsRavenTest xoxo</button><br>
+<button id="fieldsraven-demo" onclick="fieldsRavenTest('TEST')">fieldsRavenTest</button><br>
 <button id="fieldsraven-demo" onclick="fieldsRavenTestDelete()">fieldsRavenTestDelete</button>
 
 <div style="display: ex-none;" x-data="{
