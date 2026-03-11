@@ -31,9 +31,16 @@
   endcase
 
   if request.host == 'fieldsraven-demo.myshopify.com'
+    assign raven_id_metaobject_reference_test = 'MOt1x64'
     assign raven_id_product_reference_test = 'oZnqU_U'
     assign raven_id_product_reference_list_test = 'IntgzvQ'
     assign product_ids_list = '6702989607012,6702989475940' | split: ','
+    assign raven_id_customer_email_text_field_test = 'bnRIjmA'
+    assign ravenIdTextNoResource = 'b0lp0d8'
+    assign ravenIdMultiLineTextNoResource = '47l7iA0'
+    assign ravenIdIntNoResource = 'eL6n4Gc'
+    assign ravenIdDecNoResource = 'MX2y3EI'
+    assign ravenIdJsonNoResource = 'Rk5NRkw'
 
     if request.page_type == 'index'
       assign raven_id_1_text = '6r4fdes'
@@ -61,6 +68,7 @@
       assign ex_raven_id_5_json_klaviyo = '0iiyCqQ'
       assign raven_id_5_json_klaviyo = 'kqv5FRQ'
       assign raven_id_airtable = 'PcJjpIo'
+      assign raven_id_delete_test = '12mItZ8'
     endif
   endif
 
@@ -142,6 +150,10 @@
     endif
   endif
 
+  comment
+    dev: pk_f2c46b599d47b2c39b50e9310fa929cb8b
+    stage: pk_09f7a1eba91426889be2e2b411f25e493c
+  endcomment
   if request.host == 'fieldsraven-stage.myshopify.com'
     assign raven_id_product_reference_test = 'LOiRk9w'
     assign raven_id_product_reference_list_test = 'fzk4PZA'
@@ -163,7 +175,7 @@
 
     if request.page_type == 'customers/account'
       assign raven_id_metafields_set_type_test = '5xb-yFE'
-      assign raven_id_1_text = 'JvgpVig'
+      assign raven_id_1_text = 'Gw_B36Q'
       assign raven_id_2_multi_line_text = 'RZdTuZQ'
       assign raven_id_3_int = 'x3dHLQQ'
       assign raven_id_4_dec = '1wqRJhs'
@@ -294,6 +306,7 @@
   endif
 
   if request.host == 'fieldsraven-dev.myshopify.com'
+    assign raven_id_metaobject_reference_test = 'A0uIuok'
     assign raven_id_product_reference_test = 'UB6rqng'
     assign raven_id_product_reference_list_test = 'AvdrLV4'
     assign product_ids_list = '7516097249502,7516097118430' | split: ','
@@ -313,11 +326,69 @@
       assign raven_id_5_json = 'pPI-hyk'
       assign raven_id_5_json_klaviyo = 'ccchC8o'
       assign raven_id_airtable = 'rXiU5TM'
+      assign raven_id_delete_test = 'fbr7INM'
     endif
   endif
 %}
-<script type="text/javascript"></script>
-<div x-data="{
+
+<!-- JavaScript + Liquid -->
+<script type="text/javascript">
+  {% comment %}
+
+  fieldsRavenDeleteTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: 'fbr7INM' -%}
+    const valueObj = { value: value };
+    const requestParams = Object.assign({}, ravenObj, valueObj);
+    const response = FieldsRaven.send(requestParams);
+    response.then(res => {
+      if (res.status === 200) {
+        console.log('🎉', res.json)
+      } else {
+        console.error('😞', res)
+      }
+    })
+    .catch(e => console.error(e));
+  }
+  {% endcomment %}
+
+  fieldsRavenTest = (value) => {
+    const ravenObj = {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_delete_test -%};
+    const valueObj = { value: value };
+    const requestParams = { raven: Object.assign({}, ravenObj, valueObj) };
+    const response = fetch('/apps/raven/create_metafield', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
+  }
+
+  fieldsRavenTestDelete = () => {
+    const requestParams = {
+      resource_id: {{ customer.id }},
+      raven_id: "{{ raven_id_delete_test }}"
+    };
+    const response = fetch('/apps/raven/delete_metafield', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
+  }
+</script>
+
+<!-- HTML -->
+<button id="fieldsraven-demo" onclick="fieldsRavenTest('TEST')">fieldsRavenTest</button><br>
+<button id="fieldsraven-demo" onclick="fieldsRavenTestDelete()">fieldsRavenTestDelete</button>
+
+<div style="display: ex-none;" x-data="{
+  ravenMetaobjectReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_metaobject_reference_test -%},
   ravenProductReferenceListTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_list_test -%},
   ravenProductReferenceTest: {%- render 'raven-mac-gen', resource_id: customer.id, raven_id: raven_id_product_reference_test -%},
   ravenMetafieldsSetTypeTest: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_metafields_set_type_test -%},
@@ -325,6 +396,7 @@
   ravenTextCustomerEmail: {%- render 'raven-mac-gen', resource_id: nil, raven_id: raven_id_customer_email_text_field_test -%},
   valueProductIdsList: { value: [{% for id in product_ids_list %}{{ id }}{% unless forloop.last %},{% endunless %}{% endfor %}] },
   valueProductId: { value: '{{ product.id }}' },
+  valueMetaobjectEntryId: { value: '205435273316' },
   valueText: { value: `Timestamp: ${Date.now()}` },
   ravenMultiLineText: {%- render 'raven-mac-gen', resource_id: resource_id, raven_id: raven_id_2_multi_line_text -%},
   valueMultiLineText: { value: '95% Cotton\n5% Spandex' },
@@ -352,6 +424,25 @@
   },
   submitProductReferenceListTest() {
     const requestParams = { raven: Object.assign({}, this.ravenProductReferenceListTest, this.valueProductIdsList) };
+    this.sendRaven(requestParams)
+  },
+  deleteProductReferenceListTest() {
+    const requestParams = {
+      resource_id: {{ customer.id }},
+      raven_id: '{{ raven_id_product_reference_list_test }}'
+    };
+    const response = fetch('/apps/raven/delete_metafield', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestParams)
+    });
+
+    response
+      .then(res => res.json())
+      .then(resJson => console.log('resJson: ', resJson));
+  },
+  submitMetaobjectReferenceTest() {
+    const requestParams = { raven: Object.assign({}, this.ravenMetaobjectReferenceListTest, this.valueMetaobjectEntryId) };
     this.sendRaven(requestParams)
   },
   submitProductReferenceTest() {
@@ -474,8 +565,14 @@
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceListTest()">
         Test list.product_reference_test {{ product.id }}
       </button><br>
+      <button type="button" class="{{ button_classes }}" @click="deleteProductReferenceListTest()">
+        Delete list.product_reference_test
+      </button><br>
       <button type="button" class="{{ button_classes }}" @click="submitProductReferenceTest()">
         Test product_reference_test {{ product.id }}
+      </button><br>
+      <button type="button" class="{{ button_classes }}" @click="submitMetaobjectReferenceTest()">
+        Test metaobject_reference_test
       </button><br>
     {% endif %}
     <button type="button" class="{{ button_classes }}" @click="submitMetafieldsSetTypeTest()">
