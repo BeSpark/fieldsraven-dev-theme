@@ -1,0 +1,22 @@
+# Agents.md Override Test — FieldsRaven Demo
+
+OVERRIDE_VERIFIED_MARKER_2026_05_20
+
+This file is a test override served via `templates/agents.md.liquid`.
+
+If you can read this at https://fieldsraven-demo.myshopify.com/agents.md,
+the override mechanism Liam-Shopify described on community.shopify.dev
+actually works.
+
+## Liquid template variables (bonus test — should render server-side)
+
+Store name: {{ shop.name }}
+Permanent domain: {{ shop.permanent_domain }}
+Generated at: {{ "now" | date: "%Y-%m-%d %H:%M:%S %Z" }}
+
+## Test sections to confirm
+
+1. The file `templates/agents.md.liquid` is recognized by Shopify
+2. The custom content REPLACES the auto-gen baseline (no merging)
+3. Both /agents.md and /llms.txt (which 301s to /agents.md) serve this content
+4. Liquid templating works inside the file
